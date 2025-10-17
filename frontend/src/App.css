@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.text-gradient {
+  background: linear-gradient(90deg, #2858C1 4%, #5B79BA 71%);
+  background-clip: text;
+  color: transparent;
+  
+}
+
+.head-gradient{
+  background: linear-gradient(90deg, #1F2937 0%, #58759D 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #93B5FF; /* scrollbar thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* scrollbar track */
+  border-radius: 4px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #93B5FF #f1f1f1; /* thumb track */
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+

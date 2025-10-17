@@ -1,12 +1,17 @@
 import './App.css';
+import { BrowserRouter as Router,Routes, Route} from 'react-router-dom'
+import Home from './pages/Home.js'
+import About from './pages/About.js';
 
 function App() {
   return (
-    <div className="App">
-      <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 to-purple-500">
-      <h1 className="text-5xl font-bold text-white">Tailwind Works!</h1>
-    </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+    </Router>
+    
   );
 }
 
