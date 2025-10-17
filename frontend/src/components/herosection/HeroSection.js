@@ -1,12 +1,12 @@
 import React from 'react'
-import ATS from './herosection/ATS'
-import DreamJob from './herosection/DreamJob'
-import HeroText from './herosection/HeroText'
-import UserIcons from './herosection/UserIcons'
+import ATS from './ATS'
+import DreamJob from './DreamJob'
+import HeroText from './HeroText'
+import UserIcons from './UserIcons'
 
 const HeroSection = () => {
   return (
-    <div className=''>
+    <div className='animate-slide-up duration-500'>
         <HeroText />
         <div className='relative pt-20'>
             <img 

@@ -11,7 +11,7 @@ export default function HeroText() {
                 and expertly designed professional templates.
             </p>
             <button className='px-3 py-3 mt-4 font-semibold font-para text-xs text-white bg-primary rounded-3xl
-                shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300'>
+                shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300 shadow-primary/50'>
                 Build My Resume
             </button>
         </div>

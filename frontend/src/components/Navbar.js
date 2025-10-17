@@ -29,12 +29,15 @@ const Navbar = () => {
         <div className='flex justify-center text-xs items-center gap-x-6'>
           {navs.map((item, index) => (
             <NavLink
+
               key={index}
               to={item.link}
               end={item.link === '/'}
               className={({ isActive }) =>
-                `font-para font-semibold px-2 py-1 rounded-xl cursor-pointer transition-colors duration-300
-                ${isActive ? 'bg-primary text-white' : 'hover:text-primary hover:underline'}`
+                `font-para font-semibold px-2 py-1 rounded-xl cursor-pointer transition-all duration-300 border-b-2 
+                ${isActive 
+                  ? 'bg-primary text-white border-primary' 
+                  : 'text-black hover:text-primary border-transparent hover:border-primary'}`
               }
             >
               {item.name}

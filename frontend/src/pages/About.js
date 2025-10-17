@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 
 const About = () => {
   return (
-    <div>
+    <div className='h-[700px]'>
         <Navbar />
       
     </div>

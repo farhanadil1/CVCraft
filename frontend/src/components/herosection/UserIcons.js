@@ -6,7 +6,7 @@ export default function UserIcons() {
         <img
             src='./usericons.png'
             alt='user-icons'
-            className='animate-slide-up delay-300 h-9 w-24'
+            className='h-9 w-24'
         />
         <p className='text-[10px] font-para text-paragraph mt-2 font-medium'>Farhan, Zen along with hundreds of others, <br/>
         has succeeded in landing jobs and advancing <br/>
