@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function UserIcons() {
   return (
-    <div className='self-end mt-36 ml-10'>
+    <div className='self-end mt-36'>
         <img
             src='./usericons.png'
             alt='user-icons'
