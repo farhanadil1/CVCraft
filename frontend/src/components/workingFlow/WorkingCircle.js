@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function WorkingCircle() {
   return (
-    <div className="relative mx-20 h-[600px]">
+    <div className="relative mx-20 h-[600px] -mt-8">
       <div className="absolute top-0 left-0 w-full flex justify-between">
         {/* Left circle */}
         <div
@@ -45,7 +45,7 @@ export default function WorkingCircle() {
 
       {/* Center circle */}
       <div
-        className="absolute top-[250px] left-1/2 transform -translate-x-1/2 bg-primary rounded-full h-[360px] w-[360px] flex flex-col items-center justify-center z-10
+        className="absolute top-[160px] left-1/2 transform -translate-x-1/2 bg-primary rounded-full h-[360px] w-[360px] flex flex-col items-center justify-center z-10
         transition-transform duration-500 ease-in-out hover:scale-110"
         style={{
           background: "radial-gradient(circle, #D7E3FD 12%, rgba(128, 135, 151, 0.5) 300%)",

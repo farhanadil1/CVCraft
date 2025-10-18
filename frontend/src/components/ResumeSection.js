@@ -11,7 +11,7 @@ const ResumeSection = () => {
   };
 
   return (
-    <div className='mt-36 relative text-center flex flex-col items-center'>
+    <div className='mt-10 relative text-center flex flex-col items-center'>
       <h1 className='font-para text-primary text-sm font-semibold'>
         PERFORMANCE DRIVEN DESIGNS
       </h1>
@@ -43,7 +43,7 @@ const ResumeSection = () => {
         <img
           src='./resumes.png'
           alt='gradient-bg'
-          className='-mt-24 -z-10'
+          className='-mt-[110px] -z-10'
           style={{
             WebkitMaskImage:
               'linear-gradient(to bottom, transparent 0%, black 15%, black 96%, transparent 100%)',
