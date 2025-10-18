@@ -6,12 +6,12 @@ export default function HeroText() {
     <div className="grid grid-cols-2 mx-20 pt-10 gap-8">
       {/* Animated Text */}
       <AnimatedText
-  text="Create a Job Ready Resume in Minutes"
-  delay={150}
-  animateBy="words"
-  direction="top"
-  className="font-head font-bold text-[46px] leading-tight text-center"
-/>
+        text="Create a Job Ready Resume in Minutes"
+        delay={150}
+        animateBy="words"
+        direction="top"
+        className="font-head font-bold text-[46px] leading-tight text-center"
+      />
       {/* Subtext and Button */}
       <div>
         <p className="text-paragraph font-para text-sm">

@@ -19,10 +19,10 @@ export default function WorkingText() {
                 millions of professionals worldwide.
             </p>
             <button
-                className="px-3 py-3 mt-8 mb-5 font-semibold font-para text-xs text-white bg-primary rounded-3xl
+                className="px-3 py-4 mt-9 mb-5 font-semibold font-para text-xs text-white bg-primary rounded-3xl
                             shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300"
                 >
-                Build My Resume
+                Create Resume Now
             </button>
         </div>
 

@@ -3,8 +3,6 @@ import React from 'react'
 export default function WorkingCircle() {
   return (
     <div className="relative mx-20 h-[600px]">
-
-      {/* Top circles */}
       <div className="absolute top-0 left-0 w-full flex justify-between">
         {/* Left circle */}
         <div
