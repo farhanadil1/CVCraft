@@ -81,11 +81,11 @@ const Footer = () => {
           </div>
         </div>
         <div className='flex justify-between pb-6 mt-4'>
-          <p className='font-para text-paragraph font-medium text-xs'>Copyright 2025 - CVCraft</p>
+          <p className='font-para text-paragraph text-xs'>Copyright 2025 - CVCraft</p>
           <div className='flex justify-between gap-2'>
-            <p className='font-para text-paragraph font-medium text-xs ml-4'>Privacy Policy</p>
-            <p className='font-para text-paragraph font-medium text-xs ml-4'>Terms of Service</p>
-            <p className='font-para text-paragraph font-medium text-xs ml-4'>Cookies Setting</p>
+            <p className='font-para text-paragraph text-xs ml-4'>Privacy Policy</p>
+            <p className='font-para text-paragraph text-xs ml-4'>Terms of Service</p>
+            <p className='font-para text-paragraph text-xs ml-4'>Cookies Setting</p>
           </div>
         </div> 
       </div>    

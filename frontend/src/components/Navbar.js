@@ -6,8 +6,8 @@ const Navbar = () => {
   const navigate = useNavigate()
   const navs = [
     {name: 'Home', link: '/'},
-    {name: 'About', link: '/about'},
-    {name: 'Templates', link: '/templates'}, 
+    {name: 'Templates', link: '/templates'},
+    {name: 'About', link: '/about'}, 
     {name: 'Contact', link: '/contact'}
   ]
 

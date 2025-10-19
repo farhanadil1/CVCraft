@@ -1,5 +1,5 @@
 import React from 'react';
-import AnimatedText from '../animation/AnimatedText';
+import AnimatedText from '../../animation/AnimatedText';
 
 export default function HeroText() {
   return (

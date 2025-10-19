@@ -49,3 +49,8 @@
   animation: slide-up 0.8s ease-out forwards;
 }
 
+/*to hide default bluish bg*/
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* sets background to white */
+  -webkit-text-fill-color: #111827 !important; /* sets text color */
+}
