@@ -20,7 +20,8 @@ const Home = () => {
     './logo.png',
     './gradient.png',
     './iphone.png',
-    './resumes.png'
+    './resumes.png',
+    './security.png'
     
   ];
 
