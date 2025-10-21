@@ -1,13 +1,12 @@
 import React from 'react'
 import { IoCheckmarkCircle } from "react-icons/io5";
 
-
 export default function DreamJob() {
     const roles = ['Full-time', 'Remote', 'Product']
 
   return (
-    <div className='h-[250px] font-para bottom-20 w-[200px] ml-20 bg-white shadow-xl hover:shadow-2xl
-    transition duration-300 rounded-lg relative -mb-10'>
+    <div className='h-[250px] w-[200px] font-para ml-0 sm:ml-20 bg-white shadow-xl hover:shadow-2xl
+    transition duration-300 rounded-lg relative -mb-10 flex-shrink-0'>
         <IoCheckmarkCircle className='absolute -top-2 -right-2' size={28} color='green' />
         <h1 className='font-semibold text-lg text-center pt-2'>Dream Job</h1>
         <p className='text-paragraph text-[10px] font-medium text-center -mt-1'>Company Name</p>
@@ -24,7 +23,6 @@ export default function DreamJob() {
         <div className='mt-8 border-t border-gray-300 mx-4'> 
             <p className='mt-4 font-bold text-center'>$4400</p>
         </div>
-
     </div>
   )
 }

@@ -1,6 +1,6 @@
-// src/components/faq/Accordion.js
+import { useRef, useEffect, useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 const faqData = [
   {
@@ -40,6 +40,46 @@ const faqData = [
   },
 ];
 
+function SmoothPanel({ open, children }) {
+  const ref = useRef(null);
+  const [maxHeight, setMaxHeight] = useState("0px");
+  const [isVisible, setIsVisible] = useState(open);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (open) {
+      setIsVisible(true);
+      requestAnimationFrame(() => {
+        setMaxHeight(`${el.scrollHeight}px`);
+      });
+    } else {
+      setMaxHeight(`${el.scrollHeight}px`);
+      requestAnimationFrame(() => {
+        setMaxHeight("0px");
+      });
+
+      // Wait for transition to end, then hide completely
+      const timer = setTimeout(() => setIsVisible(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  return (
+    <div
+      style={{
+        maxHeight,
+        overflow: "hidden",
+        opacity: open ? 1 : 0,
+        visibility: isVisible ? "visible" : "hidden",
+        transition: "max-height 0.5s ease, opacity 0.4s ease",
+      }}
+    >
+      <div ref={ref}>{children}</div>
+    </div>
+  );
+}
 
 export default function Accordion() {
   return (
@@ -48,19 +88,23 @@ export default function Accordion() {
         <Disclosure key={index}>
           {({ open }) => (
             <div>
-              <Disclosure.Button className="flex justify-between w-full px-6 py-4 text-left text-lg font-medium text-gray-800">
+              <Disclosure.Button className="flex justify-between w-full px-6 py-4 text-left text-lg font-medium text-gray-800 hover:bg-gray-50 rounded-lg">
                 <span>{item.title}</span>
-                <ChevronUpIcon
-                  className={`w-6 h-6 text-gray-500 transform transition-transform duration-200 ${
+                <ChevronDownIcon
+                  className={`w-6 h-6 text-gray-500 transform transition-transform duration-300 ${
                     open ? "rotate-180" : ""
                   }`}
                 />
               </Disclosure.Button>
-              <Disclosure.Panel className="px-6 pb-4 pt-2 text-gray-600 space-y-2">
-                {item.content.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </Disclosure.Panel>
+
+              {/* smooth animation wrapper */}
+              <SmoothPanel open={open}>
+                <div className="px-6 pb-4 pt-2 text-gray-600 space-y-2">
+                  {item.content.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </SmoothPanel>
             </div>
           )}
         </Disclosure>
