@@ -1,4 +1,5 @@
 import React from "react";
+// Assuming these Template components are available in the local file structure as provided
 import Template1 from "./templates/Template1";
 import Template2 from "./templates/Template2";
 import Template3 from "./templates/Template3";
@@ -19,15 +20,20 @@ const Editor = ({ templateId, data, zoom, previewRef }) => {
       case "template5":
         return <Template5 data={data} />;
       default:
-        return null;
+        return (
+            <div className="p-10 text-center text-gray-500">
+                <p>Select a template to begin editing.</p>
+            </div>
+        );
     }
   };
 
   return (
-    <div className="flex-1 bg-gray-100 p-6 rounded-xl border border-gray-200 shadow-inner overflow-auto">
+    <div className="flex-1 bg-gray-100 p-2 sm:p-4 rounded-xl shadow-inner overflow-auto h-full">
       <div
         ref={previewRef}
-        className="bg-white mx-auto w-[850px] min-h-[1100px] shadow-lg rounded-lg p-8 border border-gray-300 transition-transform duration-300 ease-in-out"
+        // Updated classes for paper-like look, rounded corners, and shadow
+        className="bg-white mx-auto w-full max-w-[850px] min-h-[1100px] shadow-2xl rounded-lg border border-gray-300 transition-transform duration-300 ease-in-out"
         style={{
           transform: `scale(${zoom})`,
           transformOrigin: "top center",

@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { VscGithubInverted } from "react-icons/vsc";
 import { FaFacebook } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid }) => (
   <div className="relative mb-2">
@@ -37,6 +37,7 @@ const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid 
 );
 
 export default function Auth() {
+  const navigate = useNavigate();
   const [activeView, setActiveView] = useState("signin");
   const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
   const [touched, setTouched] = useState({ email: false, password: false, fullName: false });
@@ -53,6 +54,9 @@ export default function Auth() {
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
+  const handleGoback = () => {
+    navigate(-1);
+  }
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const passwordStrong = formData.password.length >= 8;
   const fullNameValid = formData.fullName.trim().length >= 3;
@@ -61,10 +65,12 @@ export default function Auth() {
     <div className="flex w-full h-screen font-sans bg-white">
       {/* Left illustration panel */}
       <div className="hidden lg:flex flex-2/5 p-8 ml-6 bg-white border-r border-gray-100 justify-center items-center relative">
-        <Link to="/" className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary">
+        <button 
+          onClick={handleGoback} 
+          className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary">
           <IoIosArrowBack className="h-4 w-4 mt-[2.5px]" />
-          Home
-        </Link>
+          Back
+        </button>
         <img
           src="./security.png"
           alt="security"
