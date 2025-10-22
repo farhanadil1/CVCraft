@@ -5,22 +5,22 @@ const TemplateCard = ({ id, name, preview, usersCount }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-52 group">
+    <div className="relative w-full group">
       {/* Card Container */}
       <div
         onClick={() => navigate(`/editor/${id}`)}
-        className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-3d-light hover:shadow-xl transform hover:scale-y-95 transition-all duration-300 flex flex-col"
+        className="cursor-pointer bg-white rounded overflow-hidden shadow-3d-light hover:shadow-xl transform hover:scale-y-95 transition-all duration-300 flex flex-col"
       >
         {/* Preview Image */}
         <img
           src={preview}
           alt={name}
-          className="w-full h-48 object-cover"
+          className="object-contain h-60 md:h-96 p-4"
         />
 
         {/* Template Name & User Info */}
-        <div className="p-3 flex flex-col gap-2 flex-grow">
-          <h2 className="font-para font-semibold text-sm text-gray-800 line-clamp-1">
+        <div className="p-4 flex flex-col gap-2 flex-grow">
+          <h2 className="font-para font-semibold text-lg text-gray-800 line-clamp-1">
             {name}
           </h2>
 
