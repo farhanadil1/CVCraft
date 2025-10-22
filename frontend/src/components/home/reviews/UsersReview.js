@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function UsersReview() {
   return (
-    <div className='cursor-pointer'>
-        <div className='mt-16 flex border-b-[1px] pb-6'>
+    <div className='cursor-pointer mx-4'>
+        <div className='mt-16  flex border-b-[1px] pb-6'>
             <img 
                 src='./user1.png'
                 alt='user-avatar'

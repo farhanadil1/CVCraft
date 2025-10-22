@@ -1,130 +1,39 @@
-import React from 'react'
+import React from 'react';
 
 export default function WorkingCircle() {
+  const steps = [
+    { stepno: '1', name: "Choose a Free Resume Template", text: "Keep the sections that you like and can remove the rest", icon: "./cv.png" },
+    { stepno: '2', name: "Fill your Latest Information in fields", text: "Make your own Resume quickly by filling the details in sections", icon: "./workicon.png" },
+    { stepno: '3', name: "Share as PDF and Download", text: "After filling the details in the sections, download or share it", icon: "./download.png" },
+  ];
+
   return (
-    <div className="relative mx-4 md:mx-20 md:h-[450px] -mt-8">
-      {/* Mobile layout */}
-      <div className="flex flex-col items-center space-y-10 md:hidden">
-        {/* Circle 1 */}
-        <div
-          className="bg-primary rounded-full h-[280px] w-[280px] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out hover:scale-105"
-          style={{
-            background: "radial-gradient(circle, #93B5FF 0%, #84A5ED 95%)",
-            boxShadow: "8px 8px 70px rgba(147, 181, 255, 0.5)",
-          }}
-        >
-          <div className="font-para text-4xl font-semibold bg-white text-primary px-6 py-3 rounded-2xl mb-4">
-            1.
-          </div>
-          <h1 className='font-para text-center text-white text-xl font-semibold mb-2'>
-            Choose a Free Resume Template
-          </h1>
-          <p className='text-white text-center text-sm leading-snug'>
-            Keep the sections that you like <br /> and can remove the rest
-          </p>
-        </div>
-
-        {/* Circle 2 */}
-        <div
-          className="bg-primary rounded-full h-[280px] w-[280px] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out hover:scale-105"
-          style={{
-            background: "radial-gradient(circle, #D7E3FD 12%, rgba(128, 135, 151, 0.5) 300%)",
-            boxShadow: "8px 8px 70px rgba(188, 209, 255, 0.5)",
-          }}
-        >
-          <div className="font-para text-4xl font-semibold bg-white px-6 py-3 rounded-2xl mb-4">
-            2.
-          </div>
-          <h1 className='font-para text-center text-black text-xl font-semibold mb-2'>
-            Fill your Latest <br />Information in fields
-          </h1>
-          <p className='text-paragraph text-center text-sm leading-snug'>
-            Make your own Resume quickly <br />by filling the details in sections
-          </p>
-        </div>
-
-        {/* Circle 3 */}
-        <div
-          className="bg-primary rounded-full h-[280px] w-[280px] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out hover:scale-105"
-          style={{
-            background: "radial-gradient(circle, #EDF1FA 19%, #8C8F94 300%)",
-            boxShadow: "8px 8px 70px rgba(237, 241, 250, 0.5)",
-          }}
-        >
-          <div className="font-para text-4xl font-semibold bg-white px-6 py-3 rounded-2xl mb-4">
-            3.
-          </div>
-          <h1 className='font-para text-center text-black text-xl font-semibold mb-2'>
-            Share as <br />PDF and Download
-          </h1>
-          <p className='text-paragraph text-center text-sm leading-snug'>
-            After filling the details in the<br /> section form, download it
-          </p>
-        </div>
-      </div>
-
-      {/* Original layout for md+ screens */}
-      <div className="hidden md:block">
-        <div className="absolute top-0 left-0 w-full flex justify-between">
-          {/* Left circle */}
+    <div className="mx-4 md:mx-20 -mt-2 md:h-[500px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((s, index) => (
           <div
-            className="bg-primary rounded-full h-[300px] w-[300px] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out hover:scale-110"
-            style={{
-              background: "radial-gradient(circle, #93B5FF 0%, #84A5ED 95%)",
-              boxShadow: "8px 8px 70px rgba(147, 181, 255, 0.5)",
-            }}
+            key={index}
+            className="flex flex-col items-center text-center space-y-4 md:space-y-4 px-4 group"
           >
-            <div className="font-para text-5xl font-semibold bg-white text-primary px-6 py-4 rounded-2xl mb-4">
-              1.
+            <div className="group-hover:animate-bounce transition-transform duration-700 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary text-white text-2xl md:text-3xl font-head font-semibold shadow-md">
+              {s.stepno}
             </div>
-            <h1 className='font-para text-center text-white text-2xl font-semibold mb-2'>
-              Choose a Free Resume Template
-            </h1>
-            <p className='text-white text-center text-sm leading-snug'>
-              Keep the sections that you like <br /> and can remove the rest
+            <h2 className="text-xl md:text-2xl font-head font-semibold head-gradient">
+              {s.name}
+            </h2>
+            <p className="text-paragraph font-para text-sm md:text-base">
+              {s.text}
             </p>
-          </div>
-
-          {/* Right circle */}
-          <div
-            className="bg-primary rounded-full h-[300px] w-[300px] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out hover:scale-110"
-            style={{
-              background: "radial-gradient(circle, #EDF1FA 19%, #8C8F94 300%)",
-              boxShadow: "8px 8px 70px rgba(237, 241, 250, 0.5)",
-            }}
-          >
-            <div className="font-para text-5xl font-semibold bg-white px-6 py-4 rounded-2xl mb-4">
-              3.
+            <div className="w-full flex justify-center">
+              <img
+                src={s.icon}
+                alt={s.name}
+                className="h-48 md:h-72 w-auto object-contain"
+              />
             </div>
-            <h1 className='font-para text-center text-black text-2xl font-semibold mb-2'>
-              Share as <br />PDF and Download
-            </h1>
-            <p className='text-paragraph text-center text-sm leading-snug'>
-              After filling the details in the<br /> section form, download it
-            </p>
           </div>
-        </div>
-
-        {/* Center circle */}
-        <div
-          className="absolute -mt-6 left-1/2 transform -translate-x-1/2 bg-primary rounded-full h-[360px] w-[360px] flex flex-col items-center justify-center z-10
-          transition-transform duration-500 ease-in-out hover:scale-110"
-          style={{
-            background: "radial-gradient(circle, #D7E3FD 12%, rgba(128, 135, 151, 0.5) 300%)",
-            boxShadow: "8px 8px 70px rgba(188, 209, 255, 0.5)",
-          }}
-        >
-          <div className="font-para text-5xl font-semibold bg-white px-6 py-4 rounded-2xl mb-4">
-            2.
-          </div>
-          <h1 className='font-para text-center text-black text-2xl font-semibold mb-2'>
-            Fill your Latest <br />Information in fields
-          </h1>
-          <p className='text-paragraph text-center text-sm leading-snug'>
-            Make your own Resume quickly <br />by filling the details in sections
-          </p>
-        </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }

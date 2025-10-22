@@ -27,7 +27,7 @@ const HeroSection = () => {
             <img 
               src='./iphone.png'
               alt='iphone'
-              className='w-full max-w-xs md:max-w-sm lg:max-w-md -mt-10 sm:-mt-0 h-auto animate-slide-up delay-400'
+              className='w-full max-w-xs md:max-w-sm lg:max-w-md -mt-16 sm:-mt-0 h-auto animate-slide-up delay-400'
             />
             <div className='block md:hidden mt-6'>
               <UserIcons />

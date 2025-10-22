@@ -2,7 +2,7 @@ import React from 'react'
 import { PiReadCvLogoFill } from 'react-icons/pi'
 import { BiSolidUserDetail } from 'react-icons/bi'
 import { AiFillThunderbolt } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ResumeSection = () => {
   const navigate = useNavigate()
@@ -10,12 +10,24 @@ const ResumeSection = () => {
     navigate('/templates')
   };
 
+  const cv = [
+    {
+      id:1, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant submissions.", img:"./cv1.png"
+    },
+    {
+      id:2, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant submissions.", img:"./cv2.png"
+    },
+    {
+      id:3, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant submissions.", img:"./cv3.png"
+    }
+  ]
+
   return (
     <div className='mt-10 relative text-center flex flex-col items-center'>
       <h1 className='font-para text-primary text-sm font-semibold'>
         PERFORMANCE DRIVEN DESIGNS
       </h1>
-      <h2 className='font-head font-bold text-[46px] leading-tight head-gradient mt-5'>
+      <h2 className='font-head font-bold text-3xl md:text-[46px] leading-tight head-gradient mt-5'>
         Build Your Resume with<br />
         Proven Professional Templates
       </h2>
@@ -39,20 +51,30 @@ const ResumeSection = () => {
         </div>
       </div>
 
-      <div className='relative w-full flex justify-center mt-10'>
+      <div className='absolute -z-10 w-full flex justify-center mt-12'>
         <img
-          src='./resumes.png'
+          src='./gradient2.png'
           alt='gradient-bg'
           className='-mt-[110px] -z-10'
-          style={{
-            WebkitMaskImage:
-              'linear-gradient(to bottom, transparent 0%, black 15%, black 96%, transparent 100%)',
-            maskImage:
-              'linear-gradient(to bottom, transparent 0%, black 15%, black 96%, transparent 100%)',
-            WebkitMaskSize: '100% 100%',
-            maskSize: '100% 100%',
-          }}
         />
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-12 my-12 items-center'>
+        {cv.map((c, index) => (
+          <div className='md:max-w-72 mx-8 md:mx-0'>
+            <Link to={`/templates`}>
+            <img 
+              src={c.img}
+              alt='CV-Images'
+              className='h-96 w-72 mx-auto md:mx-0 shadow-lg justify-center hover:scale-105 transition-transform duration-500 cursor-pointer'
+              />
+              </Link>
+              <h1 className='text-lg hover:underline cursor-pointer text-left md:text-xl font-para font-semibold mt-8'>{c.name}</h1>
+              <p className='text-paragraph font-para text-medium text-left mt-2'>
+                {c.desc}
+              </p>
+          </div>
+        ))}
+        
       </div>
       <button
         onClick={handleNavigate}

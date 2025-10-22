@@ -2,11 +2,12 @@ import React from "react";
 import TemplateCard from "../components/templates/TemplateCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa6";
 
 const TemplatePage = () => {
+  const navigate = useNavigate();
   const templates = [
     { id: "template1", name: "Modern Blue", preview: "./template1.png", usersCount: 200 },
     { id: "template2", name: "Elegant Minimal", preview: "./template2.png", usersCount: 190 },
@@ -33,7 +34,9 @@ const TemplatePage = () => {
           <h1 className="text-2xl md:text-3xl font-semibold font-para mb-1">Resume Builder</h1>
           <p className="text-gray-600 text-sm md:text-base">Create your own resume to apply for jobs</p>
         </div>
-        <button className="bg-primary text-white flex items-center gap-2 py-2.5 px-4 rounded-xl font-medium shadow-md hover:scale-105 hover:bg-accent2 transition-all duration-300">
+        <button 
+          onClick={() => navigate(`/editor/template1`)}
+          className="bg-primary text-white flex items-center gap-2 py-2.5 px-4 rounded-xl font-medium shadow-md hover:scale-105 hover:bg-accent2 transition-all duration-300">
           <FiPlus size={18} />
           New Resume
         </button>

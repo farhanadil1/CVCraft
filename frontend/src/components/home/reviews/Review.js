@@ -7,7 +7,7 @@ export default function Review() {
       <h1 className='font-para text-primary text-sm font-semibold'>
         REFRENCES
       </h1>
-      <h2 className='font-head font-bold text-[46px] leading-tight head-gradient mt-5'>
+      <h2 className='font-head font-bold text-3xl md:text-[46px] mx-4 leading-tight head-gradient mt-5'>
         Success Stories From Professionals <br/>
         Excelling in Top Organizations
       </h2>

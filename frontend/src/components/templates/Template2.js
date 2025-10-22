@@ -39,7 +39,7 @@ const Template2 = ({ data }) => {
   };
 
   return (
-    <div className="font-serif max-w-3xl mx-auto p-12 bg-white text-gray-900 border border-gray-200">
+    <div className="font-serif max-w-3xl mx-auto p-12 bg-white text-gray-900">
       {/* Name and Contact Header */}
       <header className="text-center mb-6">
         <h1 className="text-3xl font-normal mb-1">

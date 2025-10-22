@@ -32,7 +32,7 @@ export default function WorkingText() {
           <img
             src='./workicon.png'
             alt='scrible-resume'
-            className='h-64 md:h-[560px] -mt-10 md:mt-4 md:-mr-28 object-contain'
+            className='h-64 md:h-[560px] -mt-10 md:mt-4 md:-mr-28 object-contain hidden md:block'
           />
         </div>
       </div>

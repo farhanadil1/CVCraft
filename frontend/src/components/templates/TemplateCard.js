@@ -9,7 +9,7 @@ const TemplateCard = ({ id, name, preview, usersCount }) => {
       {/* Card Container */}
       <div
         onClick={() => navigate(`/editor/${id}`)}
-        className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-3d-light hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col"
+        className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-3d-light hover:shadow-xl transform hover:scale-y-95 transition-all duration-300 flex flex-col"
       >
         {/* Preview Image */}
         <img
