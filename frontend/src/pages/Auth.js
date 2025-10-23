@@ -62,24 +62,26 @@ export default function Auth() {
   const fullNameValid = formData.fullName.trim().length >= 3;
 
   return (
-    <div className="flex w-full h-screen font-sans bg-white">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans bg-white overflow-x-hidden">
       {/* Left illustration panel */}
-      <div className="hidden lg:flex flex-2/5 p-8 ml-6 justify-center items-center relative">
+      <div className="lg:flex flex-2/5 p-8 ml-6 justify-center items-center relative">
         <button 
           onClick={handleGoback} 
           className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary">
           <IoIosArrowBack className="h-4 w-4 mt-[2.5px]" />
           Back
         </button>
+        <div className="flex justify-center">
         <img
           src="./security.svg"
           alt="security"
-          className="w-full ml-24 max-w-sm object-contain"
+          className="hidden md:block h-64 object-contain items-center"
           onError={(e) => (e.target.src = "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")}
         />
+        </div>
       </div>
       {/* Form panel */}
-      <div className="flex-1 flex flex-col items-center justify-center bg-white p-6 md:p-8">
+      <div className="flex-1 flex flex-col items-center justify-center bg-white md:p-8">
         <div className="max-w-xs w-full mx-32">
           {/* Logo */}
           <div className="flex justify-center items-center mb-3">
