@@ -75,14 +75,14 @@ export default function Auth() {
         <img
           src="./security.svg"
           alt="security"
-          className="hidden md:block h-64 object-contain items-center"
+          className="hidden md:block ml-10 h-64 object-contain items-center"
           onError={(e) => (e.target.src = "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")}
         />
         </div>
       </div>
       {/* Form panel */}
       <div className="flex-1 flex flex-col items-center justify-center bg-white md:p-8">
-        <div className="max-w-xs w-full mx-32">
+        <div className="max-w-xs w-full mx-32 md:mr-96">
           {/* Logo */}
           <div className="flex justify-center items-center mb-3">
                       <img 
