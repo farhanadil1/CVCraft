@@ -9,6 +9,7 @@ import DynamicForm from "../components/DynamicForm";
 import Editor from "../components/Editor";
 import EditorButtons from "../components/EditorButtons";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const EditorWrapper = () => {
   const { templateId } = useParams();
@@ -41,22 +42,22 @@ const EditorWrapper = () => {
   };
 
   return (
-    <div className="h-screen editor-wrapper w-full flex flex-col bg-[#fafafa] text-gray-800">
+    <div className="h-screen editor-wrapper w-full flex flex-col bg-gray-50 text-gray-800">
       {/* Navbar */}
-      <header className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white shadow-sm">
+      <header className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-3 border-b border-gray-200 bg-white shadow-md gap-2 sm:gap-0">
         <div className="flex items-center gap-4">
           <button
             onClick={handleGoBack}
-            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
+            className="text-sm flex items-center font-medium text-gray-500 hover:text-gray-900 transition"
           >
-            ← Back
+            <IoMdArrowRoundBack /> Back
           </button>
           <h1 className="text-lg font-semibold text-gray-900 tracking-tight">
             Resume Editor
           </h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 mt-2 sm:mt-0">
           <EditorButtons
             formData={formData}
             templateId={templateId}
@@ -67,7 +68,7 @@ const EditorWrapper = () => {
 
           <button
             onClick={handleSignup}
-            className="flex items-center gap-1 px-3 py-1.5 text-sm border border-red-500 text-red-600 hover:bg-red-50 transition"
+            className="flex items-center gap-1 px-3 py-1.5 text-sm border border-red-500 text-red-600 hover:bg-red-50 rounded-lg transition"
           >
             <RiErrorWarningFill size={16} /> Sign Up to Save
           </button>
@@ -75,18 +76,18 @@ const EditorWrapper = () => {
       </header>
 
       {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
         {/* Left Sidebar Form */}
-        <div className="editor-sidebar w-[25%] min-w-[280px] h-full bg-white border-r overflow-y-scroll editor-wrapper border-gray-200 p-6">
-          <h2 className="text-lg font-semibold mb-4 tracking-tight">
+        <div className="editor-sidebar w-full md:w-[28%] min-w-[280px] h-[50%] md:h-full bg-white border-b md:border-b-0 md:border-r border-gray-200 p-4 md:p-6 overflow-y-auto shadow-sm">
+          <h2 className="text-lg font-semibold mb-4 tracking-tight text-gray-900">
             Fill Your Details
           </h2>
           <DynamicForm config={config} formData={formData} setFormData={setFormData} />
         </div>
 
         {/* Right Preview Area */}
-        <div className="editor-preview flex-1 relative bg-[#f3f3f3] overflow-auto editor-wrapper flex flex-col items-center justify-start p-6">
-          <h2 className="text-lg font-semibold mb-3 w-full max-w-[900px]">
+        <div className="editor-preview flex-1 relative bg-gray-100 overflow-auto flex flex-col items-center justify-start p-4 md:p-6">
+          <h2 className="text-lg font-semibold mb-3 w-full max-w-[900px] text-gray-900">
             Live Preview
           </h2>
 

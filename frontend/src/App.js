@@ -5,10 +5,12 @@ import About from './pages/About.js';
 import Auth from './pages/Auth.js'
 import TemplatePage from './pages/TemplatePage.js';
 import EditorWrapper from './pages/EditorWrapper.js';
+import ScrollToTop from './components/ScrollToTop.js';
 
 function App() {
   return (
     <Router>
+       <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />

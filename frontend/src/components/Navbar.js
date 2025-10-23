@@ -53,18 +53,23 @@ const Navbar = () => {
         {/* Desktop Button */}
         <div className="hidden md:flex justify-end">
           <button
-            onClick={handleNavigate} 
-            className="group flex border-[1.5px] border-primary rounded-3xl text-xs font-para font-semibold py-1 px-1.5 items-center overflow-hidden relative cursor-pointer
-                      transition-colors duration-300 hover:bg-primary hover:text-white"
+            onClick={handleNavigate}
+            className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                      border border-primary text-primary font-para font-semibold text-sm 
+                      transition-all duration-300 overflow-hidden shadow-[0_4px_10px_rgba(40,88,193,0.15)]
+                      hover:shadow-[0_6px_20px_rgba(40,88,193,0.25)]"
           >
-            <p className="transition-colors duration-300 group-hover:text-white">Get Started</p>
+            <span className="absolute inset-0 bg-gradient-to-r from-primary to-accent2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></span>
+
+            <span className="relative z-10 transition-all duration-300 group-hover:text-white">
+              Get Started
+            </span>
             <BsArrowUpRightCircle
-              size={20}
-              className="ml-1 mb-0.5 text-primary group-hover:text-white transition-all duration-300 transform group-hover:translate-x-1"
+              size={18}
+              className="relative z-10 text-primary group-hover:text-white transform transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
             />
           </button>
         </div>
-
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -75,7 +80,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white w-full px-4 py-4 flex flex-col gap-4 shadow-md">
+        <div className="md:hidden text-center bg-white w-full px-4 py-4 flex flex-col gap-4 shadow-md">
           {navs.map((item, index) => (
             <NavLink
               key={index}

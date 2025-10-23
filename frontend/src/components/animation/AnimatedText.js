@@ -48,7 +48,7 @@ const AnimatedText = ({
       {elements.map((segment, index) => (
         <motion.span
           key={index}
-          className="inline-block"
+          className="inline-block leading-tight"
           style={gradientStyle} // gradient applied on each word
           initial={from}
           animate={inView ? to : from}

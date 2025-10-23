@@ -78,8 +78,10 @@ const ResumeSection = () => {
       </div>
       <button
         onClick={handleNavigate}
-        className="px-3 py-3 mt-4 font-semibold font-para text-xs text-white bg-primary rounded-3xl
-                     shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300"
+        className="px-6 py-3 md:my-6 font-semibold font-para text-sm text-white 
+                     bg-gradient-to-r from-primary to-accent2 rounded-full shadow-lg 
+                     hover:shadow-[0_6px_20px_rgba(40,88,193,0.4)] hover:scale-105 
+                     transition-all duration-300"
         >
           See More Templates
         </button>

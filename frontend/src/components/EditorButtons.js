@@ -30,34 +30,36 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
 
   return (
     <div className="flex items-center gap-2">
+      {/* Download */}
       <button
         onClick={handleDownload}
-        className="flex items-center gap-1 px-3 py-1.5 text-sm bg-black text-white hover:bg-gray-800 transition"
+        className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-accent2 text-white rounded-lg shadow hover:shadow-lg transition"
       >
-        <FiDownload size={14} /> Download
+        <FiDownload size={16} /> Download
       </button>
 
+      {/* Print */}
       <button
         onClick={handlePrint}
-        className="flex items-center gap-1 px-3 py-1.5 text-sm bg-gray-200 text-gray-900 hover:bg-gray-300 transition"
+        className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-white text-gray-800 border border-gray-300 rounded-lg shadow hover:shadow-md transition"
       >
-        <FiPrinter size={14} /> Print
+        <FiPrinter size={16} /> Print
       </button>
 
-      {/* Zoom Controls */}
-      <div className="flex items-center border border-gray-300 px-2 py-1.5 text-sm bg-white">
+      {/* Zoom */}
+      <div className="flex items-center border border-gray-300 px-3 py-2 rounded-lg bg-white shadow-sm">
         <button
           onClick={() => setZoom((z) => Math.max(z - 0.1, 0.5))}
-          className="px-1 hover:text-black transition"
+          className="px-1 hover:text-gray-900 transition"
         >
-          <FiZoomOut size={14} />
+          <FiZoomOut size={16} />
         </button>
         <span className="px-2 font-medium">{Math.round(zoom * 100)}%</span>
         <button
           onClick={() => setZoom((z) => Math.min(z + 0.1, 2))}
-          className="px-1 hover:text-black transition"
+          className="px-1 hover:text-gray-900 transition"
         >
-          <FiZoomIn size={14} />
+          <FiZoomIn size={16} />
         </button>
       </div>
     </div>

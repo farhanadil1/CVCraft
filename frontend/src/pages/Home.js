@@ -8,6 +8,7 @@ import Review from '../components/home/reviews/Review.js';
 import FAQ from '../components/home/faq/FAQ.js';
 import Footer from '../components/Footer.js';
 import { Spinner } from '../components/Spinner.js'; 
+import ShortlistedCompanies from '../components/Shortlistedcompanies.js';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -64,6 +65,8 @@ const Home = () => {
         <HeroSection />
       </motion.div>
 
+      <div className='md:mt-16 md:-mb-36'><ShortlistedCompanies /></div>
+      
       <motion.div
         variants={fadeUp}
         initial="hidden"

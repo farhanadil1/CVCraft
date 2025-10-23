@@ -1,7 +1,12 @@
 import React from 'react';
 import AnimatedText from '../../animation/AnimatedText';
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroText() {
+  const navigate = useNavigate()
+  const handleNavigate = () => {
+    navigate('/templates')
+  }
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 mx-4 sm:mx-8 md:mx-20 pt-10 gap-6 md:gap-8">
       {/* Animated Text */}
@@ -10,7 +15,7 @@ export default function HeroText() {
         delay={150}
         animateBy="words"
         direction="top"
-        className="font-head font-bold text-3xl sm:text-4xl md:text-[46px] leading-tight text-center md:text-left"
+        className="font-head font-bold text-3xl sm:text-4xl md:text-[46px] text-center md:text-left"
       />
       {/* Subtext and Button */}
       <div className="text-left">
@@ -19,8 +24,11 @@ export default function HeroText() {
           and expertly designed professional templates.
         </p>
         <button
-          className="px-3 py-3 mt-4 font-semibold font-para text-xs sm:text-sm text-white bg-primary rounded-3xl
-                     shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300"
+          onClick={handleNavigate}
+          className="px-6 py-3 mt-6 md:mt-3 font-semibold font-para text-sm text-white 
+                     bg-gradient-to-r from-primary to-accent2 rounded-full shadow-lg 
+                     hover:shadow-[0_6px_20px_rgba(40,88,193,0.4)] hover:scale-105 
+                     transition-all duration-300"
         >
           Build My Resume
         </button>

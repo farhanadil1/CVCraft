@@ -21,7 +21,7 @@ const Editor = ({ templateId, data, zoom, previewRef }) => {
   return (
     <div
       ref={previewRef}
-      className="bg-white w-[850px] min-h-[1100px] border border-gray-300 shadow-[0_0_25px_rgba(0,0,0,0.1)]"
+      className="bg-white w-[850px] min-h-[1100px] border border-gray-200 shadow-lg overflow-hidden transform transition-transform duration-300"
       style={{
         transform: `scale(${zoom})`,
         transformOrigin: "top center",

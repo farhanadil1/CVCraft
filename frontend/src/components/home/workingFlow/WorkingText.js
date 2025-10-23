@@ -1,6 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function WorkingText() {
+  const navigate = useNavigate()
+  const handleNavigate = () => {
+    navigate('/templates')
+  }
   return (
     <div className='overflow-hidden'>
       <div className='grid grid-cols-1 md:grid-cols-2 px-4 md:px-20 gap-10 items-center'>
@@ -20,11 +25,14 @@ export default function WorkingText() {
             millions of professionals worldwide.
           </p>
           <button
-            className="px-4 py-3 mt-9 mb-5 font-semibold font-para text-xs text-white bg-primary rounded-3xl
-                       shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300"
-          >
-            Create Resume Now
-          </button>
+            onClick={handleNavigate}
+            className="px-6 py-3 mt-8 mb-4 font-semibold font-para text-sm text-white 
+                     bg-gradient-to-r from-primary to-accent2 rounded-full shadow-lg 
+                     hover:shadow-[0_6px_20px_rgba(40,88,193,0.4)] hover:scale-105 
+                     transition-all duration-300"
+        >
+          Create Resume Now
+        </button>
         </div>
 
         {/* Image Section */}
