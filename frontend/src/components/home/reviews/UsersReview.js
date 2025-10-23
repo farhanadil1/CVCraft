@@ -5,14 +5,14 @@ const reviews = [
   {
     name: "Adil Farhan",
     role: "Software Engineer",
-    image: "./user1.png",
+    image: "./user7.png",
     review:
       "The idea is great, but I had trouble formatting my resume the way I wanted. Hoping for more flexibility in future updates.",
   },
   {
     name: "Ashish Roy",
     role: "Quality Analyst",
-    image: "./user2.png",
+    image: "./user6.png",
     review:
       "CVcraft completely transformed the way I approached resume writing. I realized my resume wasn’t optimized for ATS systems CVcraft’s builder made it incredibly easy to create a clean, professional layout tailored to my industry.",
   },
@@ -26,21 +26,21 @@ const reviews = [
   {
     name: "Sufyan Ansari",
     role: "Marketing Consultant",
-    image: "./user1.png",
+    image: "./user8.png",
     review:
       "I created my first professional CV in under 10 minutes. The templates are modern and clean, and the tips along the way were incredibly helpful. Landed two interviews within a week!",
   },
   {
     name: "Zenia Zealous",
     role: "DevOps",
-    image: "./user2.png",
+    image: "./user5.png",
     review:
       "I’ve tried a few resume builders, but CVCraft stands out. It’s intuitive, customizable, and doesn’t bombard you with ads. Highly recommend for anyone serious about their career.",
   },
   {
     name: "Alivia Chakraborty",
     role: "HR Executive",
-    image: "./user3.png",
+    image: "./user4.png",
     review:
       "I loved how easy it was to tailor my resume for different roles. The export options are great, and the cover letter builder is a bonus!",
   },
