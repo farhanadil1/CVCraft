@@ -10,7 +10,7 @@ export const shortlistedCompaniesIcons = [
   { node: <SiMeta />, title: "Meta", href: "https://www.metacareers.com/" },
   { node: <SiApple />, title: "Apple", href: "https://www.apple.com/careers/" },
   { node: <FaMicrosoft />, title: "Microsoft", href: "https://www.microsoft.com/careers/" },
-  { node: <SiCognizant />, title: "Cognizant", href: "https://www.cognizant.com/careers/" },
+  { node: <SiCognizant />, title: "Cognizant", href: "https://careers.cognizant.com/global-en/" },
   { node: <SiInfosys />, title: "Infosys", href: "https://www.infosys.com/careers/" },
   { node: <SiTcs />, title: "TCS", href: "https://www.tcs.com/careers/" },
   { node: <SiGoldmansachs />, title: "Goldman Sachs", href: "https://www.goldmansachs.com/careers/" },
