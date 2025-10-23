@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 
 const DynamicForm = ({ config, formData, setFormData }) => {
@@ -10,7 +10,7 @@ const DynamicForm = ({ config, formData, setFormData }) => {
       const updated = { ...prev };
       const sectionConfig = config.sections.find((s) => s.name === section);
       const isArray = sectionConfig?.type === "array";
-      
+
       if (!field && !isArray) {
         updated[section] = value;
       } else if (isArray) {
@@ -25,118 +25,152 @@ const DynamicForm = ({ config, formData, setFormData }) => {
   };
 
   const getSimpleSectionValue = (sectionName) => {
-      const value = formData[sectionName];
-      if (typeof value === 'string') {
-          return value;
-      }
-      if (typeof value === 'object' && value !== null) {
-          // Attempt to find a string value within the object
-          const stringValue = Object.values(value).find(v => typeof v === 'string');
-          return stringValue || '';
-      }
-      return '';
+    const value = formData[sectionName];
+    if (typeof value === "string") return value;
+    if (typeof value === "object" && value !== null) {
+      const stringValue = Object.values(value).find((v) => typeof v === "string");
+      return stringValue || "";
+    }
+    return "";
   };
 
   return (
-    <div className="space-y-4 text-gray-800">
+    <div className="space-y-6">
       {config.sections.map((section) => {
-        const isOpen = openSection === section.name;       
-        const isTextArea = section.isLarge || (section.type !== 'array' && section.type !== 'object' && section.label.toLowerCase().includes('summary'));
+        const isOpen = openSection === section.name;
+        const isTextArea =
+          section.isLarge ||
+          (section.type !== "array" &&
+            section.type !== "object" &&
+            section.label.toLowerCase().includes("summary"));
 
         return (
           <Disclosure key={section.name} as="div">
             <>
               <Disclosure.Button
                 onClick={() => setOpenSection(isOpen ? "" : section.name)}
-                className="flex justify-between items-center w-full px-2 py-1 text-left font-medium text-gray-700 border-b border-gray-300"
+                className={`flex justify-between items-center w-full px-5 py-3 font-semibold rounded-xl transition-all duration-300 shadow-sm ${
+                  isOpen ? "bg-blue-50 shadow-md" : "bg-white hover:shadow-md"
+                }`}
               >
-                {section.label}
+                <span className="text-gray-800">{section.label}</span>
                 <ChevronDownIcon
-                  className={`w-5 h-5 transform transition-transform duration-300 ${
-                    isOpen ? "rotate-180" : ""
+                  className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${
+                    isOpen ? "rotate-180 text-primary" : ""
                   }`}
                 />
               </Disclosure.Button>
 
-              <Disclosure.Panel className="mt-2 space-y-2">
-                {section.type === "array"
-                  ? (formData[section.name] || [{}]).map((_, idx) => (
-                      <div key={idx} className="space-y-1 p-2 border border-gray-200 rounded-md">
-                        {section.fields.map((f) => (
-                          <input
-                            key={f.name}
-                            type={f.type}
-                            placeholder={f.label}
-                            className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-gray-600 bg-transparent text-gray-900 text-sm"
-                            value={formData[section.name]?.[idx]?.[f.name] || ""}
-                            onChange={(e) =>
-                              handleChange(section.name, f.name, e.target.value, idx)
-                            }
-                          />
-                        ))}
-                        <div className="flex justify-end gap-2 text-sm pt-1">
-                          {/* Remove Button */}
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setFormData((prev) => ({
-                                ...prev,
-                                [section.name]: (prev[section.name] || []).filter((_, i) => i !== idx),
-                              }))
-                            }
-                            className="text-red-600 hover:text-red-800"
-                          >
-                            <MinusIcon className="w-4 h-4 inline" /> Remove
-                          </button>
-                          {/* Add Button */}
-                          {idx === (formData[section.name]?.length || 1) - 1 && (
+              <Transition
+                show={isOpen}
+                enter="transition duration-300 ease-out"
+                enterFrom="opacity-0 max-h-0"
+                enterTo="opacity-100 max-h-screen"
+                leave="transition duration-200 ease-in"
+                leaveFrom="opacity-100 max-h-screen"
+                leaveTo="opacity-0 max-h-0"
+              >
+                <Disclosure.Panel className="mt-4 space-y-4 px-2">
+                  {section.type === "array"
+                    ? (formData[section.name] || [{}]).map((_, idx) => (
+                        <div
+                          key={idx}
+                          className="p-4 border-l-4 border-gradient-to-b from-blue-400 to-blue-200 rounded-xl bg-white shadow-sm space-y-3"
+                        >
+                          {section.fields.map((f) => (
+                            <div key={f.name} className="relative w-full">
+                              <input
+                                type={f.type}
+                                placeholder=" "
+                                className="peer w-full border-b-2 border-gray-300 focus:border-primary text-gray-800 p-2 outline-none bg-transparent transition"
+                                value={formData[section.name]?.[idx]?.[f.name] || ""}
+                                onChange={(e) =>
+                                  handleChange(section.name, f.name, e.target.value, idx)
+                                }
+                              />
+                              <label className="pointer-events-none absolute left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-primary transition-all">
+                                {f.label}
+                              </label>
+                            </div>
+                          ))}
+                          <div className="flex justify-end gap-2 mt-2">
                             <button
                               type="button"
                               onClick={() =>
                                 setFormData((prev) => ({
                                   ...prev,
-                                  [section.name]: [...(prev[section.name] || []), {}],
+                                  [section.name]: (prev[section.name] || []).filter(
+                                    (_, i) => i !== idx
+                                  ),
                                 }))
                               }
-                              className="text-blue-600 hover:text-blue-800"
+                              className="p-2 rounded-full hover:bg-red-50 text-red-600 transition shadow-sm"
+                              title="Remove"
                             >
-                              <PlusIcon className="w-4 h-4 inline" /> Add
+                              <MinusIcon className="w-5 h-5" />
                             </button>
-                          )}
+                            {idx === (formData[section.name]?.length || 1) - 1 && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    [section.name]: [...(prev[section.name] || []), {}],
+                                  }))
+                                }
+                                className="p-2 rounded-full hover:bg-blue-50 text-primary transition shadow-sm"
+                                title="Add"
+                              >
+                                <PlusIcon className="w-5 h-5" />
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))
-                  : section.fields
-                  ? section.fields.map((f) => (
-                      <input
-                        key={f.name}
-                        type={f.type}
-                        placeholder={f.label}
-                        className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-gray-600 bg-transparent text-gray-900 text-sm"
-                        value={formData[section.name]?.[f.name] || ""}
-                        onChange={(e) =>
-                          handleChange(section.name, f.name, e.target.value)
-                        }
-                      />
-                    ))
-                  : isTextArea ? ( 
-                      <textarea
-                        rows={6}
-                        placeholder={section.label}
-                        className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-gray-600 bg-transparent text-gray-900 text-sm"
-                        value={getSimpleSectionValue(section.name)}
-                        onChange={(e) => handleChange(section.name, null, e.target.value)}
-                      />
-                  ) : (
-                      <input
-                        type="text"
-                        placeholder={section.label}
-                        className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-gray-600 bg-transparent text-gray-900 text-sm"
-                        value={getSimpleSectionValue(section.name)}
-                        onChange={(e) => handleChange(section.name, null, e.target.value)}
-                      />
-                  )}
-              </Disclosure.Panel>
+                      ))
+                    : section.fields
+                    ? section.fields.map((f) => (
+                        <div key={f.name} className="relative w-full">
+                          <input
+                            type={f.type}
+                            placeholder=" "
+                            className="peer w-full border-b-2 border-gray-300 focus:border-primary text-gray-800 p-2 outline-none bg-transparent transition"
+                            value={formData[section.name]?.[f.name] || ""}
+                            onChange={(e) => handleChange(section.name, f.name, e.target.value)}
+                          />
+                          <label className="pointer-events-none absolute left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-blue-400 transition-all">
+                            {f.label}
+                          </label>
+                        </div>
+                      ))
+                    : isTextArea ? (
+                        <div className="relative w-full">
+                          <textarea
+                            rows={5}
+                            placeholder=" "
+                            className="peer w-full border-b-2 border-gray-300 focus:border-primary text-gray-800 p-3 outline-none bg-transparent transition resize-none"
+                            value={getSimpleSectionValue(section.name)}
+                            onChange={(e) => handleChange(section.name, null, e.target.value)}
+                          />
+                          <label className="pointer-events-none absolute left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-blue-400 transition-all">
+                            {section.label}
+                          </label>
+                        </div>
+                      ) : (
+                        <div className="relative w-full">
+                          <input
+                            type="text"
+                            placeholder=" "
+                            className="peer w-full border-b-2 border-gray-300 focus:border-primary text-gray-800 p-2 outline-none bg-transparent transition"
+                            value={getSimpleSectionValue(section.name)}
+                            onChange={(e) => handleChange(section.name, null, e.target.value)}
+                          />
+                          <label className="pointer-events-none absolute left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-blue-400 transition-all">
+                            {section.label}
+                          </label>
+                        </div>
+                      )}
+                </Disclosure.Panel>
+              </Transition>
             </>
           </Disclosure>
         );

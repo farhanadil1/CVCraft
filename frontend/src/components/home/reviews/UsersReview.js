@@ -7,7 +7,7 @@ const reviews = [
     role: "Software Engineer",
     image: "./user1.png",
     review:
-      "CVcraft helped me land my dream job by creating an ATS-friendly resume that stood out. The templates were easy to use and tailored for success.",
+      "The idea is great, but I had trouble formatting my resume the way I wanted. Hoping for more flexibility in future updates.",
   },
   {
     name: "Ashish Roy",
@@ -24,25 +24,25 @@ const reviews = [
       "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference.",
   },
   {
-    name: "Adil Farhan",
-    role: "Software Engineer",
+    name: "Sufyan Ansari",
+    role: "Marketing Consultant",
     image: "./user1.png",
     review:
-      "CVcraft helped me land my dream job by creating an ATS-friendly resume that stood out. The templates were easy to use and tailored for success.",
+      "I created my first professional CV in under 10 minutes. The templates are modern and clean, and the tips along the way were incredibly helpful. Landed two interviews within a week!",
   },
   {
-    name: "Ashish Roy",
-    role: "Quality Analyst",
+    name: "Zenia Zealous",
+    role: "DevOps",
     image: "./user2.png",
     review:
-      "CVcraft completely transformed the way I approached resume writing. I realized my resume wasn’t optimized for ATS systems CVcraft’s builder made it incredibly easy to create a clean, professional layout tailored to my industry.",
+      "I’ve tried a few resume builders, but CVCraft stands out. It’s intuitive, customizable, and doesn’t bombard you with ads. Highly recommend for anyone serious about their career.",
   },
   {
-    name: "Soophie Rayen",
-    role: "Data Analyst",
+    name: "Alivia Chakraborty",
+    role: "HR Executive",
     image: "./user3.png",
     review:
-      "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference.",
+      "I loved how easy it was to tailor my resume for different roles. The export options are great, and the cover letter builder is a bonus!",
   },
 ];
 

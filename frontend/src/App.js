@@ -6,6 +6,7 @@ import Auth from './pages/Auth.js'
 import TemplatePage from './pages/TemplatePage.js';
 import EditorWrapper from './pages/EditorWrapper.js';
 import ScrollToTop from './components/ScrollToTop.js';
+import Contact from './pages/Contact.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/auth' element={<Auth />} />
         <Route path='/templates' element={<TemplatePage />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/editor/:templateId' element={<EditorWrapper />} /> 
       </Routes>
     </Router>

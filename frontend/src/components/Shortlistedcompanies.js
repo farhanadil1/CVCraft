@@ -26,7 +26,7 @@ const ShortlistedCompanies = () => {
   return (
     <section className="pt-16 md:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-head font-bold text-3xl leading-tight head-gradient mb-10 text-center">
+        <h2 className="font-para font-semibold text-3xl leading-tight head-gradient mb-10 text-center">
           Companies Where our Resume Was Shortlisted
         </h2>
 
@@ -35,7 +35,7 @@ const ShortlistedCompanies = () => {
             logos={shortlistedCompaniesIcons}
             speed={60}          // scrolling speed
             direction="left"     // or "right"
-            logoHeight={48}      // icon size
+            logoHeight={50}      // icon size
             gap={80}             // gap between icons
             pauseOnHover
             scaleOnHover
