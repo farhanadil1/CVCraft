@@ -9,7 +9,8 @@ export default function FAQ() {
         Frequently Asked Questions
       </h2>
       <Accordion />
-      <p className='font-para text-paragraph text-center text-xs font-semibold mt-4'>More questions? visit our <span className='text-primary'>FAQ library</span></p>
+      <p className='font-para text-paragraph text-center text-xs font-semibold mt-4'>More questions? visit our 
+        <span className='text-primary cursor-pointer ml-1'>FAQ library</span></p>
     </div>
   );
 }

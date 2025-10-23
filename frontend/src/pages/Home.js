@@ -10,6 +10,7 @@ import Footer from '../components/Footer.js';
 import { Spinner } from '../components/Spinner.js'; 
 import ShortlistedCompanies from '../components/Shortlistedcompanies.js';
 
+
 const Home = () => {
   const [loading, setLoading] = useState(true);
 

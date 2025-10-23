@@ -28,7 +28,7 @@ export default function WorkingCircle() {
               <img
                 src={s.icon}
                 alt={s.name}
-                className="h-48 md:h-60 w-auto object-contain"
+                className="h-48 md:h-52 w-auto object-contain"
               />
             </div>
           </div>

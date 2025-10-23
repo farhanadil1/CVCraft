@@ -10,12 +10,14 @@ import Editor from "../components/Editor";
 import EditorButtons from "../components/EditorButtons";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import ConfirmModal from "../components/ConfirmModal";
 
 const EditorWrapper = () => {
   const { templateId } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [zoom, setZoom] = useState(1);
+  const [showConfirm, setShowConfirm] = useState(false);
   const previewRef = useRef(null);
 
   const config =
@@ -32,9 +34,16 @@ const EditorWrapper = () => {
       : null;
 
   const handleGoBack = () => {
-    if (window.confirm("Leave this page? Unsaved progress will be lost.")) {
-      navigate(-1);
-    }
+    setShowConfirm(true); 
+  };
+
+  const handleConfirm = () => {
+    setShowConfirm(false);
+    navigate(-1);
+  };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
   };
 
   const handleSignup = () => {
@@ -52,6 +61,13 @@ const EditorWrapper = () => {
           >
             <IoMdArrowRoundBack /> Back
           </button>
+          <ConfirmModal
+            open={showConfirm}
+            title="Leave Page?"
+            message="Unsaved progress will be lost."
+            onConfirm={handleConfirm}
+            onCancel={handleCancel}
+          />
           <h1 className="text-lg font-semibold text-gray-900 tracking-tight">
             Resume Editor
           </h1>

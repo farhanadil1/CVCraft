@@ -71,7 +71,12 @@ const TemplatePage = () => {
       <div className="px-6 md:px-20 mt-12 mb-4">
         <h2 className="font-semibold text-lg md:text-xl mb-4">My Resumes</h2>
         <div className="grid place-items-center h-32">
-          <h1 className="text-center font-medium font-para text-paragraph">
+            <img 
+              src="./save.svg"
+              alt="saved resume"
+              className="h-20 mt-2"
+            />
+            <h1 className="text-center font-medium font-para text-paragraph">
             Your Saved Resume will appear here.
           </h1>
         </div>
