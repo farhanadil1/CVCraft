@@ -64,7 +64,7 @@ export default function Auth() {
   return (
     <div className="flex w-full h-screen font-sans bg-white">
       {/* Left illustration panel */}
-      <div className="hidden lg:flex flex-2/5 p-8 ml-6 bg-white border-r border-gray-100 justify-center items-center relative">
+      <div className="hidden lg:flex flex-2/5 p-8 ml-6 justify-center items-center relative">
         <button 
           onClick={handleGoback} 
           className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary">
@@ -72,7 +72,7 @@ export default function Auth() {
           Back
         </button>
         <img
-          src="./security.png"
+          src="./security.svg"
           alt="security"
           className="w-full ml-24 max-w-sm object-contain"
           onError={(e) => (e.target.src = "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")}

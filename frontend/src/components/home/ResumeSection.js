@@ -23,7 +23,7 @@ const ResumeSection = () => {
   ]
 
   return (
-    <div className='mt-10 relative text-center flex flex-col items-center'>
+    <div className='mt-16 md:mt-10 relative text-center flex flex-col items-center'>
       <h1 className='font-para text-primary text-sm font-semibold'>
         PERFORMANCE DRIVEN DESIGNS
       </h1>

@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function WorkingCircle() {
   const steps = [
-    { stepno: '1', name: "Choose a Free Resume Template", text: "Keep the sections that you like and can remove the rest", icon: "./cv.png" },
-    { stepno: '2', name: "Fill your Latest Information in fields", text: "Make your own Resume quickly by filling the details in sections", icon: "./workicon.png" },
-    { stepno: '3', name: "Share as PDF and Download", text: "After filling the details in the sections, download or share it", icon: "./download.png" },
+    { stepno: '1', name: "Choose a Free Resume Template", text: "Keep the sections that you like and can remove the rest", icon: "./template.svg" },
+    { stepno: '2', name: "Fill your Latest Information in fields", text: "Make your own Resume quickly by filling the details in sections", icon: "./fill.svg" },
+    { stepno: '3', name: "Share as PDF and Download", text: "After filling the details in the sections, download or share it", icon: "./download.svg" },
   ];
 
   return (
@@ -28,7 +28,7 @@ export default function WorkingCircle() {
               <img
                 src={s.icon}
                 alt={s.name}
-                className="h-48 md:h-72 w-auto object-contain"
+                className="h-48 md:h-60 w-auto object-contain"
               />
             </div>
           </div>

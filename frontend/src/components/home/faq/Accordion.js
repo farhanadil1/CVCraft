@@ -86,7 +86,7 @@ export default function Accordion() {
         <Disclosure key={index}>
           {({ open }) => (
             <div className="px-2 md:px-6 py-2 md:py-3">
-              <Disclosure.Button className="flex justify-between w-full text-left text-lg md:text-xl font-medium text-gray-800 hover:bg-gray-50 px-4 py-2 md:px-6 md:py-2 rounded-lg transition">
+              <Disclosure.Button className="flex justify-between w-full text-left text-base font-medium text-gray-800 hover:bg-gray-50 px-4 py-2 md:px-6 md:py-2 rounded-lg transition">
                 <span>{item.title}</span>
                 <ChevronDownIcon
                   className={`w-5 h-5 md:w-6 md:h-6 text-gray-500 transform transition-transform duration-300 ${
@@ -96,7 +96,7 @@ export default function Accordion() {
               </Disclosure.Button>
 
               <SmoothPanel open={open}>
-                <div className="px-4 md:px-6 pb-4 pt-2 text-gray-600 space-y-2 md:space-y-3 text-sm md:text-base">
+                <div className="px-4 md:px-6 pb-4 pt-2 text-gray-600 space-y-2 md:space-y-3 text-xs md:text-sm">
                   {item.content.map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}

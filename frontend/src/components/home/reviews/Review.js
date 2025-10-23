@@ -3,7 +3,7 @@ import UsersReview from './UsersReview'
 
 export default function Review() {
   return (
-    <div className='mt-24 relative text-center flex flex-col items-center'>
+    <div className='mt-16 relative text-center flex flex-col items-center'>
       <h1 className='font-para text-primary text-sm font-semibold'>
         REFRENCES
       </h1>

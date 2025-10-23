@@ -23,6 +23,27 @@ const reviews = [
     review:
       "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference.",
   },
+  {
+    name: "Adil Farhan",
+    role: "Software Engineer",
+    image: "./user1.png",
+    review:
+      "CVcraft helped me land my dream job by creating an ATS-friendly resume that stood out. The templates were easy to use and tailored for success.",
+  },
+  {
+    name: "Ashish Roy",
+    role: "Quality Analyst",
+    image: "./user2.png",
+    review:
+      "CVcraft completely transformed the way I approached resume writing. I realized my resume wasn’t optimized for ATS systems CVcraft’s builder made it incredibly easy to create a clean, professional layout tailored to my industry.",
+  },
+  {
+    name: "Soophie Rayen",
+    role: "Data Analyst",
+    image: "./user3.png",
+    review:
+      "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference.",
+  },
 ];
 
 export default function UsersReview() {
@@ -36,7 +57,7 @@ export default function UsersReview() {
       </div>
 
       {/* Review Cards */}
-      <div className="grid gap-10 md:gap-12 md:grid-cols-2 lg:grid-cols-3 justify-center">
+      <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 justify-center">
         {reviews.map((user, index) => (
           <motion.div
             key={index}
@@ -44,13 +65,13 @@ export default function UsersReview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="relative group bg-white backdrop-blur-xl border border-gray-200 
-                       rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] 
+            className="relative group backdrop-blur-xl 
+                      p-6
                        hover:shadow-[0_8px_25px_rgba(40,88,193,0.15)] 
                        transition-all duration-300 cursor-pointer hover:-translate-y-2"
           >
 
-            <div className="group absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-accent2/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="group absolute inset-0 bg-gradient-to-br from-primary/10 to-accent2/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative flex items-center mb-4">
               <img
                 src={user.image}
@@ -58,14 +79,14 @@ export default function UsersReview() {
                 className="rounded-full w-14 h-14 ring-2 ring-primary/30 group-hover:ring-primary transition-all duration-300"
               />
               <div className="ml-4 text-left">
-                <h3 className="font-para font-semibold text-lg text-gray-900">
+                <h3 className="font-para font-semibold text-base text-gray-900">
                   {user.name}
                 </h3>
                 <p className="text-sm font-para text-paragraph">{user.role}</p>
               </div>
             </div>
 
-            <p className="font-para text-gray-700 text-[15px] text-left leading-relaxed">
+            <p className="font-para text-gray-700 text-xs text-left leading-relaxed">
               “{user.review}”
             </p>
           </motion.div>
