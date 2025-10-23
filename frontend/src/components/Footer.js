@@ -15,6 +15,7 @@ const Footer = () => {
             src='./logo.png'
             alt='CVCraft'
             className='h-10 w-16 cursor-pointer'
+            draggable={false}
           />
           <Link to={`/`}>
             <h1 className='text-xl font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>

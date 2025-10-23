@@ -13,6 +13,7 @@ export default function ATS() {
                     src='./ats.png'
                     alt='ats-img'
                     className='object-contain p-2'
+                    draggable={false}
                 />   
             </div>
             <div className='bg-gray-200 h-32 w-4 rounded-l-md'></div>

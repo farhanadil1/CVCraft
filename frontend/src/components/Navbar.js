@@ -25,6 +25,7 @@ const Navbar = () => {
             src='./logo.png'
             alt='CVCraft'
             className='h-10 w-16 cursor-pointer'
+            draggable={false}
           />
           <Link to={`/`}>
             <h1 className='text-xl -ml-1 pt-2.5 font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>

@@ -29,6 +29,7 @@ export default function WorkingCircle() {
                 src={s.icon}
                 alt={s.name}
                 className="h-48 md:h-52 w-auto object-contain"
+                draggable={false}
               />
             </div>
           </div>

@@ -77,6 +77,7 @@ export default function UsersReview() {
                 src={user.image}
                 alt={user.name}
                 className="rounded-full w-14 h-14 ring-2 ring-primary/30 group-hover:ring-primary transition-all duration-300"
+                draggable={false}
               />
               <div className="ml-4 text-left">
                 <h3 className="font-para font-semibold text-base text-gray-900">

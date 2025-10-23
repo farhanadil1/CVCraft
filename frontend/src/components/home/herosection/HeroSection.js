@@ -13,6 +13,7 @@ const HeroSection = () => {
           src='./gradient.png'
           alt='bg-gradient'
           className='w-full h-auto absolute -z-10 object-cover'
+          draggable={false}
         />
         <div className='px-4 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6'>
           <div>
@@ -28,6 +29,7 @@ const HeroSection = () => {
               src='./iphone.png'
               alt='iphone'
               className='w-full max-w-xs md:max-w-sm lg:max-w-md -mt-16 sm:-mt-0 h-auto animate-slide-up delay-400'
+              draggable={false}
             />
             <div className='block md:hidden mt-6'>
               <UserIcons />

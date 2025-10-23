@@ -56,6 +56,7 @@ const ResumeSection = () => {
           src='./gradient2.png'
           alt='gradient-bg'
           className='-mt-[110px] -z-10'
+          draggable={false}
         />
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-12 my-12 items-center'>
@@ -66,6 +67,7 @@ const ResumeSection = () => {
               src={c.img}
               alt='CV-Images'
               className='h-96 w-72 mx-auto md:mx-0 shadow-lg justify-center hover:scale-105 transition-transform duration-500 cursor-pointer'
+              draggable={false}
               />
               </Link>
               <h1 className='text-lg hover:underline cursor-pointer text-left md:text-xl font-para font-semibold mt-8'>{c.name}</h1>

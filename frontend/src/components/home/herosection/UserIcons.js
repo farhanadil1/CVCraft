@@ -7,6 +7,7 @@ export default function UserIcons() {
         src='./usericons.png'
         alt='user-icons'
         className='h-9 w-24 md:h-12 md:w-32 object-contain'
+        draggable={false}
       />
       <p className='text-[10px] md:text-xs font-para text-paragraph mt-2 font-medium leading-tight'>
         Farhan, Zen along with hundreds of others,<br />

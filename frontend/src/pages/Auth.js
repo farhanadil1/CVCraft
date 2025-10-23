@@ -76,6 +76,7 @@ export default function Auth() {
           src="./security.svg"
           alt="security"
           className="hidden md:block ml-10 h-64 object-contain items-center"
+          draggable={false}
           onError={(e) => (e.target.src = "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")}
         />
         </div>

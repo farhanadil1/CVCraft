@@ -41,6 +41,7 @@ export default function WorkingText() {
             src='./flow.svg'
             alt='scrible-resume'
             className='h-64 md:h-[560px] -mt-10 md:mt-4 object-contain'
+            draggable={false}
           />
         </div>
       </div>
