@@ -20,7 +20,7 @@ export default function HeroText() {
       {/* Subtext and Button */}
       <div className="text-left">
         <p className="text-paragraph font-para text-sm sm:text-base">
-          Effortlessly craft your resume using CVcraft’s free builder<br />
+          Effortlessly craft your resume using CVcraft’s free builder
           and expertly designed professional templates.
         </p>
         <button
