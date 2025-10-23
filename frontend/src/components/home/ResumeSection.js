@@ -36,7 +36,7 @@ const ResumeSection = () => {
         designs that recruiters recognize, trust, and prefer.
       </p>
 
-      <div className='flex justify-center gap-20 mt-10 cursor-pointer'>
+      <div className='flex justify-center gap-10 md:gap-20 mt-10 cursor-pointer mx-8'>
         <div className='flex gap-1 items-center'>
           <PiReadCvLogoFill size={28} className='text-primary' />
           <p className='font-para font-medium text-paragraph text-sm'>ATS Friendly</p>
