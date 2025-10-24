@@ -86,7 +86,7 @@ export default function Auth() {
       </div>
 
       {/* Right form section */}
-      <div className="flex flex-col justify-center md:items-start items-center bg-white px-6 sm:px-10 md:px-10 py-6 md:py-0">
+      <div className="flex flex-col justify-center md:items-start items-center bg-white px-6 sm:px-10 md:px-10 md:py-0">
         <div className="w-full max-w-80">
           {/* Logo */}
           <div className="flex justify-center md:justify-start items-center mb-4">
