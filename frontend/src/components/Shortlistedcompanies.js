@@ -26,7 +26,7 @@ const ShortlistedCompanies = () => {
   return (
     <section className="pt-16 md:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-para font-semibold text-3xl leading-tight head-gradient mb-10 text-center">
+        <h2 className="font-para font-semibold text-base leading-tight head-gradient mb-10 text-center">
           Companies Where our Resume Was Shortlisted
         </h2>
 
