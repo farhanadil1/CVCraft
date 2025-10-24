@@ -48,7 +48,7 @@ const EditorWrapper = () => {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="px-3 py-1 text-sm bg-primary text-white rounded-xl shadow"
         >
-          {sidebarOpen ? "Hide Form" : "Show Form"}
+          {sidebarOpen ? "See Live Preview" : "Fill Form"}
         </button>
       </div>
 

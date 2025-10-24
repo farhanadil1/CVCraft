@@ -33,10 +33,10 @@ const ShortlistedCompanies = () => {
         <div className="h-24 relative overflow-hidden text-paragraph">
           <LogoLoop
             logos={shortlistedCompaniesIcons}
-            speed={60}          // scrolling speed
-            direction="left"     // or "right"
-            logoHeight={50}      // icon size
-            gap={80}             // gap between icons
+            speed={60}          
+            direction="left"     
+            logoHeight={50}      
+            gap={80}       
             pauseOnHover
             scaleOnHover
             fadeOut
