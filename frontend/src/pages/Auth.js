@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CiMail, CiLock,CiUser } from "react-icons/ci";
+import { CiMail, CiLock, CiUser } from "react-icons/ci";
 import { FaCheck } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { VscGithubInverted } from "react-icons/vsc";
@@ -56,68 +56,74 @@ export default function Auth() {
 
   const handleGoback = () => {
     navigate(-1);
-  }
+  };
+
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const passwordStrong = formData.password.length >= 8;
   const fullNameValid = formData.fullName.trim().length >= 3;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans bg-white overflow-x-hidden">
-      {/* Left illustration panel */}
-      <div className="lg:flex flex-2/5 p-8 ml-6 justify-center items-center relative">
-        <button 
-          onClick={handleGoback} 
-          className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary">
+    <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen font-sans bg-white overflow-hidden">
+      {/* Left illustration */}
+      <div className="hidden md:flex justify-center items-center relative p-8">
+        <button
+          onClick={handleGoback}
+          className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary transition-colors"
+        >
           <IoIosArrowBack className="h-4 w-4 mt-[2.5px]" />
           Back
         </button>
-        <div className="flex justify-center">
         <img
           src="./security.svg"
           alt="security"
-          className="hidden md:block ml-10 h-64 object-contain items-center"
+          className="h-72 ml-20 object-contain"
           draggable={false}
-          onError={(e) => (e.target.src = "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")}
+          onError={(e) =>
+            (e.target.src =
+              "https://placehold.co/500x500/FFFFFF/4F46E5?text=Secure")
+          }
         />
-        </div>
       </div>
-      {/* Form panel */}
-      <div className="flex-1 flex flex-col items-center justify-center bg-white md:p-8">
-        <div className="max-w-xs w-full mx-32 md:mr-96">
-          {/* Logo */}
-          <div className="flex justify-center items-center mb-3">
-                      <img 
-                      src='./logo.png'
-                      alt='CVCraft'
-                      className='h-10 w-16 cursor-pointer'
-                  />
-                  <Link to={`/`}>
-                  <h1 className='text-xl -ml-1 pt-2.5 font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>
-                  </Link>    
-              </div>
 
-          <h1 className="font-semibold text-xl text-center text-gray-900">
+      {/* Right form section */}
+      <div className="flex flex-col justify-center md:items-start items-center bg-white px-6 sm:px-10 md:px-10 py-6 md:py-0">
+        <div className="w-full max-w-80">
+          {/* Logo */}
+          <div className="flex justify-center md:justify-start items-center mb-4">
+            <img src="./logo.png" alt="CVCraft" className="h-10 w-16 cursor-pointer" />
+            <Link to={`/`}>
+              <h1 className="text-xl -ml-1 pt-2.5 font-bold font-head text-gradient cursor-pointer">
+                CVCraft
+              </h1>
+            </Link>
+          </div>
+
+          <h1 className="font-semibold text-xl md:text-left text-center text-gray-900">
             Welcome {isSignIn ? "Back" : "Onboard"}
           </h1>
-          <p className="text-sm text-paragraph text-center mt-1 mb-2">
+          <p className="text-sm text-paragraph md:text-left text-center mt-1 mb-3">
             {isSignIn
               ? "Please enter your details to sign in"
               : "Create your account to start crafting your CV"}
           </p>
 
-          {/* Toggle Sign In / Sign Up */}
-          <div className="flex justify-center p-1 bg-gray-200 rounded-xl shadow-inner mb-4">
+          {/* Toggle */}
+          <div className="flex justify-center p-1 bg-gray-200 rounded-xl shadow-inner mb-5">
             <button
-              className={`flex-1 py-2 text-sm font-semibold transition-all duration-300 rounded-xl ${
-                isSignIn ? "bg-white text-gray-800 shadow-md" : "text-gray-500 hover:bg-gray-300"
+              className={`flex-1 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
+                isSignIn
+                  ? "bg-white text-gray-800 shadow-md"
+                  : "text-gray-500 hover:bg-gray-300"
               }`}
               onClick={() => setActiveView("signin")}
             >
               Sign In
             </button>
             <button
-              className={`flex-1 py-2 text-sm font-semibold transition-all duration-300 rounded-xl ${
-                !isSignIn ? "bg-white text-gray-800 shadow-md" : "text-gray-500 hover:bg-gray-200"
+              className={`flex-1 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
+                !isSignIn
+                  ? "bg-white text-gray-800 shadow-md"
+                  : "text-gray-500 hover:bg-gray-200"
               }`}
               onClick={() => setActiveView("signup")}
             >
@@ -151,7 +157,9 @@ export default function Auth() {
                 isValid={touched.email ? emailValid : false}
               />
               {touched.email && !emailValid && (
-                <p className="text-xs text-red-500 mt-1">Please enter a valid email.</p>
+                <p className="text-xs text-red-500 mt-1">
+                  Please enter a valid email.
+                </p>
               )}
             </div>
 
@@ -160,27 +168,34 @@ export default function Auth() {
                 Icon={CiLock}
                 name="password"
                 label="Password"
-                type='password'
+                type="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 isValid={touched.password ? passwordStrong : false}
               />
               {touched.password && !passwordStrong && (
-                <p className="text-xs text-red-500 mt-1">Password must be at least 8 characters.</p>
+                <p className="text-xs text-red-500 mt-1">
+                  Password must be at least 8 characters.
+                </p>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 mt-2 text-white font-semibold rounded-xl bg-primary hover:bg-primary/70 transition-colors shadow-lg shadow-primary/50"
-              onClick={() => setTouched({ email: true, password: true, fullName: true })}
+              className="w-full py-3 mt-3 text-white font-semibold rounded-xl bg-primary hover:bg-primary/70 transition-all shadow-lg shadow-primary/40"
+              onClick={() =>
+                setTouched({ email: true, password: true, fullName: true })
+              }
             >
               Continue
             </button>
 
             {isSignIn && (
               <div className="text-center mt-2">
-                <button type="button" className="text-xs text-blue-500 hover:underline">
+                <button
+                  type="button"
+                  className="text-xs text-blue-500 hover:underline"
+                >
                   Forgot Password?
                 </button>
               </div>
@@ -188,28 +203,29 @@ export default function Auth() {
           </form>
 
           {/* Social login */}
-          <div className="mt-4 text-center text-[8px]">
+          <div className="mt-6 text-center text-[10px]">
             <div className="flex items-center my-4">
               <div className="flex-grow border-t border-gray-300"></div>
-              <span className="flex-shrink mx-4 text-xs text-paragraph">Or Continue With</span>
+              <span className="flex-shrink mx-4 text-xs text-paragraph">
+                Or Continue With
+              </span>
               <div className="flex-grow border-t border-gray-300"></div>
             </div>
 
             <div className="flex justify-center gap-4">
-              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
+              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-all">
                 <FcGoogle className="h-5 w-5" />
               </button>
-              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
+              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-all">
                 <VscGithubInverted className="h-5 w-5 text-blue-900" />
               </button>
-              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-shadow">
+              <button className="p-3 border border-gray-200 rounded-xl bg-white hover:shadow-md transition-all">
                 <FaFacebook className="h-5 w-5 text-blue-500" />
               </button>
             </div>
           </div>
         </div>
-
-      </div> 
+      </div>
     </div>
   );
 }
