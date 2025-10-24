@@ -42,8 +42,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `font-para font-semibold px-2 py-1 rounded-xl cursor-pointer transition-all duration-300 border-b-2 
                 ${isActive 
-                  ? 'bg-primary text-white border-primary' 
-                  : 'text-black hover:text-primary border-transparent hover:border-primary'}`
+                  ? 'bg-indigo-400 text-white border-indigo-400' 
+                  : 'text-black hover:text-indigo-400 border-transparent hover:border-indigo-400'}`
               }
             >
               {item.name}
@@ -56,18 +56,18 @@ const Navbar = () => {
           <button
             onClick={handleNavigate}
             className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full 
-                      border border-primary text-primary font-para font-semibold text-sm 
+                      border border-indigo-400 text-indigo-400 font-para font-semibold text-sm 
                       transition-all duration-300 overflow-hidden shadow-[0_4px_10px_rgba(40,88,193,0.15)]
                       hover:shadow-[0_6px_20px_rgba(40,88,193,0.25)]"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-primary to-accent2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></span>
 
             <span className="relative z-10 transition-all duration-300 group-hover:text-white">
               Get Started
             </span>
             <BsArrowUpRightCircle
               size={18}
-              className="relative z-10 text-primary group-hover:text-white transform transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
+              className="relative z-10 text-indigo-400 group-hover:text-white transform transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
             />
           </button>
         </div>

@@ -26,7 +26,7 @@ export default function HeroText() {
         <button
           onClick={handleNavigate}
           className="px-6 py-3 mt-6 md:mt-3 font-semibold font-para text-sm text-white 
-                     bg-gradient-to-r from-primary to-accent2 rounded-full shadow-lg 
+                     bg-gradient-to-r from-indigo-400 to-primary rounded-full shadow-xl 
                      hover:shadow-[0_6px_20px_rgba(40,88,193,0.4)] hover:scale-105 
                      transition-all duration-300"
         >
