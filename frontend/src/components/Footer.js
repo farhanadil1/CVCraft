@@ -10,7 +10,7 @@ const Footer = () => {
     <div className='mt-20 px-4 md:px-20'>
       {/* Top section with logo & social icons */}
       <div className='flex flex-row justify-between pb-6 border-b border-gray-300 items-start gap-6'>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center'>
           <img 
             src='./logo.png'
             alt='CVCraft'
@@ -18,7 +18,7 @@ const Footer = () => {
             draggable={false}
           />
           <Link to={`/`}>
-            <h1 className='text-xl font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>
+            <h1 className='text-xl mt-2.5 font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>
           </Link>
         </div>
         <div className='flex gap-3 text-primary'>
