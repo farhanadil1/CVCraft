@@ -20,6 +20,7 @@ const Navbar = () => {
     <nav className="bg-page w-full relative border-b">
       <div className='flex justify-between mx-4 md:mx-20 py-4 items-center'>
         {/* Logo */}
+        <Link to={`/`}>
         <div className='flex justify-start items-center gap-2'>
           <img 
             src='./logo.png'
@@ -27,10 +28,10 @@ const Navbar = () => {
             className='h-10 w-16 cursor-pointer'
             draggable={false}
           />
-          <Link to={`/`}>
+          
             <h1 className='text-xl -ml-1 pt-2.5 font-bold font-head text-gradient cursor-pointer'>CVCraft</h1>
-          </Link>
         </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className='hidden md:flex justify-center text-xs items-center gap-x-6'>

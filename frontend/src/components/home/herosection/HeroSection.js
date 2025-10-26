@@ -12,7 +12,7 @@ const HeroSection = () => {
         <img 
           src='./gradient.png'
           alt='bg-gradient'
-          className='w-full h-auto absolute -z-10 object-cover'
+          className='w-full h-auto absolute -z-10 md:mt-0 mt-6 object-cover'
           draggable={false}
         />
         <div className='px-4 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6'>

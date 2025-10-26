@@ -24,9 +24,17 @@ export default function WorkingText() {
             crafted, data-driven, and trusted by 
             millions of professionals worldwide.
           </p>
+          <div className='flex justify-center md:justify-end block md:hidden pt-12'>
+          <img
+            src='./flow.svg'
+            alt='scrible-resume'
+            className='h-64 md:h-[560px] -mt-10 md:mt-4 object-contain'
+            draggable={false}
+          />
+        </div>
           <button
             onClick={handleNavigate}
-            className="px-6 py-3 mt-8 mb-5 font-semibold font-para text-sm text-white 
+            className="px-6 py-3 mt-8 mb-10 md:mb-5 font-semibold font-para text-sm text-white 
                      bg-gradient-to-r from-indigo-400 to-primary rounded-full shadow-xl 
                      hover:shadow-[0_6px_20px_rgba(40,88,193,0.4)] hover:scale-105 
                      transition-all duration-300"
@@ -36,7 +44,7 @@ export default function WorkingText() {
         </div>
 
         {/* Image Section */}
-        <div className='flex justify-center md:justify-end'>
+        <div className='flex justify-center md:justify-end hidden md:block'>
           <img
             src='./flow.svg'
             alt='scrible-resume'

@@ -55,29 +55,36 @@ const ResumeSection = () => {
         <img
           src='./gradient2.png'
           alt='gradient-bg'
-          className='-mt-[110px] -z-10'
+          className='md:-mt-[110px] mt-20 object-cover -z-10'
           draggable={false}
         />
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-12 my-12 items-center'>
         {cv.map((c, index) => (
-          <div className='md:max-w-72 mx-8 md:mx-0'>
+          <div
+            key={index}
+            className={`md:max-w-72 mx-8 md:mx-0 ${
+              index > 0 ? "hidden md:block" : ""
+            }`}
+          >
             <Link to={`/templates`}>
-            <img 
-              src={c.img}
-              alt='CV-Images'
-              className='h-96 w-72 mx-auto md:mx-0 shadow-lg justify-center hover:scale-105 transition-transform duration-500 cursor-pointer'
-              draggable={false}
+              <img
+                src={c.img}
+                alt='CV-Images'
+                className='h-96 w-72 mx-auto md:mx-0 shadow-lg justify-center hover:scale-105 transition-transform duration-500 cursor-pointer'
+                draggable={false}
               />
-              </Link>
-              <h1 className='text-lg hover:underline cursor-pointer text-left md:text-xl font-para font-semibold mt-8'>{c.name}</h1>
-              <p className='text-paragraph font-para text-medium text-left mt-2'>
-                {c.desc}
-              </p>
+            </Link>
+            <h1 className='text-lg hover:underline cursor-pointer text-left md:text-xl font-para font-semibold mt-8'>
+              {c.name}
+            </h1>
+            <p className='text-paragraph font-para text-medium text-left mt-2'>
+              {c.desc}
+            </p>
           </div>
         ))}
-        
       </div>
+
       <button
         onClick={handleNavigate}
         className="px-6 py-3 md:my-6 font-semibold font-para text-sm text-white 
