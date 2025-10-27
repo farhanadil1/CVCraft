@@ -1,92 +1,100 @@
-import { Resume } from '../models/resume.models.js'
-import {asyncHandler} from '../utils/asyncHandler.js'
-import {ApiError} from '../utils/ApiError.js'
-import {ApiResponse} from '../utils/ApiResponse.js'
+import { Resume } from '../models/resume.models.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { ApiError } from '../utils/ApiError.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
 
-//Create new resume
+// Create new resume
 const createResume = asyncHandler(async (req, res) => {
+  const { resumeName, templateId, formData } = req.body;
+  const userId = req.user._id; 
 
-    const { resumeName, templateId, formData } = req.body;
+  if (!resumeName || !templateId || !formData) {
+    throw new ApiError(400, 'Data is missing.')
+  }
 
-    if (!resumeName || !templateId || !formData) {
-      throw new ApiError(401,'Data is missing.')
-    }
+  const newResume = await Resume.create({
+    userId,
+    resumeName,
+    templateId,
+    formData,
+  })
 
-    const newResume = await Resume.create({
-      resumeName,
-      templateId,
-      formData,
-    });
-
-    res
-    .status(201)
-    .json(
-        new ApiResponse(201,newResume, 'Resume saved successfully')
+  res
+  .status(201)
+  .json(
+    new ApiResponse(201, newResume, 'Resume saved successfully')
     )
 })
 
-//Get all resumes
-const getAllResumes = asyncHandler( async (req, res) => {
- 
-    const resumes = await Resume.find().sort({ updatedAt: -1 });
-    res
-    .status(200)
-    .json(
-        new ApiResponse(200, resumes, 'All Resumes Fetched Successfully')
-    )
+// Get all resumes of logged-in user
+const getUserResumes = asyncHandler(async (req, res) => {
+  const userId = req.user._id
 
+  const resumes = await Resume.find({ userId }).sort({ updatedAt: -1 })
+  res
+  .status(200)
+  .json(
+    new ApiResponse(200, resumes, 'User resumes fetched successfully')
+)
 })
 
-//Get resume by ID
-const getResumeById =asyncHandler( async (req, res) => {
-  
-    const resume = await Resume.findById(req.params.id);
-    if (!resume) {
-      throw new ApiError(404, 'Resume not found for the Id')
-    }
-    res
-    .status(200)
-    .json(
-        new ApiResponse(200, resume, 'Resume for the ID Fecthed')
-    )
+// Get resume by ID if it belongs to user
+const getResumeById = asyncHandler(async (req, res) => {
+  const userId = req.user._id
 
+  const resume = await Resume.findOne({ _id: req.params.id, userId })
+  if (!resume) {
+    throw new ApiError(404, 'Resume not found for the ID or does not belong to you');
+  }
+
+  res
+  .status(200)
+  .json(
+    new ApiResponse(200, resume, 'Resume fetched successfully')
+    )
 })
 
-// Update resume
-const updateResume = asyncHandler( async (req, res) => {
- 
-    const updated = await Resume.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    })
-    if (!updated) {
-      throw new ApiError(404, 'Resume not found')
-    }
-    res
-    .status(200)
-    .json(
-        new ApiResponse(200, updated, 'Resume updated successfully')
+// Update resume if it belongs to user
+const updateResume = asyncHandler(async (req, res) => {
+  const userId = req.user._id
+
+  const updated = await Resume.findOneAndUpdate(
+    { _id: req.params.id, userId },
+    req.body,
+    { new: true }
+  )
+
+  if (!updated) {
+    throw new ApiError(404, 'Resume not found or not authorized')
+  }
+
+  res
+  .status(200)
+  .json(
+    new ApiResponse(200, updated, 'Resume updated successfully')
     )
-  
 })
 
-// Delete resume
-const deleteResume = asyncHandler( async (req, res) => {
-    const deleted = await Resume.findByIdAndDelete(req.params.id)
-    if (!deleted) {
-      throw new ApiError(404, 'Resume not found')
-    }
-    res
-    .status(200)
-    .json(
-        new ApiResponse(200, {}, 'Resume deleted Sucessfully')
+// Delete resume if it belongs to user
+const deleteResume = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+
+  const deleted = await Resume.findOneAndDelete({ _id: req.params.id, userId })
+  if (!deleted) {
+    throw new ApiError(404, 'Resume not found or not authorized')
+  }
+
+  res
+  .status(200)
+  .json(
+    new ApiResponse(200, {}, 'Resume deleted successfully')
     )
- 
 })
 
 export {
-    createResume,
-    getAllResumes,
-    getResumeById,
-    updateResume,
-    deleteResume
-}
+  createResume,
+  getUserResumes,
+  getResumeById,
+  updateResume,
+  deleteResume
+};

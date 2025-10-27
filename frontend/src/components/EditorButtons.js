@@ -1,16 +1,51 @@
 import React, { useState } from "react";
 import { FiDownload, FiPrinter, FiZoomIn, FiZoomOut, FiSave } from "react-icons/fi";
+import { RiErrorWarningFill } from "react-icons/ri";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { RiErrorWarningFill } from "react-icons/ri";
 
-
-const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
-  const navigate = useNavigate()
+const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resumeId, setResumeId }) => {
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState(null);
+  const API_BASE = "http://localhost:8000/api/resumes";
 
+  //  Save or Update resume
+  const handleSave = async () => {
+    const token = Cookies.get("username");
+    if (!token) {
+      toast.error("Please login to save your resume!");
+      navigate("/auth");
+      return;
+    }
+
+    try {
+      const payload = { resumeName: "My Resume", templateId, formData };
+
+      if (resumeId) {
+        // Update existing resume
+        const { data } = await axios.put(`${API_BASE}/update/${resumeId}`, payload, { withCredentials: true });
+        toast.success("Resume updated successfully!");
+        setResumeId(data.data._id); 
+      } else {
+        // Create new resume
+        const { data } = await axios.post(`${API_BASE}/create`, payload, { withCredentials: true });
+        toast.success("Resume saved successfully!");
+        setResumeId(data.data._id); 
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to save resume!");
+      console.error("Save error:", error);
+    }
+  };
+
+  // Download PDF 
   const handleDownload = async () => {
+    await handleSave(); // first save in DB
+
     if (!previewRef.current) return;
     const canvas = await html2canvas(previewRef.current, { scale: 2 });
     const imgData = canvas.toDataURL("image/png");
@@ -33,29 +68,27 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
     printWindow.document.close();
     printWindow.print();
   };
+
   const handleSignup = () => {
     navigate("/auth");
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Save */}
+      {/* Save Button */}
       <button
         onMouseEnter={() => setHovered("save")}
         onMouseLeave={() => setHovered(null)}
-        onClick={handleDownload}
+        onClick={handleSave}
         className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
           hovered === "save" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
         <FiSave size={18} />
-        {hovered === "save" && (
-          <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-            Save
-          </span>
-        )}
+        {hovered === "save" && <span>Save</span>}
       </button>
-      {/* Download */}
+
+      {/* Download Button */}
       <button
         onMouseEnter={() => setHovered("download")}
         onMouseLeave={() => setHovered(null)}
@@ -65,14 +98,10 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
         }`}
       >
         <FiDownload size={18} />
-        {hovered === "download" && (
-          <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-            Download
-          </span>
-        )}
+        {hovered === "download" && <span>Download</span>}
       </button>
 
-      {/* Print */}
+      {/* Print Button */}
       <button
         onMouseEnter={() => setHovered("print")}
         onMouseLeave={() => setHovered(null)}
@@ -82,48 +111,41 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
         }`}
       >
         <FiPrinter size={18} />
-        {hovered === "print" && (
-          <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-            Print
-          </span>
-        )}
+        {hovered === "print" && <span>Print</span>}
       </button>
 
       {/* Zoom Controls */}
-        <button
-          onClick={() => setZoom((z) => Math.max(z - 0.1, 0.5))}
-          className="p-3.5 shadow-lg hover:shadow-xl text-center hover:bg-gray-100 rounded-full bg-white transition-colors border border-gray-300"
-        >
-          <FiZoomOut size={16} className="text-gray-600" />
-        </button>
-        <span className="text-xs font-medium text-gray-900 w-12 py-3.5 shadow-lg hover:shadow-xl hover:bg-gray-100 rounded-full bg-white transition-colors border border-gray-300 text-center">
-
-          {Math.round(zoom * 100)}%
-        </span>
-        <button
-          onClick={() => setZoom((z) => Math.min(z + 0.1, 2))}
-          className="p-3.5 shadow-lg hover:shadow-xl text-center hover:bg-gray-100 rounded-full bg-white transition-colors border border-gray-300"
-        >
-          <FiZoomIn size={16} className="text-gray-600" />
-        </button>
-
-        {/* Floating Sign-up Button */}
-        <button
-        onMouseEnter={() => setHovered("signup")}
-        onMouseLeave={() => setHovered(null)}
-        onClick={handleSignup}
-        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 text-white shadow-md hover:shadow-lg transition-all duration-500 ${
-          hovered === "signup" ? "w-52 justify-start pl-4" : "w-12 py-3.5 justify-center"
-        }`}
+      <button
+        onClick={() => setZoom((z) => Math.max(z - 0.1, 0.5))}
+        className="p-3.5 bg-white border border-gray-300 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-100"
       >
-        <RiErrorWarningFill size={18} />
-        {hovered === "signup" && (
-          <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-            Signup to save work
-          </span>
-        )}
+        <FiZoomOut size={16} />
       </button>
-      
+      <span className="text-xs font-medium text-gray-900 bg-white border border-gray-300 rounded-full shadow-lg px-4 py-3.5">
+        {Math.round(zoom * 100)}%
+      </span>
+      <button
+        onClick={() => setZoom((z) => Math.min(z + 0.1, 2))}
+        className="p-3.5 bg-white border border-gray-300 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-100"
+      >
+        <FiZoomIn size={16} />
+      </button>
+
+      {/* Signup Warning */}
+      {!Cookies.get("accessToken") && (
+        <button
+          onMouseEnter={() => setHovered("signup")}
+          onMouseLeave={() => setHovered(null)}
+          onClick={handleSignup}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 text-white shadow-md hover:shadow-lg transition-all duration-500 ${
+            hovered === "signup" ? "w-52 justify-start pl-4" : "w-12 py-3.5 justify-center"
+          }`}
+        >
+          <RiErrorWarningFill size={18} />
+          {hovered === "signup" && <span>Signup to save work</span>}
+        </button>
+      )}
+      <Toaster position="top-center" />
     </div>
   );
 };

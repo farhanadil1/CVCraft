@@ -1,7 +1,12 @@
-import mongoose,{Schema} from 'mongoose'
+import mongoose, { Schema } from 'mongoose';
 
 const resumeSchema = new Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
+      required: true,
+    },
     resumeName: {
       type: String,
       required: true,
@@ -16,6 +21,6 @@ const resumeSchema = new Schema(
     },
   },
   { timestamps: true }
-)
+);
 
-export const Resume = mongoose.model('Resume', resumeSchema)
+export const Resume = mongoose.model('Resume', resumeSchema);

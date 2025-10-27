@@ -19,8 +19,8 @@ const GenerateAcessAndRefreshToken = async (userId) => {
 }
 
 const registerUser = asyncHandler ( async(req, res) => {
-    const {username, email, fullName, password} = req.body
-    if([username, email, fullName, password].some((field) => field?.trim() == '')){
+    const {email, fullName, password} = req.body
+    if([email, fullName, password].some((field) => field?.trim() == '')){
         throw new ApiError(400, 'All fields are Required')
     }
 
@@ -31,7 +31,6 @@ const registerUser = asyncHandler ( async(req, res) => {
 
     const userExists = await User.findOne({
         $or: [
-            {username: username},
             {email: email}
         ]
     })
@@ -40,7 +39,6 @@ const registerUser = asyncHandler ( async(req, res) => {
     }
 
     const user = await User.create({
-        username,
         email,
         fullName,
         password
@@ -62,14 +60,13 @@ const registerUser = asyncHandler ( async(req, res) => {
 })
 
 const loginUser = asyncHandler ( async( req, res) => {
-    const {username, email, password} = req.body
-    if(!(username || email)){
-        throw new ApiError(400, 'Username or Email is Required.')
+    const {email, password} = req.body
+    if(!(email)){
+        throw new ApiError(400, 'Email is Required.')
     }
     
     const user = await User.findOne({
         $or: [
-            {username: username},
             {email: email}
         ]
     })
@@ -87,8 +84,8 @@ const loginUser = asyncHandler ( async( req, res) => {
 
     const options= {
         httpOnly: true, 
-        secure: true,
-        samesite: 'None',
+        secure: false,
+        samesite: 'lax',
         path: '/'
     }
 
@@ -118,8 +115,8 @@ const logoutUser = asyncHandler( async(req, res) => {
     )
     const options ={
         httpOnly: true,
-        secure: true,
-        samesite: 'None',
+        secure: false,
+        samesite: 'lax',
         path: '/'
     }
     return res

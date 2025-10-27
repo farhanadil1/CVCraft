@@ -12,7 +12,7 @@ const ResumeSection = () => {
 
   const cv = [
     {
-      id:1, name:"Professional Minimalist", desc: "Clean, modern layout emphasizing clarity and readability. Perfect for corporate or office roles.", img:"./cv2.png"
+      id:1, name:"Professional Minimalist", desc: "Clean, modern layout emphasizing clarity and readability. Perfect for corporate or office roles.", img:"./template2.png"
     },
     {
       id:2, name:"Creative Portfolio", desc: "Bold, colorful design showcasing your projects and skills. Ideal for designers, artists, and creatives.", img:"./cv4.png"
