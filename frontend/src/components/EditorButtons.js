@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiDownload, FiPrinter, FiZoomIn, FiZoomOut } from "react-icons/fi";
+import { FiDownload, FiPrinter, FiZoomIn, FiZoomOut, FiSave } from "react-icons/fi";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
@@ -39,13 +39,29 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* Save */}
+      <button
+        onMouseEnter={() => setHovered("save")}
+        onMouseLeave={() => setHovered(null)}
+        onClick={handleDownload}
+        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
+          hovered === "save" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
+        }`}
+      >
+        <FiSave size={18} />
+        {hovered === "save" && (
+          <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
+            Save
+          </span>
+        )}
+      </button>
       {/* Download */}
       <button
         onMouseEnter={() => setHovered("download")}
         onMouseLeave={() => setHovered(null)}
         onClick={handleDownload}
         className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
-          hovered === "download" ? "w-36 justify-start pl-4" : "w-12 py-3.5 justify-center"
+          hovered === "download" ? "w-32 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
         <FiDownload size={18} />
@@ -61,8 +77,8 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef }) => {
         onMouseEnter={() => setHovered("print")}
         onMouseLeave={() => setHovered(null)}
         onClick={handlePrint}
-        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-800 shadow-md hover:shadow-lg transition-all duration-500 ${
-          hovered === "print" ? "w-28 justify-start pl-4" : "w-12 py-3.5 justify-center"
+        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
+          hovered === "print" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
         <FiPrinter size={18} />

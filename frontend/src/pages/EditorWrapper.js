@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { template1Config } from "../components/templates/template1Config";
 import { template2Config } from "../components/templates/template2Config";
 import { template3Config } from "../components/templates/template3Config";
@@ -41,6 +41,12 @@ const EditorWrapper = () => {
   const handleCancel = () => setShowConfirm(false);
 
   return (
+    <div>
+       <div className="bg-gradient-to-r font-para from-primary to-indigo-500 text-white text-center text-sm font-medium py-2 px-4 flex justify-center items-center space-x-2 shadow-sm">
+        <Link to="/auth" className="hover:underline font-semibold">
+        <p>Sign in to save your <span className="font-semibold">CVCraft</span> progess</p>  
+        </Link>
+      </div>
     <div className="flex flex-col md:flex-row h-screen w-full bg-gray-50 text-gray-800 overflow-hidden">
       {/* Mobile Sidebar Toggle */}
       <div className="md:hidden flex justify-end p-2">
@@ -51,7 +57,7 @@ const EditorWrapper = () => {
           {sidebarOpen ? "See Live Preview" : "Fill Form"}
         </button>
       </div>
-
+     
       {/* Sidebar */}
       {sidebarOpen && (
         <div className="editor-sidebar w-full md:w-[28%] min-w-[280px] md:min-w-[280px] h-auto md:h-full bg-white border-b md:border-b-0 md:border-r border-gray-200 p-4 md:p-6 overflow-y-auto shadow-sm flex flex-col">
@@ -110,6 +116,7 @@ const EditorWrapper = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };
