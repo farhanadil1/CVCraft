@@ -56,7 +56,12 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         await handleSave(); // first save in DB
 
         if (!previewRef.current) return;
-        const canvas = await html2canvas(previewRef.current, { scale: 2 });
+        const canvas = await html2canvas(previewRef.current, { 
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#ffffff'
+         });
         const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF("p", "mm", "a4");
         const width = pdf.internal.pageSize.getWidth();
