@@ -64,7 +64,7 @@ export default function Auth() {
     }
 
     setLoading(true);
-    const API_BASE = "http://localhost:8000/api";
+    const API_BASE = "https://cvcraft-vxk1.onrender.com/api";
 
     try {
       if (isLogin) {
