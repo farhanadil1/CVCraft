@@ -12,7 +12,7 @@ const TemplatePage = () => {
   const navigate = useNavigate();
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_BASE = "http://localhost:8000/api/resumes";
+  const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   const templates = [
     { id: "template1", name: "Professional Spectrum", preview: "./template1.png", usersCount: 200 },

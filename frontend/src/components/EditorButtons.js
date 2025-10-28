@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resumeId, setResumeId }) => {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(null);
-  const API_BASE = "http://localhost:8000/api/resumes";
+  const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   //  Save or Update resume
   const handleSave = async () => {
