@@ -58,7 +58,7 @@ const Navbar = () => {
       Cookies.remove('username');
       setIsLoggedIn(false);
       setDropdownOpen(false);
-      navigate('/');
+    
     } catch (err) {
       console.error(err);
       toast.error('Logout failed! Check console.', {

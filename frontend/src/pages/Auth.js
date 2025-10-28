@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
 import { FaCheck } from "react-icons/fa6";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
@@ -39,7 +39,6 @@ const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid 
 
 export default function Auth() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
@@ -59,7 +58,7 @@ export default function Auth() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) {
-      toast.error("Please fix the validation errors!", { duration: 2000 });
+      toast.error("Please input the correct formated values", { duration: 2000 });
       return;
     }
 
@@ -83,9 +82,8 @@ export default function Auth() {
         toast.success(`Welcome back, ${username}!`, { duration: 2000 });
         Cookies.set("username", username, { expires: 7 });
         Cookies.set("accessToken", response.data.data.accessToken, { expires: 7 });
+        navigate(-1)
 
-        const from = location.state?.from?.pathname || "/";
-        setTimeout(() => navigate(from, { replace: true }), 1200);
       } else {
         await toast.promise(
           axios.post(`${API_BASE}/users/register`, {

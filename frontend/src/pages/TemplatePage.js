@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa6";
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
 
@@ -22,28 +23,40 @@ const TemplatePage = () => {
     { id: "template5", name: "Modern Professional", preview: "./template5.png", usersCount: 220 },
   ];
 
-  // Fetch saved resumes
-  useEffect(() => {
-    const fetchResumes = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE}/my`, {
-          withCredentials: true, // important
-        });
-        setResumes(data.data || []);
-      } catch (error) {
-        console.error("Error fetching resumes:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchResumes = async () => {
+    try {
+      const { data } = await axios.get(`${API_BASE}/my`, {
+        withCredentials: true, // important
+      });
+      setResumes(data.data || []);
+    } catch (error) {
+      console.error("Error fetching resumes:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchResumes();
   }, []);
 
+  // Delete resume
+  const handleDelete = async (id) => {
+    if (window.confirm("Delete this resume?")) {
+      try {
+        await axios.delete(`${API_BASE}/delete/${id}`, { withCredentials: true });
+        fetchResumes(); // refresh the list
+      } catch (err) {
+        console.error("Error deleting:", err);
+        alert("Failed to delete!");
+      }
+    }
+  };
 
   return (
     <div className="bg-gradient-to-b from-[#f9fafb] to-[#eef2ff] min-h-screen flex flex-col font-para">
       <Navbar />
+
       {/* Banner */}
       <div className="bg-gradient-to-r font-para from-primary to-indigo-500 text-white text-center text-sm font-medium py-2 px-4 flex justify-center items-center space-x-2 shadow-sm">
         <p>
@@ -79,9 +92,16 @@ const TemplatePage = () => {
           See All <FaArrowRight size={12} />
         </Link>
       </div>
-      <motion.div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-20 py-6"
-        initial="hidden" animate="visible"
-        variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } } }}>
+
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-20 py-6"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } },
+        }}
+      >
         {templates.map((t) => (
           <motion.div key={t.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
             <TemplateCard id={t.id} preview={t.preview} name={t.name} usersCount={t.usersCount} />
@@ -95,7 +115,7 @@ const TemplatePage = () => {
 
         {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[1,2,3,4].map(i => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className="animate-pulse bg-white border border-gray-200 rounded-xl p-3 shadow-inner">
                 <div className="bg-gray-300 rounded-md w-full h-40 mb-3" />
                 <div className="bg-gray-300 h-4 w-3/4 mb-2 rounded" />
@@ -110,13 +130,52 @@ const TemplatePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {resumes.map((resume) => (
-              <div key={resume._id} 
-                   className="bg-white border border-gray-200 p-3 shadow hover:shadow-lg cursor-pointer transition-all"
-                   onClick={() => navigate(`/editor/${resume.templateId}`, { state: { resumeId: resume._id } })}>
-                <img src={`./${resume.templateId}.png`} alt={resume.resumeName} className="rounded-md w-full"/>
-                <h3 className="mt-2 font-semibold text-gray-700 truncate">{resume.resumeName}</h3>
-                <p className="text-xs text-gray-500">Updated: {new Date(resume.updatedAt).toLocaleDateString()}</p>
+            {resumes.map((r) => (
+              <div
+                key={r._id}
+                onClick={() =>
+                  navigate(`/editor/${r.templateId}`, { state: { resumeId: r._id } })
+                }
+                className="relative rounded-lg cursor-pointer bg-white shadow-md hover:shadow-lg transition-transform duration-300 transform group"
+              >
+                {/* Full Image */}
+                <img
+                  src={`./${r.templateId}.png`}
+                  alt={r.resumeName}
+                  className="w-full h-72 object-cover"
+                />
+
+                {/* Edit & Delete Buttons on hover */}
+                <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                  <button
+                    onClick={() =>
+                      navigate(`/editor/${r.templateId}`, { state: { resumeId: r._id } })
+                    }
+                    className="bg-blue-500 flex items-center text-white p-2 rounded shadow-md hover:scale-105 transition-all duration-300"
+                    title="Edit"
+                  >
+                    <FaEdit size={16} /><span className="text-xs font-semibold mt-1">Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(r._id)}
+                    className="bg-red-500 hover:bg-red-600 text-white p-2 rounded shadow-md"
+                    title="Delete"
+                  >
+                    <FaTrashAlt size={16} />
+                  </button>
+                </div>
+
+                {/* Resume Info */}
+                <div className="p-3">
+                  <h3 className="font-semibold text-gray-800 text-lg truncate">{r.resumeName}</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Last Updated:{" "}
+                    {new Date(r.updatedAt).toLocaleString("en-IN", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

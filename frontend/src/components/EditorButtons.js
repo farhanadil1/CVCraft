@@ -29,10 +29,12 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
           // Update existing resume
           const { data } = await axios.put(`${API_BASE}/update/${resumeId}`, payload, { withCredentials: true });
           setResumeId(data.data._id); 
+          console.log("update")
         } else {
           // Create new resume
           const { data } = await axios.post(`${API_BASE}/create`, payload, { withCredentials: true });
           setResumeId(data.data._id); 
+          console.log("create")
         }
       })(),
       {

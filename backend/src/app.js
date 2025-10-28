@@ -19,4 +19,7 @@ import resumeRouter from './routes/resume.routes.js'
 app.use('/api/users', userRouter)
 app.use('/api/resumes', resumeRouter)
 
+import { errorHandler } from './middlewares/errorHandler.middleware.js'
+app.use(errorHandler)
+
 export {app}
