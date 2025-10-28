@@ -80,7 +80,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         onMouseEnter={() => setHovered("save")}
         onMouseLeave={() => setHovered(null)}
         onClick={handleSave}
-        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
+        className={`flex whitespace-nowrap items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
           hovered === "save" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
@@ -93,7 +93,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         onMouseEnter={() => setHovered("download")}
         onMouseLeave={() => setHovered(null)}
         onClick={handleDownload}
-        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
+        className={`flex whitespace-nowrap items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
           hovered === "download" ? "w-32 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
@@ -106,7 +106,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         onMouseEnter={() => setHovered("print")}
         onMouseLeave={() => setHovered(null)}
         onClick={handlePrint}
-        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
+        className={`flex whitespace-nowrap items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-500 ${
           hovered === "print" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
         }`}
       >
@@ -137,7 +137,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
           onMouseEnter={() => setHovered("signup")}
           onMouseLeave={() => setHovered(null)}
           onClick={handleSignup}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 text-white shadow-md hover:shadow-lg transition-all duration-500 ${
+          className={`flex whitespace-nowrap items-center gap-2 px-4 py-2 rounded-full bg-red-500 text-white shadow-md hover:shadow-lg transition-all duration-500 ${
             hovered === "signup" ? "w-52 justify-start pl-4" : "w-12 py-3.5 justify-center"
           }`}
         >

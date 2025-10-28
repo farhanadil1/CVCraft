@@ -15,10 +15,10 @@ const ResumeSection = () => {
       id:1, name:"Professional Minimalist", desc: "Clean, modern layout emphasizing clarity and readability. Perfect for corporate or office roles.", img:"./template2.png"
     },
     {
-      id:2, name:"Creative Portfolio", desc: "Bold, colorful design showcasing your projects and skills. Ideal for designers, artists, and creatives.", img:"./cv4.png"
+      id:2, name:"Creative Portfolio", desc: "Bold, colorful design showcasing your projects and skills. Ideal for designers, artists, and creatives.", img:"./template4.png"
     },
     {
-      id:3, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant.", img:"./cv3.png"
+      id:3, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant.", img:"./template3.png"
     }
   ]
 

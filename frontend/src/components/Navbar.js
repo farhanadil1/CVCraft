@@ -11,6 +11,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("")
   const dropdownRef = useRef(null);
 
   const navs = [
@@ -22,7 +23,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const userFromCookie = Cookies.get("username");
-    if (userFromCookie) setIsLoggedIn(true);
+    if (userFromCookie) {
+      setUsername(userFromCookie);
+      setIsLoggedIn(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -107,7 +111,9 @@ const Navbar = () => {
           className="inline-flex items-center text-indigo-400 hover:text-indigo-600 focus:outline-none"
         >
           <BsPersonCircle size={28} />
+          <span className='ml-1 mt-1 font-semibold text-xs'>{username}</span>
         </button>
+        
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg z-50">
             <button

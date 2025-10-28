@@ -15,11 +15,11 @@ const TemplatePage = () => {
   const API_BASE = "http://localhost:8000/api/resumes";
 
   const templates = [
-    { id: "template1", name: "Professional Spectrum", preview: "./cv1.png", usersCount: 200 },
+    { id: "template1", name: "Professional Spectrum", preview: "./template1.png", usersCount: 200 },
     { id: "template2", name: "Professional Minimalist", preview: "./template2.png", usersCount: 190 },
-    { id: "template3", name: "ATS-Friendly Optimized", preview: "./cv3.png", usersCount: 250 },
-    { id: "template4", name: "Creative Portfolio", preview: "./cv4.png", usersCount: 180 },
-    { id: "template5", name: "Modern Professional", preview: "./cv5.png", usersCount: 220 },
+    { id: "template3", name: "ATS-Friendly Optimized", preview: "./template3.png", usersCount: 250 },
+    { id: "template4", name: "Creative Portfolio", preview: "./template4.png", usersCount: 180 },
+    { id: "template5", name: "Modern Professional", preview: "./template5.png", usersCount: 220 },
   ];
 
   // Fetch saved resumes
