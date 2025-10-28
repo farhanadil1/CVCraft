@@ -63,7 +63,7 @@ const EditorWrapper = () => {
     <div className="h-screen w-full flex flex-col">
       {/* top banner */}
       <div className="bg-gradient-to-r from-primary to-indigo-500 text-white text-center text-sm py-2 px-4 flex justify-center items-center gap-2">
-        <p>Sign in to save your <span className="font-semibold">CVCraft</span></p>
+        <p>Sign in to save your progress <span className="font-semibold">CVCraft</span></p>
       </div>
 
       <div className="flex flex-1 h-full overflow-hidden relative">
@@ -126,7 +126,7 @@ const EditorWrapper = () => {
           </div>
         </div>
       </div>
-      <ConfirmModal open={showConfirm} title="Leave?" message="Unsaved progress lost." onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmModal open={showConfirm} title="Leave?" message="Unsaved progress will be lost." onConfirm={handleConfirm} onCancel={handleCancel} />
     </div>
   );
 };
