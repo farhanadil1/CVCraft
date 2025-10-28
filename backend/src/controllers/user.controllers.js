@@ -84,8 +84,8 @@ const loginUser = asyncHandler ( async( req, res) => {
 
     const options= {
         httpOnly: true, 
-        secure: false,
-        samesite: 'lax',
+        secure: true,
+        samesite: 'None',
         path: '/'
     }
 
@@ -115,8 +115,8 @@ const logoutUser = asyncHandler( async(req, res) => {
     )
     const options ={
         httpOnly: true,
-        secure: false,
-        samesite: 'lax',
+        secure: true,
+        samesite: 'None',
         path: '/'
     }
     return res
