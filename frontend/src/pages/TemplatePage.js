@@ -12,7 +12,6 @@ const TemplatePage = () => {
   const navigate = useNavigate();
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   const templates = [
     { id: "template1", name: "Professional Spectrum", preview: "./template1.png", usersCount: 200 },
@@ -26,8 +25,8 @@ const TemplatePage = () => {
   useEffect(() => {
     const fetchResumes = async () => {
       try {
-        const { data } = await axios.get(`${API_BASE}/my`, {
-          withCredentials: true, // important
+        const { data } = await axios.get(`https://cvcraft-vxk1.onrender.com/api/resumes/my`, {
+          withCredentials: true, 
         });
         setResumes(data.data || []);
       } catch (error) {
