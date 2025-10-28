@@ -44,7 +44,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await toast.promise(
-        axios.post('https://cvcraft-vxk1.onrender.com/api/users/logout', {}, { withCredentials: true }),
+        axios.post('http://localhost:8000/api/users/logout', {}, { withCredentials: true }),
         {
           loading: 'Logging out...',
           success: 'Logged out successfully!',
