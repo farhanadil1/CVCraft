@@ -4,7 +4,7 @@ export const template1Config = {
   sections: [
     {
       name: "personal",
-      label: "Personal Info & Header",
+      label: "Personal Info",
       type: "object",
       fields: [
         { name: "fullName", label: "Full Name", type: "text" },

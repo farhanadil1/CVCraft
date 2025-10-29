@@ -4,7 +4,7 @@ export const template2Config = {
   sections: [
     {
       name: "personal",
-      label: "Personal Info & Header",
+      label: "Personal Info",
       type: "object",
       fields: [
         { name: "fullName", label: "Full Name", type: "text" },
@@ -31,7 +31,7 @@ export const template2Config = {
     // Work Experience Section (Type: array)
     {
       name: "experience",
-      label: "Work Experience",
+      label: "Experience",
       type: "array",
       fields: [
         { name: "position", label: "Job Title/Position", type: "text" },
@@ -43,8 +43,8 @@ export const template2Config = {
     },
     // Publications Section (Type: array)
     {
-      name: "publications",
-      label: "Publications",
+      name: "skills",
+      label: "Skills",
       type: "array",
       fields: [
         { name: "title", label: "Publication Title", type: "text" },
@@ -65,10 +65,10 @@ export const template2Config = {
         { name: "description", label: "Project Description (Long Text)", type: "text", isLarge: true },
       ],
     },
-    // Skills/Quick Guide or other simple bullet lists
+    // SoI
     {
-      name: "quickGuide",
-      label: "Quick Guide (Simple Bullet List)",
+      name: "subjectofInterest",
+      label: "Subject of Interest",
       type: "array",
       fields: [
         { name: "text", label: "Bullet Point Text", type: "text", isLarge: true },

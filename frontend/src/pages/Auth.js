@@ -113,9 +113,9 @@ export default function Auth() {
       <div className="hidden md:flex justify-center items-center relative p-8">
         <button
           onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 flex items-center text-sm text-gray-700 hover:text-primary"
+          className="absolute bg-gradient-to-r py-1.5 px-4 shadow-lg hover:scale-110 transition-transform duration-300 from-indigo-500 to-primary rounded-2xl top-6 left-6 flex items-center text-sm text-white"
         >
-          <IoIosArrowBack className="h-4 w-4 mt-[2.5px]" /> Back
+          <IoIosArrowBack className="h-4 w-4 mt-[2.5px] -ml-2" /> Back
         </button>
         <img src="./security.svg" alt="security" className="h-72 ml-20 object-contain" draggable={false} />
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiDownload, FiPrinter, FiZoomIn, FiZoomOut, FiSave } from "react-icons/fi";
+import { FiDownload, FiZoomIn, FiZoomOut, FiSave } from "react-icons/fi";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -7,10 +7,14 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
+import { VscPreview } from "react-icons/vsc";
+import Editor from "./Editor";
 
 const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resumeId, setResumeId }) => {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
   const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   //  Save or Update resume
@@ -80,30 +84,6 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
     );
   };
 
-  // Print resume
-  const handlePrint = async () => {
-    await toast.promise(
-      (async () => {
-        if (!previewRef.current) return;
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
-          <html>
-            <head><title>Resume</title></head>
-            <body style="margin:0">${previewRef.current.innerHTML}</body>
-          </html>
-        `);
-        printWindow.document.close();
-        printWindow.print();
-      })(),
-      {
-        loading: 'Preparing resume for print...',
-        success: 'Print dialog opened!',
-        error: 'Failed to print resume!',
-      },
-      { duration: 2000 }
-    );
-  };
-
   const handleSignup = () => {
     navigate("/auth");
   };
@@ -151,18 +131,21 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         {hovered === "download" && <span>Download</span>}
       </button>
 
-      {/* Print Button */}
-      <button
-        onMouseEnter={() => setHovered("print")}
-        onMouseLeave={() => setHovered(null)}
-        onClick={handlePrint}
-        className={`flex whitespace-nowrap items-center h-12 gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-300 ${
-          hovered === "print" ? "w-24 justify-start pl-4" : "w-12 py-3.5 justify-center"
-        }`}
-      >
-        <FiPrinter size={18} />
-        {hovered === "print" && <span>Print</span>}
-      </button>
+      {/* Preview Button */}
+      {Cookies.get("username") && (
+          <button
+            onMouseEnter={() => setHovered("preview")}
+            onMouseLeave={() => setHovered(null)}
+            onClick={() => setPreviewOpen(true)}
+            className={`flex whitespace-nowrap items-center h-12 gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-indigo-400 text-white shadow-lg hover:shadow-xl transition-all duration-300 ${
+              hovered === "preview" ? "w-36 justify-start pl-4" : "w-12 py-3.5 justify-center"
+            }`}
+          >
+            
+            <VscPreview size={18} />
+            {hovered === "preview" && <span>Full Preview</span>}
+          </button>
+        )}
 
       {/* Zoom Controls */}
       <button
@@ -180,6 +163,21 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
       >
         <FiZoomIn size={16} />
       </button>
+
+        {previewOpen && (
+        <div className="fixed inset-0 z-50 bg-gray-100 flex flex-col">
+          <div className="flex justify-between items-center p-4 bg-white border-b border-gray-300">
+            <h2 className="text-lg font-semibold text-gray-800">Resume Preview</h2>
+            <button onClick={() => setPreviewOpen(false)}>
+              <IoClose size={24} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto p-6 flex justify-center items-start">
+            <Editor templateId={templateId} data={formData} zoom={zoom} />
+          </div>
+        </div>
+      )}
+
       <Toaster position="top-center" />
     </div>
   );

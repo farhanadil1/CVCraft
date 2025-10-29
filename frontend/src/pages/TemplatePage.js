@@ -16,7 +16,6 @@ const TemplatePage = () => {
   const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   const templates = [
-    { id: "template1", name: "Professional Spectrum", preview: "./template1.png", usersCount: 200 },
     { id: "template2", name: "Professional Minimalist", preview: "./template2.png", usersCount: 190 },
     { id: "template3", name: "ATS-Friendly Optimized", preview: "./template3.png", usersCount: 250 },
     { id: "template4", name: "Creative Portfolio", preview: "./template4.png", usersCount: 180 },

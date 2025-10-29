@@ -13,8 +13,9 @@ import { TiArrowBack } from "react-icons/ti";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
+import toast from "react-hot-toast";
 
-const API_BASE = "http://localhost:8000/api/resumes";
+const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
 const EditorWrapper = () => {
   const { templateId } = useParams();
@@ -49,6 +50,7 @@ const EditorWrapper = () => {
         }
       } catch (err) {
         console.error("Fetch failed:", err.response || err);
+        toast.error(err.response)
       }
     };
     fetchResume();
@@ -62,7 +64,7 @@ const EditorWrapper = () => {
   return (
     <div className="h-screen w-full flex flex-col">
       {/* top banner */}
-      <div className="bg-gradient-to-r from-primary to-indigo-500 text-white text-center text-sm py-2 px-4 flex justify-center items-center gap-2">
+      <div className="bg-gradient-to-r from-primary to-indigo-500 text-white text-center py-3 px-4 flex justify-center items-center gap-2">
         <p>Sign in to save your progress <span className="font-semibold">CVCraft</span></p>
       </div>
 
@@ -77,22 +79,24 @@ const EditorWrapper = () => {
 
         {/* Sidebar / drawer */}
         <div
-          className={`fixed top-0 left-0 h-full w-[85%] editor-sidebar overflow-auto max-w-xs bg-white shadow-lg z-30 transform transition-transform duration-300
-                     md:relative md:translate-x-0 md:w-[28%] md:max-w-none md:shadow-none
+          className={`fixed top-0 left-0 bottom-0 w-[85%] editor-sidebar overflow-hidden max-w-xs bg-white shadow z-30 transform transition-transform duration-300
+                     md:relative md:translate-x-0 md:w-[35%] md:max-w-none md:shadow-none md:border-r md:border-gray-300
                      ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <button onClick={handleGoBack} className="flex items-center text-gray-500 hover:text-gray-900">
+            <button onClick={handleGoBack} className="flex items-center text-gray-900 hover:text-blue-500">
               <TiArrowBack /> Back
             </button>
             <h2 className="text-lg font-semibold">Fill Details</h2>
             {/* close for mobile */}
-            <button className="md:hidden" onClick={() => setSidebarOpen(false)}>
+            <button className="md:hidden text-gray-900" onClick={() => setSidebarOpen(false)}>
               <IoClose size={24} />
             </button>
           </div>
-          <div className="p-2">
-            <DynamicForm config={config} formData={formData} setFormData={setFormData} />
+          <div className="flex flex-col h-full">
+            <div className="flex-1 overflow-auto pb-14 editor-sidebar p-2">
+              <DynamicForm config={config} formData={formData} setFormData={setFormData} />
+            </div>
           </div>
         </div>
 
@@ -105,7 +109,7 @@ const EditorWrapper = () => {
         )}
 
         {/* Editor */}
-        <div className="flex-1 relative bg-gray-100 editor-sidebar overflow-auto flex flex-col items-center justify-start p-4 md:p-10">
+        <div className="flex-1 relative editor-sidebar overflow-auto flex flex-col items-center justify-start p-4">
           <div className="w-full max-w-[900px] text-center mb-4 md:mb-6">
             <h2 className="text-xl font-semibold text-gray-800">Live Preview</h2>
             <div className="h-1 w-12 mx-auto bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-1"></div>
@@ -126,7 +130,12 @@ const EditorWrapper = () => {
           </div>
         </div>
       </div>
-      <ConfirmModal open={showConfirm} title="Leave?" message="Unsaved progress will be lost." onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmModal 
+        open={showConfirm} 
+        title="Leave?" 
+        message="Unsaved progress will be lost. Do you wish to continue?" 
+        onConfirm={handleConfirm} 
+        onCancel={handleCancel} />
     </div>
   );
 };
