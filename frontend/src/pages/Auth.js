@@ -112,11 +112,23 @@ export default function Auth() {
       {/* Left side illustration */}
       <div className="hidden md:flex justify-center items-center relative p-8">
         <button
-          onClick={() => navigate(-1)}
-          className="absolute bg-gradient-to-r py-1.5 px-4 shadow-lg hover:scale-110 transition-transform duration-300 from-indigo-500 to-primary rounded-2xl top-6 left-6 flex items-center text-sm text-white"
-        >
-          <IoIosArrowBack className="h-4 w-4 mt-[2.5px] -ml-2" /> Back
-        </button>
+      onClick={() => navigate(-1)}
+      className="absolute top-6 left-10 flex items-center text-sm font-medium text-white 
+                 bg-gradient-to-r from-indigo-500 to-primary
+                 py-2 px-3 rounded-2xl
+                 shadow-lg shadow-indigo-400/50
+                 backdrop-blur-sm
+                 transform transition-all duration-300
+                 hover:scale-105 hover:shadow-2xl hover:from-indigo-400 hover:to-purple-300
+                 active:scale-95 active:shadow-md
+                overflow-hidden">
+      <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
+      <IoIosArrowBack className="h-4 w-4 z-10 relative" />
+      <span className="relative z-10">Back</span>
+    </button>
+
+
+
         <img src="./security.svg" alt="security" className="h-72 ml-20 object-contain" draggable={false} />
       </div>
 
@@ -193,7 +205,7 @@ export default function Auth() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 mt-3 text-white font-semibold rounded-xl bg-primary hover:bg-accent transition-all"
+              className="w-full py-3 mt-3 text-white font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-primary hover:bg-accent transition-all"
             >
               {loading ? "Processing..." : "Continue"}
             </button>
