@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 
 const app = express ()
 
+app.set('trust proxy', 1)
 app.use(cors({
     origin: ['http://localhost:3000','https://cv-craftt.netlify.app'],
     credentials: true

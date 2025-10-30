@@ -56,6 +56,8 @@ const Navbar = () => {
       );
 
       Cookies.remove('username');
+      Cookies.remove('accessToken');
+      Cookies.remove('refreshToken');
       setIsLoggedIn(false);
       setDropdownOpen(false);
     
