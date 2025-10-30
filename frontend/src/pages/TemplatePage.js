@@ -8,12 +8,12 @@ import { FaArrowRight } from "react-icons/fa6";
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { API } from "../api/Api";
 
 const TemplatePage = () => {
   const navigate = useNavigate();
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   const templates = [
     { id: "template2", name: "Professional Minimalist", preview: "./template2.png", usersCount: 190 },
@@ -24,7 +24,7 @@ const TemplatePage = () => {
 
   const fetchResumes = async () => {
     try {
-      const { data } = await axios.get(`${API_BASE}/my`, {
+      const { data } = await axios.get(`${API}/resumes/my`, {
         withCredentials: true, // important
       });
       setResumes(data.data || []);
@@ -43,7 +43,7 @@ const TemplatePage = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Delete this resume?")) {
       try {
-        await axios.delete(`${API_BASE}/delete/${id}`, { withCredentials: true });
+        await axios.delete(`${API}/resumes/delete/${id}`, { withCredentials: true });
         fetchResumes(); // refresh the list
       } catch (err) {
         console.error("Error deleting:", err);
@@ -136,9 +136,9 @@ const TemplatePage = () => {
             {resumes.map((r) => (
               <div
                 key={r._id}
-                onClick={() =>
-                  navigate(`/editor/${r.templateId}`, { state: { resumeId: r._id } })
-                }
+                // onClick={() =>
+                //   navigate(`/editor/${r.templateId}`, { state: { resumeId: r._id } })
+                // }
                 className="relative rounded-lg cursor-pointer bg-white shadow-md hover:shadow-lg transition-transform duration-300 transform group"
               >
                 {/* Full Image */}

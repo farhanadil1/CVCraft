@@ -5,6 +5,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { API } from '../api/Api';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await toast.promise(
-        axios.post('https://cvcraft-vxk1.onrender.com/api/users/logout', {}, { withCredentials: true }),
+        axios.post(`${API}/users/logout` , {}, { withCredentials: true }),
         {
           loading: 'Logging out...',
           success: 'Logged out successfully!',

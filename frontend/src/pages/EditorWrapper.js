@@ -14,8 +14,8 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API } from "../api/Api";
 
-const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
 const EditorWrapper = () => {
   const { templateId } = useParams();
@@ -41,7 +41,7 @@ const EditorWrapper = () => {
     const fetchResume = async () => {
       if (!passedResumeId) return;
       try {
-        const { data } = await axios.get(`${API_BASE}/my/${passedResumeId}`, {
+        const { data } = await axios.get(`${API}/resumes/my/${passedResumeId}`, {
           withCredentials: true
         });
         if (data?.data?.formData) {

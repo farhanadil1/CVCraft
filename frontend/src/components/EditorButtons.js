@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { VscPreview } from "react-icons/vsc";
 import Editor from "./Editor";
+import { API } from "../api/Api";
 
 const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resumeId, setResumeId }) => {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(null);
   const [previewOpen, setPreviewOpen] = useState(false);
-  const API_BASE = "https://cvcraft-vxk1.onrender.com/api/resumes";
 
   //  Save or Update resume
   const handleSave = async () => {
@@ -31,12 +31,12 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
 
         if (resumeId) {
           // Update existing resume
-          const { data } = await axios.put(`${API_BASE}/update/${resumeId}`, payload, { withCredentials: true });
+          const { data } = await axios.put(`${API}/resumes/update/${resumeId}`, payload, { withCredentials: true });
           setResumeId(data.data._id); 
           console.log("update")
         } else {
           // Create new resume
-          const { data } = await axios.post(`${API_BASE}/create`, payload, { withCredentials: true });
+          const { data } = await axios.post(`${API}/resumes/create`, payload, { withCredentials: true });
           setResumeId(data.data._id); 
           console.log("create")
         }

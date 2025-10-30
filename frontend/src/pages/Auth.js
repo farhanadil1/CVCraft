@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
+import { API } from "../api/Api";
 
 // Reusable input component
 const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid }) => (
@@ -63,13 +64,12 @@ export default function Auth() {
     }
 
     setLoading(true);
-    const API_BASE = "https://cvcraft-vxk1.onrender.com/api";
 
     try {
       if (isLogin) {
         const response = await toast.promise(
           axios.post(
-            `${API_BASE}/users/login`,
+            `${API}/users/login`,
             { email: formData.email, password: formData.password },
             { withCredentials: true }
           ),
@@ -86,7 +86,7 @@ export default function Auth() {
 
       } else {
         await toast.promise(
-          axios.post(`${API_BASE}/users/register`, {
+          axios.post(`${API}/users/register`, {
             fullName: formData.fullName,
             email: formData.email,
             password: formData.password,
