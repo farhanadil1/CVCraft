@@ -73,7 +73,13 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
         const width = pdf.internal.pageSize.getWidth();
         const height = (canvas.height * width) / canvas.width;
         pdf.addImage(imgData, "PNG", 0, 0, width, height);
-        pdf.save("resume.pdf");
+        const name = Cookies.get("username")
+        if(name){
+          pdf.save(`${name}_cvcraft.pdf`)
+        }
+        else{
+          pdf.save("resume.pdf");
+        }
       })(),
       {
         loading: 'Generating PDF...',

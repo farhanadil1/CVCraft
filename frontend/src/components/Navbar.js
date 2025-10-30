@@ -114,11 +114,13 @@ const Navbar = () => {
           className="inline-flex items-center text-indigo-400 hover:text-indigo-600 focus:outline-none"
         >
           <BsPersonCircle size={28} />
-          <span className='ml-1 mt-1 font-semibold text-xs'>{username}</span>
+          <span className='ml-1 flex items-center font-para mt-1 font-semibold text-gray-950 text-xs'>
+            <p className='text-paragraph font-medium font-para text-xs m-1'>Hello,</p>
+            {username}</span>
         </button>
         
         {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+          <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-lg z-50">
             <button
               onClick={handleLogout}
               className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-xl"
