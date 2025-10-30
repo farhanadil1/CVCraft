@@ -103,7 +103,11 @@ const TemplatePage = () => {
       >
         {templates.map((t) => (
           <motion.div key={t.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <TemplateCard id={t.id} preview={t.preview} name={t.name} usersCount={t.usersCount} />
+            <TemplateCard 
+              id={t.id} 
+              preview={t.preview} 
+              name={t.name} 
+              usersCount={t.usersCount} />
           </motion.div>
         ))}
       </motion.div>

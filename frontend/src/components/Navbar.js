@@ -60,6 +60,7 @@ const Navbar = () => {
       Cookies.remove('refreshToken');
       setIsLoggedIn(false);
       setDropdownOpen(false);
+      navigate(`/`);
     
     } catch (err) {
       console.error(err);
