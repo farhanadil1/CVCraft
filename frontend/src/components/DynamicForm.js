@@ -113,7 +113,7 @@ const DynamicForm = ({ config, formData, setFormData }) => {
 
       {/* Current Section Card */}
       <div className="bg-white px-6 pb-6 transition-all duration-300">
-        <h2 className="text-lg font-semibold text-primary mb-4">{currentSection.label}</h2>
+        <h2 className="text-lg font-semibold text-gray-950 mb-4">{currentSection.label}</h2>
 
         {/* Fields */}
         {currentSection.type === "array"
