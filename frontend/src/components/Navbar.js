@@ -143,21 +143,23 @@ const Navbar = () => {
           onClick={() => setMenuOpen(false)}
           className={({ isActive }) =>
             `font-para font-semibold px-3 py-2 rounded-xl cursor-pointer transition-all duration-300
-            ${isActive ? 'bg-primary text-white' : 'text-gray-800 hover:bg-primary hover:text-white'}`
+            ${isActive ? 'text-primary font-bold' : 'text-gray-800  hover:text-accent'}`
           }
         >
           {item.name}
         </NavLink>
       ))}
+      <div className='flex justify-center'>
       <button
         onClick={() => {
           isLoggedIn ? handleLogout() : handleNavigate();
           setMenuOpen(false);
         }}
-        className="flex items-center justify-center border-[1.5px] border-primary text-primary font-para font-semibold py-2 rounded-xl hover:bg-primary hover:text-white transition-all duration-300"
+        className="flex items-center w-fit px-2 text-center justify-center font-para font-semibold py-2 rounded-xl hover:text-primary transition-all duration-300"
       >
         {isLoggedIn ? 'Logout' : 'Get Started'} {isLoggedIn ? null : <BsArrowUpRightCircle className="ml-1" />}
       </button>
+      </div>
     </div>
   );
 
