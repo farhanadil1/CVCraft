@@ -4,10 +4,15 @@ import { TbBrandLinkedinFilled } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Footer = () => {
+  const handleSubscribe = () => {
+    toast.success("Subscribed Sucessfuly")
+  }
   return (
     <div className='mt-20 px-4 md:px-20'>
+      <Toaster position='top-center'/>
       {/* Top section with logo & social icons */}
       <div className='flex flex-row justify-between pb-6 border-b border-gray-300 items-start gap-6'>
         <div className='flex items-center'>
@@ -52,6 +57,7 @@ const Footer = () => {
               className='rounded-3xl border border-gray-300 py-2.5 px-4 w-full sm:flex-1 focus:outline-none focus:ring-1 focus:ring-primary'
             />
             <button
+              onClick={handleSubscribe}
               className="px-6 py-3 sm:py-2 font-semibold font-para text-xs text-white bg-primary rounded-3xl
                         shadow-[0_8px_15px_rgba(40,88,193,0.3)] hover:bg-accent2 transition-colors duration-300 w-full sm:w-auto"
             >

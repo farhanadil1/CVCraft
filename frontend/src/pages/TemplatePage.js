@@ -128,7 +128,7 @@ const TemplatePage = () => {
           </div>
         ) : resumes.length === 0 ? (
           <div className="bg-white border border-gray-200 rounded-2xl shadow-inner p-8 flex flex-col justify-center items-center text-center hover:shadow-md transition-all duration-300">
-            <img src="./save.svg" alt="saved resume" className="h-20 mb-3 opacity-90" />
+            <img src="./save.svg" alt="saved resume" className="h-20 mb-3 opacity-90" draggable='false' />
             <h1 className="text-gray-600 font-medium">Your saved resumes will appear here once you start creating.</h1>
           </div>
         ) : (
