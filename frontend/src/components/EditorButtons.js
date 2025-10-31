@@ -18,36 +18,42 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
   const [previewOpen, setPreviewOpen] = useState(false);
 
   //  Save or Update resume
-  const handleSave = async () => {
+  const handleSave = async (showToast = true) => {
     const token = Cookies.get("username");
     if (!token) {
-      toast.error("Please login to save your resume!");
+      if (showToast) toast.error("Please login to save your resume!");
       return;
     }
 
-    await toast.promise(
-      (async () => {
-        const payload = { resumeName: "My Resume", templateId, formData };
+    const savePromise = (async () => {
+      const payload = { resumeName: "My Resume", templateId, formData };
 
-        if (resumeId) {
-          // Update existing resume
-          const { data } = await axios.put(`${API}/resumes/update/${resumeId}`, payload, { withCredentials: true });
-          setResumeId(data.data._id); 
-          console.log("update")
-        } else {
-          // Create new resume
-          const { data } = await axios.post(`${API}/resumes/create`, payload, { withCredentials: true });
-          setResumeId(data.data._id); 
-          console.log("create")
-        }
-      })(),
-      {
-        loading: 'Saving resume...',
-        success: 'Resume saved successfully!',
-        error: 'Failed to save resume!',
-      },
-      { duration: 2000 }
-    );
+      if (resumeId) {
+        // Update existing resume
+        const { data } = await axios.put(`${API}/resumes/update/${resumeId}`, payload, { withCredentials: true });
+        setResumeId(data.data._id);
+        localStorage.removeItem("draftFormData");
+      } else {
+        // Create new resume
+        const { data } = await axios.post(`${API}/resumes/create`, payload, { withCredentials: true });
+        setResumeId(data.data._id);
+        localStorage.removeItem("draftFormData");
+      }
+    })();
+
+    if (showToast) {
+      await toast.promise(
+        savePromise,
+        {
+          loading: 'Saving resume...',
+          success: 'Resume saved successfully!',
+          error: 'Failed to save resume!',
+        },
+        { duration: 2000 }
+      );
+    } else {
+      await savePromise; // silently save
+    }
   };
 
   // Download PDF 
@@ -57,9 +63,10 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
       toast.error("Please login to download your resume!");
       return;
     }
+
     await toast.promise(
       (async () => {
-        await handleSave(); // first save in DB
+        await handleSave(false); // silent save
 
         if (!previewRef.current) return;
         const canvas = await html2canvas(previewRef.current, { 
@@ -67,17 +74,17 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff'
-         });
+        });
         const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF("p", "mm", "a4");
         const width = pdf.internal.pageSize.getWidth();
         const height = (canvas.height * width) / canvas.width;
         pdf.addImage(imgData, "PNG", 0, 0, width, height);
-        const name = Cookies.get("username")
+
+        const name = Cookies.get("username");
         if(name){
-          pdf.save(`${name}_cvcraft.pdf`)
-        }
-        else{
+          pdf.save(`${name}_cvcraft.pdf`);
+        } else {
           pdf.save("resume.pdf");
         }
       })(),
@@ -89,6 +96,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
       { duration: 2000 }
     );
   };
+
 
   const handleSignup = () => {
     navigate("/auth");

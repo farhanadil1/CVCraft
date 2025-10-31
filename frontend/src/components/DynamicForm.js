@@ -77,7 +77,7 @@ const DynamicForm = ({ config, formData, setFormData }) => {
                 fontWeight: 600,
               },
               '& .MuiStepLabel-label.Mui-completed': {
-                color: '#ABC4FF',        
+                color: 'rgba(34,197,94,0.5)', // green with 50% opacity
               },
               '& .MuiStepIcon-root': {
                 width: 20,
@@ -87,17 +87,21 @@ const DynamicForm = ({ config, formData, setFormData }) => {
                 color: '#93B5FF',
               },
               '& .MuiStepIcon-root.Mui-completed': {
-                color: '#ABC4FF',
+                color: 'rgba(34,197,94,0.5)', // green with 50% opacity
               },
               '& .MuiStepConnector-root': {
                 top: 10,
                 '& .MuiStepConnector-line': {
-                  borderTopWidth: 2,
-                  borderColor: '#d1d5db', // gray-300 line
+                  borderTopWidth: 1.5,
+                  borderColor: '#d1d5db', // gray-300 default
+                },
+                '& .MuiStepConnector-line.Mui-completed': {
+                  borderColor: 'rgba(34,197,94,0.5)', // green with 50% opacity
                 },
               },
             }}
           >
+
             {sections.map((section, idx) => (
               <Step key={section.name} ref={(el) => (stepRefs.current[idx] = el)}>
                 <StepLabel>{section.label}</StepLabel>

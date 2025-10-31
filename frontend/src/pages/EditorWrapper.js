@@ -16,7 +16,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { API } from "../api/Api";
 
-
 const EditorWrapper = () => {
   const { templateId } = useParams();
   const location = useLocation();
@@ -26,6 +25,7 @@ const EditorWrapper = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false); // drawer for mobile
   const [resumeId, setResumeId] = useState(null);
+  const [loading, setLoading] = useState();
   const previewRef = useRef(null);
 
   const config = templateId === "template1" ? template1Config
@@ -38,11 +38,19 @@ const EditorWrapper = () => {
 
   // fetch resume
   useEffect(() => {
+    const savedDraft = localStorage.getItem("draftFormData");
+
+    // If there's a saved draft and no resume loaded from server, restore it
+    if (savedDraft && !passedResumeId) {
+      setFormData(JSON.parse(savedDraft));
+    }
+
     const fetchResume = async () => {
       if (!passedResumeId) return;
+      setLoading(true);
       try {
         const { data } = await axios.get(`${API}/resumes/my/${passedResumeId}`, {
-          withCredentials: true
+          withCredentials: true,
         });
         if (data?.data?.formData) {
           setFormData(data.data.formData);
@@ -50,22 +58,53 @@ const EditorWrapper = () => {
         }
       } catch (err) {
         console.error("Fetch failed:", err.response || err);
-        toast.error(err.response)
+        toast.error("Failed to fetch resume.");
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchResume();
   }, [passedResumeId]);
 
+
+  // Auto-save form data to localStorage
+  useEffect(() => {
+    if (Object.keys(formData).length > 0) {
+      localStorage.setItem("draftFormData", JSON.stringify(formData));
+    }
+  }, [formData]);
+
+
   // leave confirm
   const handleGoBack = () => setShowConfirm(true);
-  const handleConfirm = () => { setShowConfirm(false); navigate(-1); }
+  const handleConfirm = () => { 
+    localStorage.removeItem("draftFormData");
+    setShowConfirm(false); 
+    navigate(-1); 
+  }
   const handleCancel = () => setShowConfirm(false);
+  const handleHome = () => { navigate('/')}
+  const handleAuth = () => { navigate('/auth')}
 
   return (
     <div className="h-screen w-full flex flex-col">
       {/* top banner */}
-      <div className="bg-gradient-to-r from-primary to-indigo-500 text-white text-center py-3 px-4 flex justify-center items-center gap-2">
-        <p>Sign in to save your progress <span className="font-semibold">CVCraft</span></p>
+      <div className="flex justify-between px-10 items-center bg-gradient-to-r from-indigo-400 via-primary to-indigo-400 text-white font-para">
+        <button
+        onClick={handleHome} 
+        className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black">
+          Go Home
+        </button>
+        <p className="text-center ml-9 sm:ml-0 py-3 px-4 flex gap-2">
+          Sign in to save your progress 
+          <span className="font-semibold">CVCraft</span>
+        </p>
+        <button
+        onClick={handleAuth} 
+        className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black">
+          Sign Up
+        </button>
       </div>
 
       <div className="flex flex-1 h-full overflow-hidden relative">
@@ -136,6 +175,12 @@ const EditorWrapper = () => {
         message="Unsaved progress will be lost. Do you wish to continue?" 
         onConfirm={handleConfirm} 
         onCancel={handleCancel} />
+
+      {loading && (
+        <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
     </div>
   );
 };

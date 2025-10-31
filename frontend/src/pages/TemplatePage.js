@@ -9,6 +9,8 @@ import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { API } from "../api/Api";
+import Cookies from 'js-cookie';
+
 
 const TemplatePage = () => {
   const navigate = useNavigate();
@@ -24,6 +26,8 @@ const TemplatePage = () => {
 
   const fetchResumes = async () => {
     try {
+      const user = Cookies.get("username")
+      if(!user) return;
       const { data } = await axios.get(`${API}/resumes/my`, {
         withCredentials: true, // important
       });

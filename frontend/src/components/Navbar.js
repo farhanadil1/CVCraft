@@ -59,9 +59,10 @@ const Navbar = () => {
       Cookies.remove('username');
       Cookies.remove('accessToken');
       Cookies.remove('refreshToken');
+      localStorage.removeItem("draftFormData");
       setIsLoggedIn(false);
       setDropdownOpen(false);
-      navigate(`/`);
+      window.location.reload();
     
     } catch (err) {
       console.error(err);
