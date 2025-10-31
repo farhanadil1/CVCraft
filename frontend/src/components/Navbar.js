@@ -5,8 +5,9 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import { API } from '../api/Api';
 
+
+const API = process.env.REACT_APP_API_URL;
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);

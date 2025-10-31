@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
-import { API } from "../api/Api";
+
+
+const API = process.env.REACT_APP_API_URL;
 
 // Reusable input component
 const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid }) => (

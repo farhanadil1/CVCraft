@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { VscPreview } from "react-icons/vsc";
 import Editor from "./Editor";
-import { API } from "../api/Api";
+
+
+const API = process.env.REACT_APP_API_URL;
 
 const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resumeId, setResumeId }) => {
   const navigate = useNavigate();
@@ -146,7 +148,6 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
       </button>
 
       {/* Preview Button */}
-      {Cookies.get("username") && (
           <button
             onMouseEnter={() => setHovered("preview")}
             onMouseLeave={() => setHovered(null)}
@@ -159,7 +160,6 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
             <VscPreview size={18} />
             {hovered === "preview" && <span>Full Preview</span>}
           </button>
-        )}
 
       {/* Zoom Controls */}
       <button

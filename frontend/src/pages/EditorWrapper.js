@@ -14,7 +14,10 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { API } from "../api/Api";
+
+
+const API = process.env.REACT_APP_API_URL;
+
 
 const EditorWrapper = () => {
   const { templateId } = useParams();

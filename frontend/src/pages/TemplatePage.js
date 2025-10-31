@@ -8,9 +8,9 @@ import { FaArrowRight } from "react-icons/fa6";
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { API } from "../api/Api";
 import Cookies from 'js-cookie';
 
+const API = process.env.REACT_APP_API_URL;
 
 const TemplatePage = () => {
   const navigate = useNavigate();
