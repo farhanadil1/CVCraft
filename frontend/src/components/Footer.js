@@ -64,7 +64,7 @@ const Footer = () => {
               Subscribe
             </button>
           </div>
-          <p className='font-para text-paragraph mt-4 text-xs font-medium'>
+          <p className='font-para text-paragraph mt-6 text-xs font-medium'>
             By subscribing you agree with our Privacy Policy and <br/>
             provide consent to receive updates from our company.
           </p>
@@ -91,7 +91,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom section */}
-      <div className='flex flex-col md:flex-row justify-between items-center mt-8 pb-6 border-t border-gray-300 text-xs text-gray-500 gap-2'>
+      <div className='flex flex-col md:flex-row justify-between items-center mt-8 pb-6 pt-2 border-t border-gray-300 text-xs text-gray-500 gap-2'>
         <p>© 2025 CVCraft</p>
         <div className='flex gap-4'>
           <p className='hover:text-primary cursor-pointer transition-colors'>Privacy Policy</p>

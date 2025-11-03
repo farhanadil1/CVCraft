@@ -6,7 +6,7 @@ const Template2 = ({ data }) => {
   const personal = data.personal || {};
   const education = safeArray(data.education);
   const experience = safeArray(data.experience);
-  const publications = safeArray(data.publications);
+  const skills = safeArray(data.skills);
   const projects = safeArray(data.projects);
   const quickGuide = safeArray(data.quickGuide);
 
@@ -26,13 +26,11 @@ const Template2 = ({ data }) => {
   // Helper to render bullet points from a comma-separated string
   const renderBullets = (bulletString) => {
     if (!bulletString) return null;
-    const bullets = bulletString.split(',').map(s => s.trim()).filter(s => s.length > 0);
-    if (bullets.length === 0) return null;
-
+    const bullets = bulletString.split(',').map(s => s.trim()).filter(Boolean);
     return (
       <ul className="list-disc ml-6 text-sm space-y-1 mt-1">
-        {bullets.map((bullet, bIdx) => (
-          <li key={bIdx}>{bullet}</li>
+        {bullets.map((bullet, idx) => (
+          <li key={idx}>{bullet}</li>
         ))}
       </ul>
     );
@@ -46,29 +44,28 @@ const Template2 = ({ data }) => {
           {personal.fullName || "John Doe"}
         </h1>
         <div className="text-xs flex flex-wrap justify-center space-x-3 text-gray-700">
-            <span>{personal.location || 'Your Location'}</span>
-            <span>|</span>
-            <span>{personal.email || 'youremail@yourdomain.com'}</span>
-            <span>|</span>
-            <span>{personal.phone || '0541 999 99 99'}</span>
-            <span>|</span>
-            <span>{personal.website || 'yourwebsite.com'}</span>
+          <span>{personal.location || 'Your Location'}</span>
+          <span>|</span>
+          <span>{personal.email || 'youremail@domain.com'}</span>
+          <span>|</span>
+          <span>{personal.phone || '123-456-7890'}</span>
+          <span>|</span>
+          <span>{personal.website || 'yourwebsite.com'}</span>
         </div>
         <div className="text-xs flex flex-wrap justify-center space-x-3 text-gray-700 mt-0.5">
-            {personal.linkedin && <span>LinkedIn: {personal.linkedin}</span>}
-            {personal.github && personal.linkedin && <span>|</span>}
-            {personal.github && <span>GitHub: {personal.github}</span>}
+          {personal.linkedin && <span>LinkedIn: {personal.linkedin}</span>}
+          {personal.github && personal.linkedin && <span>|</span>}
+          {personal.github && <span>GitHub: {personal.github}</span>}
         </div>
       </header>
 
-
-      {/* Quick Guide/Other Bullet List */}
+      {/* Quick Guide */}
       {quickGuide.length > 0 && (
         <section className="mb-4">
           <SectionTitle>Quick Guide</SectionTitle>
           <ul className="list-disc ml-6 text-sm space-y-1">
             {quickGuide.map((item, i) => (
-              <li key={i}>{item.text || 'Section bullet point'}</li>
+              <li key={i}>{item.text || 'Example bullet point'}</li>
             ))}
           </ul>
         </section>
@@ -81,9 +78,8 @@ const Template2 = ({ data }) => {
           {education.map((edu, i) => (
             <div key={i} className="mb-3">
               <TwoColumnRow 
-                  left={`${edu.degree || 'Degree/Major'} at ${edu.institution || 'University Name'}`} 
-                  right={`${edu.dates || 'Sept 20XX - May 20XX'}`} 
-                  className="mb-0.5"
+                left={`${edu.degree || 'Degree/Major'} at ${edu.institution || 'University Name'}`}
+                right={`${edu.dates || 'Sept 20XX - May 20XX'}`}
               />
               {edu.details && <p className="text-sm mt-1">{edu.details}</p>}
             </div>
@@ -98,9 +94,8 @@ const Template2 = ({ data }) => {
           {experience.map((exp, i) => (
             <div key={i} className="mb-4">
               <TwoColumnRow 
-                  left={`${exp.position || 'Position'} (${exp.company || 'Company'})`} 
-                  right={`${exp.dates || 'June 20XX - Aug 20XX'}`}
-                  className="mb-0.5" 
+                left={`${exp.position || 'Position'} (${exp.company || 'Company'})`}
+                right={`${exp.dates || 'June 20XX - Aug 20XX'}`}
               />
               <p className="text-sm italic mb-1">{exp.location || 'City, Country'}</p>
               {renderBullets(exp.bulletPoints)}
@@ -110,22 +105,19 @@ const Template2 = ({ data }) => {
       )}
 
       {/* Publications */}
-      {publications.length > 0 && (
+      {skills.length > 0 && (
         <section className="mb-4">
-          <SectionTitle>Publications</SectionTitle>
-          {publications.map((pub, i) => (
+          <SectionTitle>Skills</SectionTitle>
+          {skills.map((pub, i) => (
             <div key={i} className="mb-3">
               <p className="font-semibold text-sm">{pub.title || 'Publication Title'}</p>
-              <p className="text-xs">
-                {pub.authors || 'Author A, Author B'}
-              </p>
+              <p className="text-xs">{pub.skills || 'Author A, Author B'}</p>
               <p className="text-xs italic">
-                  {pub.citation || 'Journal Name, Vol(Issue): Pages, Year'}
-                  {pub.link && (
-                      <a href={pub.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 ml-2 hover:underline">
-                          [Link]
-                      </a>
-                  )}
+                {pub.certificates && (
+                  <a href={pub.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 ml-2 hover:underline">
+                    [Link]
+                  </a>
+                )}
               </p>
             </div>
           ))}
@@ -138,18 +130,20 @@ const Template2 = ({ data }) => {
           <SectionTitle>Projects</SectionTitle>
           {projects.map((proj, i) => (
             <div key={i} className="mb-4">
-                <TwoColumnRow 
-                    left={`${proj.name || 'Project Name'}`} 
-                    right={proj.link ? <a href={proj.link} className="text-blue-600 hover:underline">github.com/name/repo</a> : null}
-                    className="mb-1"
-                />
-                {proj.description && <p className="text-sm">{proj.description}</p>}
-                {proj.toolsUsed && <p className="text-xs mt-1">Tools Used: <span className='font-mono'>{proj.toolsUsed}</span></p>}
+              <TwoColumnRow 
+                left={proj.name || 'Project Name'}
+                right={proj.link ? <a href={proj.link} className="text-blue-600 hover:underline">Link</a> : null}
+              />
+              {proj.description && <p className="text-sm">{proj.description}</p>}
+              {proj.toolsUsed && (
+                <p className="text-xs mt-1">
+                  Tools Used: <span className="font-mono">{proj.toolsUsed}</span>
+                </p>
+              )}
             </div>
           ))}
         </section>
       )}
-      
     </div>
   );
 };

@@ -12,12 +12,12 @@ import ConfirmModal from "../components/ConfirmModal";
 import { TiArrowBack } from "react-icons/ti";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { BsPersonCircle } from "react-icons/bs";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import Cookies from "js-cookie";
 
 const API = process.env.REACT_APP_API_URL;
-
 
 const EditorWrapper = () => {
   const { templateId } = useParams();
@@ -26,24 +26,27 @@ const EditorWrapper = () => {
   const [formData, setFormData] = useState({});
   const [zoom, setZoom] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // drawer for mobile
+  const [confirmAction, setConfirmAction] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [resumeId, setResumeId] = useState(null);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const previewRef = useRef(null);
 
-  const config = templateId === "template1" ? template1Config
-               : templateId === "template2" ? template2Config
-               : templateId === "template3" ? template3Config
-               : templateId === "template4" ? template4Config
-               : templateId === "template5" ? template5Config : null;
+  const username = Cookies.get("username");
+
+  const config =
+    templateId === "template1" ? template1Config
+    : templateId === "template2" ? template2Config
+    : templateId === "template3" ? template3Config
+    : templateId === "template4" ? template4Config
+    : templateId === "template5" ? template5Config
+    : null;
 
   const passedResumeId = location.state?.resumeId || null;
 
   // fetch resume
   useEffect(() => {
     const savedDraft = localStorage.getItem("draftFormData");
-
-    // If there's a saved draft and no resume loaded from server, restore it
     if (savedDraft && !passedResumeId) {
       setFormData(JSON.parse(savedDraft));
     }
@@ -70,7 +73,6 @@ const EditorWrapper = () => {
     fetchResume();
   }, [passedResumeId]);
 
-
   // Auto-save form data to localStorage
   useEffect(() => {
     if (Object.keys(formData).length > 0) {
@@ -78,38 +80,58 @@ const EditorWrapper = () => {
     }
   }, [formData]);
 
+  // Confirm modal logic
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
-  // leave confirm
-  const handleGoBack = () => setShowConfirm(true);
-  const handleConfirm = () => { 
+  const handleHome = () => {
+    setConfirmAction(() => () => navigate("/"));
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = () => {
     localStorage.removeItem("draftFormData");
-    setShowConfirm(false); 
-    navigate(-1); 
-  }
+    setShowConfirm(false);
+    if (confirmAction) confirmAction();
+  };
+
   const handleCancel = () => setShowConfirm(false);
-  const handleHome = () => { navigate('/')}
-  const handleAuth = () => { navigate('/auth')}
+
+  const handleAuth = () => navigate("/auth");
 
   return (
     <div className="h-screen w-full flex flex-col">
-      {/* top banner */}
+      {/* Top Banner */}
       <div className="flex justify-between px-10 items-center bg-gradient-to-r from-indigo-400 via-primary to-indigo-400 text-white font-para">
         <button
-        onClick={handleHome} 
-        className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black">
+          onClick={handleHome}
+          className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black"
+        >
           Go Home
         </button>
+
         <p className="text-center ml-9 sm:ml-0 py-3 px-4 flex gap-2">
-          Sign in to save your progress 
-          <span className="font-semibold">CVCraft</span>
+          Sign in to save your progress <span className="font-semibold">CVCraft</span>
         </p>
-        <button
-        onClick={handleAuth} 
-        className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black">
-          Sign Up
-        </button>
+
+        {/*Username or Sign Up */}
+        {username ? (
+          <div className="hidden md:flex items-center space-x-2">
+            <BsPersonCircle size={24} className="text-white" />
+            <span className="font-medium text-xs text-white">Hello, {username}</span>
+          </div>
+        ) : (
+          <button
+            onClick={handleAuth}
+            className="hidden md:block border font-medium px-2 py-1.5 text-xs rounded-xl border-white hover:bg-white hover:text-black"
+          >
+            Sign Up
+          </button>
+        )}
       </div>
 
+      {/* Main Layout */}
       <div className="flex flex-1 h-full overflow-hidden relative">
         {/* Mobile toggle button */}
         <button
@@ -119,7 +141,7 @@ const EditorWrapper = () => {
           <HiOutlineMenu size={24} />
         </button>
 
-        {/* Sidebar / drawer */}
+        {/* Sidebar */}
         <div
           className={`fixed top-0 left-0 bottom-0 w-[85%] editor-sidebar overflow-hidden max-w-xs bg-white shadow z-30 transform transition-transform duration-300
                      md:relative md:translate-x-0 md:w-[35%] md:max-w-none md:shadow-none md:border-r md:border-gray-300
@@ -130,7 +152,6 @@ const EditorWrapper = () => {
               <TiArrowBack /> Back
             </button>
             <h2 className="text-lg font-semibold">Fill Details</h2>
-            {/* close for mobile */}
             <button className="md:hidden text-gray-900" onClick={() => setSidebarOpen(false)}>
               <IoClose size={24} />
             </button>
@@ -142,7 +163,7 @@ const EditorWrapper = () => {
           </div>
         </div>
 
-        {/* Overlay when sidebar open on mobile */}
+        {/* Overlay */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 bg-black/30 z-20 md:hidden"
@@ -150,7 +171,7 @@ const EditorWrapper = () => {
           />
         )}
 
-        {/* Editor */}
+        {/* Editor Section */}
         <div className="flex-1 relative editor-sidebar overflow-auto flex flex-col items-center justify-start p-4">
           <div className="w-full max-w-[900px] text-center mb-4 md:mb-6">
             <h2 className="text-xl font-semibold text-gray-800">Live Preview</h2>
@@ -172,16 +193,20 @@ const EditorWrapper = () => {
           </div>
         </div>
       </div>
-      <ConfirmModal 
-        open={showConfirm} 
-        title="Leave?" 
-        message="Unsaved progress will be lost. Do you wish to continue?" 
-        onConfirm={handleConfirm} 
-        onCancel={handleCancel} />
 
+      {/* Confirm Modal */}
+      <ConfirmModal
+        open={showConfirm}
+        title="Leave?"
+        message="Unsaved progress will be lost. Do you wish to continue?"
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
+
+      {/* Loading Spinner */}
       {loading && (
         <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
     </div>
