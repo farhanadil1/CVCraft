@@ -158,7 +158,7 @@ npm run dev
 
 ```
 
-##🧭 Roadmap
+## 🧭 Roadmap
 
  Fix iOS cookie issue
 
@@ -168,11 +168,11 @@ npm run dev
 
  AI-powered resume suggestions
 
- ##🤝 Contributing
+## 🤝 Contributing
 Pull requests are welcome!
 For major changes, open an issue to discuss improvements first.
 
-##License
+## License
 **© Md Adil Farhan** ([GitHub](https://github.com/farhanadil1/)). All Rights Reserved.  
 
 This project, **CVCraft**, is shared for learning, portfolio development, and personal projects.  
