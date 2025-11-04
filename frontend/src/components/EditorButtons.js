@@ -106,6 +106,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
 
 
   return (
+    <div className="min-[1560px]:max-w-7xl min-[1560px]:mx-auto">
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Signup Warning */}
       {!Cookies.get("username") && (
@@ -193,6 +194,7 @@ const EditorButtons = ({ templateId, formData, zoom, setZoom, previewRef, resume
       )}
 
       <Toaster position="top-center" />
+    </div>
     </div>
   );
 };

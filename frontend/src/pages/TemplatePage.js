@@ -57,6 +57,7 @@ const TemplatePage = () => {
   };
 
   return (
+    <div>
     <div className="bg-gradient-to-b from-[#f9fafb] to-[#eef2ff] min-h-screen flex flex-col font-para">
       <Navbar />
 
@@ -67,7 +68,7 @@ const TemplatePage = () => {
         </p>
         <Link to="/auth" className="hover:underline font-semibold">Register Now</Link>
       </div>
-
+    <div className="max-w-7xl mx-auto">
       {/* Header */}
       <div className="px-6 md:px-20 pt-10 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
@@ -188,8 +189,9 @@ const TemplatePage = () => {
           </div>
         )}
       </div>
-
+      </div>
       <Footer />
+    </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import WorkingCircle from './WorkingCircle'
 
 const WorkingFlow = () => {
   return (
-    <div className='md:mt-28'>
+    <div className='md:mt-28 min-[1280px]:max-w-6xl min-[1280px]:mx-auto'>
         <WorkingText />
         <WorkingCircle />
     </div>
