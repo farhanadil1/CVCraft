@@ -25,7 +25,7 @@ export const template4Config = {
       label: "Contact Details",
       type: "object",
       fields: [
-        { name: "phone", label: "Phone", type: "text" },
+        { name: "phone", label: "Phone", type: "tel" },
         { name: "email", label: "Email", type: "email" },
         { name: "linkedin", label: "LinkedIn/Web Link", type: "text" },
       ],

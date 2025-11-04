@@ -13,8 +13,8 @@ export const template3Config = {
         { name: "mainRoad", label: "Main Road/Area", type: "text" },
         { name: "pinCode", label: "Pin Code", type: "text" },
         { name: "email", label: "Email Address", type: "email" },
-        { name: "mobile", label: "Mobile No.", type: "text" },
-        { name: "altMobile", label: "Alternate Mobile No.", type: "text" },
+        { name: "mobile", label: "Mobile No.", type: "tel" },
+        { name: "altMobile", label: "Alternate Mobile No.", type: "tel" },
       ],
     },
     // Academic Details - The multi-column table

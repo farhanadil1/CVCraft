@@ -10,7 +10,7 @@ export const template2Config = {
         { name: "fullName", label: "Full Name", type: "text" },
         { name: "location", label: "Location", type: "text" },
         { name: "email", label: "Email", type: "email" },
-        { name: "phone", label: "Phone Number", type: "text" },
+        { name: "phone", label: "Phone Number", type: "tel" },
         { name: "website", label: "Website URL", type: "text" },
         { name: "linkedin", label: "LinkedIn Profile", type: "text" },
         { name: "github", label: "GitHub Profile", type: "text" },

@@ -17,7 +17,7 @@ export const template5Config = {
       label: "Contact & Links",
       type: "object",
       fields: [
-        { name: "phone", label: "Phone", type: "text" },
+        { name: "phone", label: "Phone", type: "tel" },
         { name: "email", label: "Email", type: "email" },
         { name: "github", label: "GitHub Link/Handle", type: "text" },
         { name: "linkedin", label: "LinkedIn Link/Handle", type: "text" },
