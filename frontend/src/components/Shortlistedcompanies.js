@@ -24,8 +24,8 @@ export const shortlistedCompaniesIcons = [
 
 const ShortlistedCompanies = () => {
   return (
-    <section className="pt-16 md:pt-24">
-      <div className="max-w-6xl mx-auto min-[1920px]:-mt-10 px-4 sm:px-6 lg:px-8">
+    <section className="pt-16 md:pt-24 min-[1920px]:-mt-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-para font-semibold text-base leading-tight head-gradient mb-10 text-center">
           Companies Where our Resume Was Shortlisted
         </h2>

@@ -3,7 +3,7 @@ import UsersReview from './UsersReview'
 
 export default function Review() {
   return (
-    <div className='bg-gradient-to-b from-[#f9fafc] to-[#eef2f8] pt-16'>
+    <div className='bg-gradient-to-b from-[#f9fafc] to-[#eef2f8] py-8'>
       <div className='relative text-center flex flex-col items-center max-w-6xl mx-auto'>
         <h1 className='font-para text-primary text-sm font-semibold'>
           REFRENCES

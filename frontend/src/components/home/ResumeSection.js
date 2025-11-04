@@ -23,7 +23,7 @@ const ResumeSection = () => {
   ]
 
   return (
-    <div className="relative w-full bg-transparent mt-16 md:mt-10">
+    <div className="relative w-full bg-transparent mt-16 md:mt-10 py-8">
       {/* Full-width background */}
       <div className="absolute inset-0 -z-10">
         <img
