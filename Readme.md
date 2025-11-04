@@ -37,7 +37,7 @@
 ## 🔗 Live Links
 
 - 🌍 **Live Demo:** [CVCraft on Netlify](https://cv-craftt.netlify.app/)  
-- 🎨 **Figma Design:** [View Figma Prototype](#) _(https://www.figma.com/design/DHZxqnMdausaRdA9ZgwwGE/Farhan-s-Design?node-id=0-1&t=lXEyQ9MK0fYQJkx8-1)_  
+- 🎨 **Figma Design:** [View Figma Prototype](https://www.figma.com/design/DHZxqnMdausaRdA9ZgwwGE/Farhan-s-Design?node-id=0-1&t=lXEyQ9MK0fYQJkx8-1)
 
 > ⚠️ **Note:** Some cookie-related login issues may occur on **iOS devices**. A fix will be deployed soon.
 
@@ -155,6 +155,8 @@ npm install
 # Start server
 npm run dev
 # Backend runs at http://localhost:8000
+
+```
 
 ##🧭 Roadmap
 
