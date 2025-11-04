@@ -37,7 +37,15 @@ const Template2 = ({ data }) => {
   };
 
   return (
-    <div className="font-serif max-w-3xl mx-auto p-12 bg-white text-gray-900">
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+      <div
+        className="font-serif bg-white text-gray-900 p-12 shadow-lg transition-transform duration-300"
+        style={{
+          width: "794px",          // A4 width at 96 DPI
+          minHeight: "1123px",     // A4 height at 96 DPI
+          transformOrigin: "top center",
+        }}
+      >
       {/* Name and Contact Header */}
       <header className="text-center mb-6">
         <h1 className="text-3xl font-normal mb-1">
@@ -144,6 +152,7 @@ const Template2 = ({ data }) => {
           ))}
         </section>
       )}
+    </div>
     </div>
   );
 };

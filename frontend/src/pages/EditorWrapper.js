@@ -101,8 +101,8 @@ const EditorWrapper = () => {
   const handleAuth = () => navigate("/auth");
 
   return (
+  <div className="min-[1560px]:max-w-7xl min-[1560px]:mx-auto">
     <div className="h-screen w-full flex flex-col">
-      <div className="min-[1560px]:max-w-7xl min-[1560px]:mx-auto">
       {/* Top Banner */}
       <div className="flex justify-between px-10 items-center bg-gradient-to-r from-indigo-400 via-primary to-indigo-400 text-white font-para">
         <button
@@ -118,7 +118,7 @@ const EditorWrapper = () => {
 
         {/*Username or Sign Up */}
         {username ? (
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-2 cursor-pointer">
             <BsPersonCircle size={24} className="text-white" />
             <span className="font-medium text-xs text-white">Hello, {username}</span>
           </div>
@@ -210,8 +210,8 @@ const EditorWrapper = () => {
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
-      </div>
     </div>
+  </div>
   );
 };
 
