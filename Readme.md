@@ -17,6 +17,7 @@
 ---
 
 ## 📌 Table of Contents
+- [Live Links](#-live-links)
 - [Overview](#-overview)
 - [Why CVCraft?](#-why-cvcraft)
 - [Tech Stack](#-tech-stack)
@@ -30,6 +31,15 @@
 - [Contributing](#-contributing)
 - [License](#-license)
 - [Contact](#-contact)
+
+---
+
+## 🔗 Live Links
+
+- 🌍 **Live Demo:** [CVCraft on Netlify](https://cv-craftt.netlify.app/)  
+- 🎨 **Figma Design:** [View Figma Prototype](#) _(https://www.figma.com/design/DHZxqnMdausaRdA9ZgwwGE/Farhan-s-Design?node-id=0-1&t=lXEyQ9MK0fYQJkx8-1)_  
+
+> ⚠️ **Note:** Some cookie-related login issues may occur on **iOS devices**. A fix will be deployed soon.
 
 ---
 
@@ -146,3 +156,34 @@ npm install
 npm run dev
 # Backend runs at http://localhost:8000
 
+##🧭 Roadmap
+
+ Fix iOS cookie issue
+
+ Add more resume templates
+
+ Theme customization (Dark/Light)
+
+ AI-powered resume suggestions
+
+ ##🤝 Contributing
+Pull requests are welcome!
+For major changes, open an issue to discuss improvements first.
+
+##License
+**© Md Adil Farhan** ([GitHub](https://github.com/farhanadil1/)). All Rights Reserved.  
+
+This project, **CVCraft**, is shared for learning, portfolio development, and personal projects.  
+You are welcome to **explore, adapt, and learn** from the code and design for educational or personal use.  
+
+Commercial use or redistribution without permission is **not allowed**.  
+For collaboration, references, or permissions, feel free to reach out.  
+
+> *Shared to inspire learning, creativity, and professional growth.*
+
+
+## 📬 Contact
+
+**Md Adil Farhan**  
+📧 [imfarhan574@gmail.com](mailto:imfarhan574@gmail.com)  
+💼 [LinkedIn](https://www.linkedin.com/in/md-adil-farhan-b4956424a/)
