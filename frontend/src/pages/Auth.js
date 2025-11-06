@@ -124,8 +124,8 @@ export default function Auth() {
                  hover:scale-105 hover:shadow-2xl hover:from-indigo-400 hover:to-purple-300
                  active:scale-95 active:shadow-md
                 overflow-hidden">
-      <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
-      <IoIosArrowBack className="h-4 w-4 z-10 relative" />
+      <span className="absolute -ml-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
+      <IoIosArrowBack className="h-4 w-4 z-10 -ml-1.5 relative" />
       <span className="relative z-10">Back</span>
     </button>
 
