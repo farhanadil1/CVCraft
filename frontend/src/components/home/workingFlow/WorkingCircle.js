@@ -1,10 +1,25 @@
-import React from 'react';
+import React from "react";
 
 export default function WorkingCircle() {
   const steps = [
-    { stepno: '1', name: "Choose a Free Resume Template", text: "Keep the sections that you like and can remove the rest", icon: "./template.svg" },
-    { stepno: '2', name: "Fill your Latest Information in fields", text: "Make your own Resume quickly by filling the details in sections", icon: "./fill.svg" },
-    { stepno: '3', name: "Share as PDF and Download", text: "After filling the details in the sections, download or share it", icon: "./download.svg" },
+    {
+      stepno: "1",
+      name: "Choose a Free Resume Template",
+      text: "Keep the sections that you like and can remove the rest",
+      icon: "./template.svg"
+    },
+    {
+      stepno: "2",
+      name: "Fill your Latest Information in fields",
+      text: "Make your own Resume quickly by filling the details in sections",
+      icon: "./fill.svg"
+    },
+    {
+      stepno: "3",
+      name: "Share as PDF and Download",
+      text: "After filling the details in the sections, download or share it",
+      icon: "./download.svg"
+    }
   ];
 
   return (

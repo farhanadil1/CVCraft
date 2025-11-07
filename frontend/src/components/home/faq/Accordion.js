@@ -7,37 +7,37 @@ const faqData = [
     title: "What is CVCraft?",
     content: [
       "CVCraft is an online platform that helps users create professional, ATS-friendly resumes quickly and efficiently.",
-      "It provides a variety of pre-designed templates and tools to customize your CV according to your career goals.",
-    ],
+      "It provides a variety of pre-designed templates and tools to customize your CV according to your career goals."
+    ]
   },
   {
     title: "Is CVCraft fully free?",
     content: [
       "Yes! CVCraft offers a fully free plan that allows users to create, customize, and download resumes without any cost.",
-      "Some advanced features or premium templates may require an upgrade in the future, but the basic resume creation is completely free.",
-    ],
+      "Some advanced features or premium templates may require an upgrade in the future, but the basic resume creation is completely free."
+    ]
   },
   {
     title: "Should I only use available templates or can I create my own?",
     content: [
       "You can use the available templates provided by CVCraft for convenience and professional design.",
-      "Currently, custom templates are limited, but you can customize existing templates extensively to suit your personal style.",
-    ],
+      "Currently, custom templates are limited, but you can customize existing templates extensively to suit your personal style."
+    ]
   },
   {
     title: "Will my details be made public?",
     content: [
       "No, all your personal details are kept private.",
-      "CVCraft does not share your information with other users or third parties without your consent.",
-    ],
+      "CVCraft does not share your information with other users or third parties without your consent."
+    ]
   },
   {
     title: "Can we get ratings for our premade CV?",
     content: [
       "Currently, CVCraft does not provide a CV rating system.",
-      "However, it ensures that all templates are ATS-friendly and optimized for recruiters, increasing your chances of being noticed.",
-    ],
-  },
+      "However, it ensures that all templates are ATS-friendly and optimized for recruiters, increasing your chances of being noticed."
+    ]
+  }
 ];
 
 function SmoothPanel({ open, children }) {
@@ -71,7 +71,7 @@ function SmoothPanel({ open, children }) {
         overflow: "hidden",
         opacity: open ? 1 : 0,
         visibility: isVisible ? "visible" : "hidden",
-        transition: "max-height 0.5s ease, opacity 0.4s ease",
+        transition: "max-height 0.5s ease, opacity 0.4s ease"
       }}
     >
       <div ref={ref}>{children}</div>

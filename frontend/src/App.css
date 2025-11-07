@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .text-gradient {
-  background: linear-gradient(90deg, #2858C1 4%, #5B79BA 71%);
+  background: linear-gradient(90deg, #2858c1 4%, #5b79ba 71%);
   background-clip: text;
   color: transparent;
-  
 }
 
-.head-gradient{
-  background: linear-gradient(90deg, #1F2937 0%, #58759D 100%);
+.head-gradient {
+  background: linear-gradient(90deg, #1f2937 0%, #58759d 100%);
   background-clip: text;
   color: transparent;
 }
@@ -19,7 +18,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #93B5FF; /* scrollbar thumb */
+  background-color: #93b5ff; /* scrollbar thumb */
   border-radius: 4px;
 }
 
@@ -31,7 +30,7 @@
 /* Firefox */
 * {
   scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: #93B5FF #f1f1f1; /* thumb track */
+  scrollbar-color: #93b5ff #f1f1f1; /* thumb track */
 }
 
 @keyframes slide-up {
@@ -50,15 +49,15 @@
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important; 
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
   -webkit-text-fill-color: #111827 !important;
 }
 
 /* Hide scrollbars but keep scrolling */
 .editor-sidebar,
 .editor-preview {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .editor-sidebar::-webkit-scrollbar,
@@ -69,8 +68,14 @@ input:-webkit-autofill {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;

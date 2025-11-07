@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { TbBrandLinkedinFilled } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
-import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Footer = () => {
-
   const handleSubscribe = () => {
-    toast.success("Subscribed Sucessfuly")
-  }
+    toast.success("Subscribed Sucessfuly");
+  };
   return (
     <div className="mt-20 px-4 sm:px-8 md:px-20">
       <Toaster position="top-center" />
@@ -32,16 +31,36 @@ const Footer = () => {
             </Link>
           </div>
           <div className="flex gap-3 text-primary flex-wrap">
-            <a href="https://x.com/?lang=en-in" target="_blank" rel="noreferrer" className="transform hover:scale-125 transition-transform duration-300">
+            <a
+              href="https://x.com/?lang=en-in"
+              target="_blank"
+              rel="noreferrer"
+              className="transform hover:scale-125 transition-transform duration-300"
+            >
               <AiFillTwitterCircle size={36} />
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="transform hover:scale-125 transition-transform duration-300">
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="transform hover:scale-125 transition-transform duration-300"
+            >
               <TbBrandLinkedinFilled size={36} />
             </a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className="transform hover:scale-125 transition-transform duration-300">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="transform hover:scale-125 transition-transform duration-300"
+            >
               <FaFacebook size={36} />
             </a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="transform hover:scale-125 transition-transform duration-300">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="transform hover:scale-125 transition-transform duration-300"
+            >
               <RiInstagramFill size={36} />
             </a>
           </div>
@@ -69,22 +88,37 @@ const Footer = () => {
               </button>
             </div>
             <p className="font-para text-paragraph text-xs font-medium mt-4">
-              By subscribing you agree with our Privacy Policy and provide consent to receive updates.
+              By subscribing you agree with our Privacy Policy and provide
+              consent to receive updates.
             </p>
           </div>
 
           {/* Footer Links */}
           <div className="lg:w-3/5 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { title: "Resume", links: ["Create Resume", "Resume Examples", "Resume Templates"] },
-              { title: "Resources", links: ["Resume Help", "Job interview", "Career"] },
-              { title: "Our Company", links: ["About Us", "Pricing", "Site Map"] },
-              { title: "Support", links: ["Help Section", "FAQ", "Contact Us"] },
+              {
+                title: "Resume",
+                links: ["Create Resume", "Resume Examples", "Resume Templates"]
+              },
+              {
+                title: "Resources",
+                links: ["Resume Help", "Job interview", "Career"]
+              },
+              {
+                title: "Our Company",
+                links: ["About Us", "Pricing", "Site Map"]
+              },
+              { title: "Support", links: ["Help Section", "FAQ", "Contact Us"] }
             ].map((section, idx) => (
               <div key={idx} className="flex flex-col gap-2">
-                <h1 className="text-sm font-para font-semibold">{section.title}</h1>
+                <h1 className="text-sm font-para font-semibold">
+                  {section.title}
+                </h1>
                 {section.links.map((link, i) => (
-                  <p key={i} className="font-para text-paragraph text-xs hover:text-primary cursor-pointer transition-colors">
+                  <p
+                    key={i}
+                    className="font-para text-paragraph text-xs hover:text-primary cursor-pointer transition-colors"
+                  >
                     {link}
                   </p>
                 ))}
@@ -97,9 +131,15 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mt-8 pb-6 pt-2 border-t border-gray-300 text-xs text-gray-500 gap-2">
           <p>© 2025 CVCraft</p>
           <div className="flex gap-4 flex-wrap justify-center md:justify-start">
-            <p className="hover:text-primary cursor-pointer transition-colors">Privacy Policy</p>
-            <p className="hover:text-primary cursor-pointer transition-colors">Terms of Service</p>
-            <p className="hover:text-primary cursor-pointer transition-colors">Cookies Setting</p>
+            <p className="hover:text-primary cursor-pointer transition-colors">
+              Privacy Policy
+            </p>
+            <p className="hover:text-primary cursor-pointer transition-colors">
+              Terms of Service
+            </p>
+            <p className="hover:text-primary cursor-pointer transition-colors">
+              Cookies Setting
+            </p>
           </div>
         </div>
       </div>

@@ -7,43 +7,43 @@ const reviews = [
     role: "Software Engineer",
     image: "./user7.png",
     review:
-      "The idea is great, but I had trouble formatting my resume the way I wanted. Hoping for more flexibility in future updates.",
+      "The idea is great, but I had trouble formatting my resume the way I wanted. Hoping for more flexibility in future updates."
   },
   {
     name: "Ashish Roy",
     role: "Quality Analyst",
     image: "./user6.png",
     review:
-      "CVcraft completely transformed the way I approached resume writing. I realized my resume wasn’t optimized for ATS systems CVcraft’s builder made it incredibly easy to create a clean, professional layout tailored to my industry.",
+      "CVcraft completely transformed the way I approached resume writing. I realized my resume wasn’t optimized for ATS systems CVcraft’s builder made it incredibly easy to create a clean, professional layout tailored to my industry."
   },
   {
     name: "Soophie Rayen",
     role: "Data Analyst",
     image: "./user3.png",
     review:
-      "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference.",
+      "I was struggling to get interview calls until I revamped my resume with CVcraft. The layout and keyword suggestions made all the difference."
   },
   {
     name: "Sufyan Ansari",
     role: "Marketing Consultant",
     image: "./user8.png",
     review:
-      "I created my first professional CV in under 10 minutes. The templates are modern and clean, and the tips along the way were incredibly helpful. Landed two interviews within a week!",
+      "I created my first professional CV in under 10 minutes. The templates are modern and clean, and the tips along the way were incredibly helpful. Landed two interviews within a week!"
   },
   {
     name: "Zenia Zealous",
     role: "DevOps",
     image: "./user5.png",
     review:
-      "I’ve tried a few resume builders, but CVCraft stands out. It’s intuitive, customizable, and doesn’t bombard you with ads. Highly recommend for anyone serious about their career.",
+      "I’ve tried a few resume builders, but CVCraft stands out. It’s intuitive, customizable, and doesn’t bombard you with ads. Highly recommend for anyone serious about their career."
   },
   {
     name: "Alivia Chakraborty",
     role: "HR Executive",
     image: "./user4.png",
     review:
-      "I loved how easy it was to tailor my resume for different roles. The export options are great, and the cover letter builder is a bonus!",
-  },
+      "I loved how easy it was to tailor my resume for different roles. The export options are great, and the cover letter builder is a bonus!"
+  }
 ];
 
 export default function UsersReview() {
@@ -70,7 +70,6 @@ export default function UsersReview() {
                        hover:shadow-[0_8px_25px_rgba(40,88,193,0.15)] 
                        transition-all duration-300 cursor-pointer hover:-translate-y-2"
           >
-
             <div className="group absolute inset-0 bg-gradient-to-br from-primary/10 to-accent2/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative flex items-center mb-4">
               <img

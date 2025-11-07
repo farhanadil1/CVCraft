@@ -1,45 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar.js';
-import HeroSection from '../components/home/herosection/HeroSection.js';
-import WorkingFlow from '../components/home/workingFlow/WorkingFlow.js';
-import ResumeSection from '../components/home/ResumeSection.js';
-import Review from '../components/home/reviews/Review.js';
-import FAQ from '../components/home/faq/FAQ.js';
-import Footer from '../components/Footer.js';
-import { Spinner } from '../components/Spinner.js'; 
-import ShortlistedCompanies from '../components/Shortlistedcompanies.js';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar.js";
+import HeroSection from "../components/home/herosection/HeroSection.js";
+import WorkingFlow from "../components/home/workingFlow/WorkingFlow.js";
+import ResumeSection from "../components/home/ResumeSection.js";
+import Review from "../components/home/reviews/Review.js";
+import FAQ from "../components/home/faq/FAQ.js";
+import Footer from "../components/Footer.js";
+import { Spinner } from "../components/Spinner.js";
+import ShortlistedCompanies from "../components/Shortlistedcompanies.js";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
   // images used in the homepage to preload
- 
 
   useEffect(() => {
-  const imagesToLoad = [
-    './logo.png',
-    './gradient.png',
-    './iphone.png',
-    './resumes.png',
-    './security.png'
-    
-  ];
+    const imagesToLoad = [
+      "./logo.png",
+      "./gradient.png",
+      "./iphone.png",
+      "./resumes.png",
+      "./security.png"
+    ];
 
-  let loadedCount = 0;
+    let loadedCount = 0;
 
-  imagesToLoad.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-    img.onload = img.onerror = () => {
-      loadedCount++;
-      if (loadedCount === imagesToLoad.length) {
-        setLoading(false);
-      }
-    };
-  });
-}, []);
+    imagesToLoad.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imagesToLoad.length) {
+          setLoading(false);
+        }
+      };
+    });
+  }, []);
 
   // Framer Motion variants for scroll animation
   const fadeUp = {
@@ -47,11 +44,11 @@ const Home = () => {
     visible: (i = 1) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.2, duration: 0.6 },
-    }),
+      transition: { delay: i * 0.2, duration: 0.6 }
+    })
   };
 
-  if (loading) return <Spinner />; 
+  if (loading) return <Spinner />;
 
   return (
     <div>
@@ -66,8 +63,10 @@ const Home = () => {
         <HeroSection />
       </motion.div>
 
-      <div className='md:mt-16 md:-mb-36'><ShortlistedCompanies /></div>
-      
+      <div className="md:mt-16 md:-mb-36">
+        <ShortlistedCompanies />
+      </div>
+
       <motion.div
         variants={fadeUp}
         initial="hidden"

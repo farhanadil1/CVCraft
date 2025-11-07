@@ -8,13 +8,22 @@ import Template5 from "./templates/Template5";
 const Editor = ({ templateId, data, zoom, previewRef }) => {
   const renderTemplate = () => {
     switch (templateId) {
-      case "template1": return <Template1 data={data} />;
-      case "template2": return <Template2 data={data} />;
-      case "template3": return <Template3 data={data} />;
-      case "template4": return <Template4 data={data} />;
-      case "template5": return <Template5 data={data} />;
+      case "template1":
+        return <Template1 data={data} />;
+      case "template2":
+        return <Template2 data={data} />;
+      case "template3":
+        return <Template3 data={data} />;
+      case "template4":
+        return <Template4 data={data} />;
+      case "template5":
+        return <Template5 data={data} />;
       default:
-        return <p className="text-gray-500 text-center mt-20">Select a template to begin editing.</p>;
+        return (
+          <p className="text-gray-500 text-center mt-20">
+            Select a template to begin editing.
+          </p>
+        );
     }
   };
 
@@ -24,7 +33,7 @@ const Editor = ({ templateId, data, zoom, previewRef }) => {
       className="w-[850px] min-h-[1100px] border editor-sidebar border-gray-200 shadow-lg overflow-hidden transform transition-transform duration-300"
       style={{
         transform: `scale(${zoom})`,
-        transformOrigin: "top center",
+        transformOrigin: "top center"
       }}
     >
       {renderTemplate()}

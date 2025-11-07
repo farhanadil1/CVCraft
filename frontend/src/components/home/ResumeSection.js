@@ -1,26 +1,35 @@
-import React from 'react'
-import { PiReadCvLogoFill } from 'react-icons/pi'
-import { BiSolidUserDetail } from 'react-icons/bi'
-import { AiFillThunderbolt } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import React from "react";
+import { PiReadCvLogoFill } from "react-icons/pi";
+import { BiSolidUserDetail } from "react-icons/bi";
+import { AiFillThunderbolt } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
 
 const ResumeSection = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate('/templates')
+    navigate("/templates");
   };
 
   const cv = [
     {
-      id:1, name:"Professional Minimalist", desc: "Clean, modern layout emphasizing clarity and readability. Perfect for corporate or office roles.", img:"./template2.png"
+      id: 1,
+      name: "Professional Minimalist",
+      desc: "Clean, modern layout emphasizing clarity and readability. Perfect for corporate or office roles.",
+      img: "./template2.png"
     },
     {
-      id:2, name:"Creative Portfolio", desc: "Bold, colorful design showcasing your projects and skills. Ideal for designers, artists, and creatives.", img:"./template4.png"
+      id: 2,
+      name: "Creative Portfolio",
+      desc: "Bold, colorful design showcasing your projects and skills. Ideal for designers, artists, and creatives.",
+      img: "./template4.png"
     },
     {
-      id:3, name:"ATS-Friendly Optimized", desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant.", img:"./template3.png"
+      id: 3,
+      name: "ATS-Friendly Optimized",
+      desc: "Simple, keyword-focused format designed to pass applicant tracking systems. Perfect for HR-compliant.",
+      img: "./template3.png"
     }
-  ]
+  ];
 
   return (
     <div className="relative w-full bg-transparent mt-10 md:mt-0 md:pt-2 md:pb-8 py-8">
@@ -41,27 +50,35 @@ const ResumeSection = () => {
         </h1>
 
         <h2 className="font-head font-bold text-3xl md:text-[46px] leading-tight head-gradient mt-5">
-          Build Your Resume with<br />
+          Build Your Resume with
+          <br />
           Proven Professional Templates
         </h2>
 
         <p className="text-paragraph font-para text-sm mt-5">
-          Make a lasting impression with resume<br />
+          Make a lasting impression with resume
+          <br />
           designs that recruiters recognize, trust, and prefer.
         </p>
 
         <div className="flex justify-center gap-10 md:gap-20 mt-10 cursor-pointer flex-wrap">
           <div className="flex gap-1 items-center">
             <PiReadCvLogoFill size={28} className="text-primary" />
-            <p className="font-para font-medium text-paragraph text-sm">ATS Friendly</p>
+            <p className="font-para font-medium text-paragraph text-sm">
+              ATS Friendly
+            </p>
           </div>
           <div className="flex gap-1 items-center">
             <BiSolidUserDetail size={28} className="text-primary" />
-            <p className="font-para font-medium text-paragraph text-sm">Skilled</p>
+            <p className="font-para font-medium text-paragraph text-sm">
+              Skilled
+            </p>
           </div>
           <div className="flex gap-1 items-center">
             <AiFillThunderbolt size={28} className="text-primary" />
-            <p className="font-para font-medium text-paragraph text-sm">Trendy</p>
+            <p className="font-para font-medium text-paragraph text-sm">
+              Trendy
+            </p>
           </div>
         </div>
 
@@ -100,7 +117,6 @@ const ResumeSection = () => {
         </button>
       </div>
     </div>
-
-  )
-}
+  );
+};
 export default ResumeSection;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const safeArray = (data) => Array.isArray(data) ? data : [];
+const safeArray = (data) => (Array.isArray(data) ? data : []);
 
 const Template3 = ({ data }) => {
   const personal = data.personal || {};
@@ -21,13 +21,18 @@ const Template3 = ({ data }) => {
   // Helper to render primary bullet points from a comma-separated string
   const renderBullets = (bulletString) => {
     if (!bulletString) return null;
-    const bullets = bulletString.split(',').map(s => s.trim()).filter(s => s.length > 0);
+    const bullets = bulletString
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
     if (bullets.length === 0) return null;
 
     return (
       <ul className="list-disc ml-4 text-sm space-y-0.5">
         {bullets.map((bullet, bIdx) => (
-          <li key={bIdx} className="text-gray-800">{bullet}</li>
+          <li key={bIdx} className="text-gray-800">
+            {bullet}
+          </li>
         ))}
       </ul>
     );
@@ -36,13 +41,18 @@ const Template3 = ({ data }) => {
   // Helper to render nested bullet points (using a different list style for visual distinction)
   const renderNestedBullets = (bulletString) => {
     if (!bulletString) return null;
-    const bullets = bulletString.split(',').map(s => s.trim()).filter(s => s.length > 0);
+    const bullets = bulletString
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
     if (bullets.length === 0) return null;
 
     return (
-      <ul className="list-[circle] ml-8 text-sm space-y-0.5"> 
+      <ul className="list-[circle] ml-8 text-sm space-y-0.5">
         {bullets.map((bullet, bIdx) => (
-          <li key={bIdx} className="text-gray-800">{bullet}</li>
+          <li key={bIdx} className="text-gray-800">
+            {bullet}
+          </li>
         ))}
       </ul>
     );
@@ -54,13 +64,27 @@ const Template3 = ({ data }) => {
       <p className="font-bold">{personal.fullName || "John Doe"}</p>
       <p>{personal.streetAddress || "Great county,"}</p>
       <p>{personal.mainRoad || "Main Road,"}</p>
-      <p>{personal.cityCountry || "Bombay (M.P.), INDIA"} - {personal.pinCode || "476514"}</p>
-      <p>Email Id: <span className='underline'>{personal.email || "youremail@email.com"}</span></p>
-      <p>Mobile No.: <span className='font-bold'>{personal.mobile || "1234567890"}</span></p>
-      <p>Alt Mob No.: <span className='font-bold'>{personal.altMobile || "1234567890"}</span></p>
+      <p>
+        {personal.cityCountry || "Bombay (M.P.), INDIA"} -{" "}
+        {personal.pinCode || "476514"}
+      </p>
+      <p>
+        Email Id:{" "}
+        <span className="underline">
+          {personal.email || "youremail@email.com"}
+        </span>
+      </p>
+      <p>
+        Mobile No.:{" "}
+        <span className="font-bold">{personal.mobile || "1234567890"}</span>
+      </p>
+      <p>
+        Alt Mob No.:{" "}
+        <span className="font-bold">{personal.altMobile || "1234567890"}</span>
+      </p>
     </div>
   );
-  
+
   // Helper for the Academic Details Table
   const AcademicTable = () => (
     <div className="overflow-x-auto">
@@ -75,29 +99,43 @@ const Template3 = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {academic.map((item, i) => ( 
+          {academic.map((item, i) => (
             <tr key={i} className="text-gray-700">
-              <td className="p-1.5 border border-gray-400">{item.examination || ''}</td>
-              <td className="p-1.5 border border-gray-400">{item.university || ''}</td>
-              <td className="p-1.5 border border-gray-400">{item.institute || ''}</td>
-              <td className="p-1.5 border border-gray-400 text-center">{item.year || ''}</td>
-              <td className="p-1.5 border border-gray-400 text-center">{item.cpi || ''}</td>
+              <td className="p-1.5 border border-gray-400">
+                {item.examination || ""}
+              </td>
+              <td className="p-1.5 border border-gray-400">
+                {item.university || ""}
+              </td>
+              <td className="p-1.5 border border-gray-400">
+                {item.institute || ""}
+              </td>
+              <td className="p-1.5 border border-gray-400 text-center">
+                {item.year || ""}
+              </td>
+              <td className="p-1.5 border border-gray-400 text-center">
+                {item.cpi || ""}
+              </td>
             </tr>
           ))}
           {/* Always show a placeholder row if the array is empty */}
           {academic.length === 0 && (
             <tr className="text-gray-400 italic">
-              <td colSpan="5" className="p-1.5 border border-gray-400 text-center">No academic entries added yet.</td>
+              <td
+                colSpan="5"
+                className="p-1.5 border border-gray-400 text-center"
+              >
+                No academic entries added yet.
+              </td>
             </tr>
           )}
         </tbody>
       </table>
     </div>
   );
-  
+
   return (
     <div className="font-sans max-w-4xl mx-auto p-12 bg-white text-gray-800 text-base">
-      
       {/* Contact Info */}
       <ContactInfoBlock />
       <hr className="border-t border-gray-900 mb-4" />
@@ -114,11 +152,15 @@ const Template3 = ({ data }) => {
         {fieldsOfInterest.length > 0 ? (
           <ul className="list-disc ml-4 text-sm space-y-0.5">
             {fieldsOfInterest.map((item, i) => (
-              <li key={i}>{item.area || 'Wireless Network and Network Security'}</li>
+              <li key={i}>
+                {item.area || "Wireless Network and Network Security"}
+              </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm italic text-gray-400 ml-4">No fields of interest specified yet.</p>
+          <p className="text-sm italic text-gray-400 ml-4">
+            No fields of interest specified yet.
+          </p>
         )}
       </section>
 
@@ -129,13 +171,17 @@ const Template3 = ({ data }) => {
           <div className="text-sm space-y-1">
             {technicalSkills.map((skill, i) => (
               <p key={i}>
-                <span className="font-bold mr-1">{skill.category || 'Languages'}:</span>
-                {skill.details || 'C, C++, Java'}
+                <span className="font-bold mr-1">
+                  {skill.category || "Languages"}:
+                </span>
+                {skill.details || "C, C++, Java"}
               </p>
             ))}
           </div>
         ) : (
-          <p className="text-sm italic text-gray-400 ml-4">No technical skills added yet.</p>
+          <p className="text-sm italic text-gray-400 ml-4">
+            No technical skills added yet.
+          </p>
         )}
       </section>
 
@@ -147,35 +193,46 @@ const Template3 = ({ data }) => {
             {projects.map((proj, i) => (
               <div key={i}>
                 <p className="font-bold text-sm mb-1">
-                  {i + 1}. {proj.title || 'Media Access Control Controlling'}
-                  <span className='font-normal ml-3 text-xs'>
-                    (Guide: {proj.guide || 'Prof. John Doe'}, {proj.duration || 'Jan’14 - Aug’14'})
+                  {i + 1}. {proj.title || "Media Access Control Controlling"}
+                  <span className="font-normal ml-3 text-xs">
+                    (Guide: {proj.guide || "Prof. John Doe"},{" "}
+                    {proj.duration || "Jan’14 - Aug’14"})
                   </span>
                 </p>
-                {proj.primaryObjective && <p className="text-sm italic mb-1">Objective: {proj.primaryObjective}</p>}
-                
+                {proj.primaryObjective && (
+                  <p className="text-sm italic mb-1">
+                    Objective: {proj.primaryObjective}
+                  </p>
+                )}
+
                 {renderBullets(proj.bulletDetails)}
-                
+
                 {renderNestedBullets(proj.subBullets)}
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-sm italic text-gray-400 ml-4">No major projects added yet.</p>
+          <p className="text-sm italic text-gray-400 ml-4">
+            No major projects added yet.
+          </p>
         )}
       </section>
-      
+
       {/* Strengths - Now always visible */}
       <section>
         <SectionTitle>Strengths</SectionTitle>
         {strengths.length > 0 ? (
           <ul className="list-disc ml-4 text-sm space-y-0.5">
             {strengths.map((item, i) => (
-              <li key={i}>{item.item || 'Positive Attitude, Social Interaction'}</li>
+              <li key={i}>
+                {item.item || "Positive Attitude, Social Interaction"}
+              </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm italic text-gray-400 ml-4">No strengths listed yet.</p>
+          <p className="text-sm italic text-gray-400 ml-4">
+            No strengths listed yet.
+          </p>
         )}
       </section>
 
@@ -185,14 +242,15 @@ const Template3 = ({ data }) => {
         {hobbies.length > 0 ? (
           <ul className="list-disc ml-4 text-sm space-y-0.5">
             {hobbies.map((item, i) => (
-              <li key={i}>{item.item || 'Solving Puzzles, Playing Chess'}</li>
+              <li key={i}>{item.item || "Solving Puzzles, Playing Chess"}</li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm italic text-gray-400 ml-4">No hobbies listed yet.</p>
+          <p className="text-sm italic text-gray-400 ml-4">
+            No hobbies listed yet.
+          </p>
         )}
       </section>
-      
     </div>
   );
 };

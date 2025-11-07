@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const safeArray = (data) => Array.isArray(data) ? data : [];
+const safeArray = (data) => (Array.isArray(data) ? data : []);
 
 const Template1 = ({ data }) => {
   const personal = data.personal || {};
@@ -59,11 +59,11 @@ const Template1 = ({ data }) => {
         <SectionTitle>Summary</SectionTitle>
         <p className="text-sm italic">
           {
-            typeof data.summary === 'string'
-            ? data.summary
-            : data.summary && typeof data.summary.content === 'string' // Check if it's an object with a 'content' key (common editor output)
-            ? data.summary.content
-            : "This CV can be automatically compiled and published..." // Fallback text
+            typeof data.summary === "string"
+              ? data.summary
+              : data.summary && typeof data.summary.content === "string" // Check if it's an object with a 'content' key (common editor output)
+                ? data.summary.content
+                : "This CV can be automatically compiled and published..." // Fallback text
           }
         </p>
       </section>
@@ -74,8 +74,14 @@ const Template1 = ({ data }) => {
           <SectionTitle>Work Experience</SectionTitle>
           {workExperience.map((item, index) => (
             <div key={index} className="mb-4">
-              <TwoColumnRow left={item.designation || "Designation"} right={item.duration || "Date Range"} />
-              <p className="text-sm">{item.details || "Description of responsibilities and achievements."}</p>
+              <TwoColumnRow
+                left={item.designation || "Designation"}
+                right={item.duration || "Date Range"}
+              />
+              <p className="text-sm">
+                {item.details ||
+                  "Description of responsibilities and achievements."}
+              </p>
             </div>
           ))}
         </section>
@@ -89,9 +95,19 @@ const Template1 = ({ data }) => {
             <div key={index} className="mb-4">
               <TwoColumnRow
                 left={project.name || "Some Project"}
-                right={<a href={project.link} className="text-blue-600 hover:underline">{project.link ? "Link to Demo" : ""}</a>}
+                right={
+                  <a
+                    href={project.link}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {project.link ? "Link to Demo" : ""}
+                  </a>
+                }
               />
-              <p className="text-sm">{project.description || "Project description goes here and can wrap multiple lines."}</p>
+              <p className="text-sm">
+                {project.description ||
+                  "Project description goes here and can wrap multiple lines."}
+              </p>
             </div>
           ))}
         </section>
@@ -104,10 +120,13 @@ const Template1 = ({ data }) => {
           {education.map((edu, index) => (
             <div key={index} className="mb-2">
               <TwoColumnRow
-                left={`${edu.duration || '20XX - present'}`}
-                right={`${edu.gpaOrGrade || '(GPA: 4.0/4.0)'}`}
+                left={`${edu.duration || "20XX - present"}`}
+                right={`${edu.gpaOrGrade || "(GPA: 4.0/4.0)"}`}
               />
-              <p className="text-sm ml-4 -mt-1">{edu.degree || 'Degree/Class'} at {edu.institution || 'University/Board'}</p>
+              <p className="text-sm ml-4 -mt-1">
+                {edu.degree || "Degree/Class"} at{" "}
+                {edu.institution || "University/Board"}
+              </p>
             </div>
           ))}
         </section>
@@ -121,7 +140,12 @@ const Template1 = ({ data }) => {
             <div key={index} className="text-sm mb-2">
               <p>{pub.citation}</p>
               {pub.url && (
-                <p>URL: <a href={pub.url} className="text-blue-600 hover:underline">{pub.url}</a></p>
+                <p>
+                  URL:{" "}
+                  <a href={pub.url} className="text-blue-600 hover:underline">
+                    {pub.url}
+                  </a>
+                </p>
               )}
             </div>
           ))}
@@ -135,8 +159,12 @@ const Template1 = ({ data }) => {
           <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-sm">
             {skills.map((skill, index) => (
               <div key={index} className="flex">
-                <span className="font-semibold whitespace-nowrap mr-2">{skill.name || "Skill Category"}</span>
-                <span className="flex-1">{skill.details || "Skill 1, Skill 2, etc."}</span>
+                <span className="font-semibold whitespace-nowrap mr-2">
+                  {skill.name || "Skill Category"}
+                </span>
+                <span className="flex-1">
+                  {skill.details || "Skill 1, Skill 2, etc."}
+                </span>
               </div>
             ))}
           </div>

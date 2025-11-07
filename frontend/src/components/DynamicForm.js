@@ -15,7 +15,7 @@ const DynamicForm = ({ config, formData, setFormData }) => {
       stepRefs.current[activeStep].scrollIntoView({
         behavior: "smooth",
         inline: "center",
-        block: "nearest",
+        block: "nearest"
       });
     }
   }, [activeStep]);
@@ -43,7 +43,9 @@ const DynamicForm = ({ config, formData, setFormData }) => {
     const value = formData[sectionName];
     if (typeof value === "string") return value;
     if (typeof value === "object" && value !== null) {
-      const stringValue = Object.values(value).find((v) => typeof v === "string");
+      const stringValue = Object.values(value).find(
+        (v) => typeof v === "string"
+      );
       return stringValue || "";
     }
     return "";
@@ -60,7 +62,10 @@ const DynamicForm = ({ config, formData, setFormData }) => {
     <div className="w-full max-w-3xl mx-auto space-y-8">
       {/* Scrollable Stepper */}
       <div className="relative mt-2">
-        <div className="overflow-x-auto editor-sidebar" ref={stepperContainerRef}>
+        <div
+          className="overflow-x-auto editor-sidebar"
+          ref={stepperContainerRef}
+        >
           <Stepper
             activeStep={activeStep}
             alternativeLabel
@@ -68,42 +73,44 @@ const DynamicForm = ({ config, formData, setFormData }) => {
             className="flex-nowrap min-w-max"
             sx={{
               padding: 0,
-              '& .MuiStepLabel-label': {
-                fontSize: '0.75rem',     // smaller font
-                color: '#9ca3af',        // gray-400 for inactive steps
+              "& .MuiStepLabel-label": {
+                fontSize: "0.75rem", // smaller font
+                color: "#9ca3af" // gray-400 for inactive steps
               },
-              '& .MuiStepLabel-label.Mui-active': {
-                color: '#93B5FF',        
-                fontWeight: 600,
+              "& .MuiStepLabel-label.Mui-active": {
+                color: "#93B5FF",
+                fontWeight: 600
               },
-              '& .MuiStepLabel-label.Mui-completed': {
-                color: 'rgba(34,197,94,0.5)', // green with 50% opacity
+              "& .MuiStepLabel-label.Mui-completed": {
+                color: "rgba(34,197,94,0.5)" // green with 50% opacity
               },
-              '& .MuiStepIcon-root': {
+              "& .MuiStepIcon-root": {
                 width: 20,
-                height: 20,
+                height: 20
               },
-              '& .MuiStepIcon-root.Mui-active': {
-                color: '#93B5FF',
+              "& .MuiStepIcon-root.Mui-active": {
+                color: "#93B5FF"
               },
-              '& .MuiStepIcon-root.Mui-completed': {
-                color: 'rgba(34,197,94,0.5)', // green with 50% opacity
+              "& .MuiStepIcon-root.Mui-completed": {
+                color: "rgba(34,197,94,0.5)" // green with 50% opacity
               },
-              '& .MuiStepConnector-root': {
+              "& .MuiStepConnector-root": {
                 top: 10,
-                '& .MuiStepConnector-line': {
+                "& .MuiStepConnector-line": {
                   borderTopWidth: 1.5,
-                  borderColor: '#d1d5db', // gray-300 default
+                  borderColor: "#d1d5db" // gray-300 default
                 },
-                '& .MuiStepConnector-line.Mui-completed': {
-                  borderColor: 'rgba(34,197,94,0.5)', // green with 50% opacity
-                },
-              },
+                "& .MuiStepConnector-line.Mui-completed": {
+                  borderColor: "rgba(34,197,94,0.5)" // green with 50% opacity
+                }
+              }
             }}
           >
-
             {sections.map((section, idx) => (
-              <Step key={section.name} ref={(el) => (stepRefs.current[idx] = el)}>
+              <Step
+                key={section.name}
+                ref={(el) => (stepRefs.current[idx] = el)}
+              >
                 <StepLabel>{section.label}</StepLabel>
               </Step>
             ))}
@@ -117,113 +124,132 @@ const DynamicForm = ({ config, formData, setFormData }) => {
 
       {/* Current Section Card */}
       <div className="bg-white px-6 pb-6 transition-all duration-300">
-        <h2 className="text-lg font-semibold text-gray-950 mb-4">{currentSection.label}</h2>
+        <h2 className="text-lg font-semibold text-gray-950 mb-4">
+          {currentSection.label}
+        </h2>
 
         {/* Fields */}
-        {currentSection.type === "array"
-          ? (formData[currentSection.name] || [{}]).map((_, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-blue-50/50 shadow-sm mb-4"
-              >
-                {currentSection.fields.map((f) => (
-                  <div key={f.name} className="relative w-full mb-4">
-                    <input
-                      type={f.type}
-                      placeholder=" "
-                      className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-2 outline-none bg-transparent transition"
-                      value={formData[currentSection.name]?.[idx]?.[f.name] || ""}
-                      onChange={(e) =>
-                        handleChange(currentSection.name, f.name, e.target.value, idx)
-                      }
-                    />
-                    <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
-                      {f.label}
-                    </label>
-                  </div>
-                ))}
-                <div className="flex justify-end gap-2">
+        {currentSection.type === "array" ? (
+          (formData[currentSection.name] || [{}]).map((_, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-xl bg-blue-50/50 shadow-sm mb-4"
+            >
+              {currentSection.fields.map((f) => (
+                <div key={f.name} className="relative w-full mb-4">
+                  <input
+                    type={f.type}
+                    placeholder=" "
+                    className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-2 outline-none bg-transparent transition"
+                    value={formData[currentSection.name]?.[idx]?.[f.name] || ""}
+                    onChange={(e) =>
+                      handleChange(
+                        currentSection.name,
+                        f.name,
+                        e.target.value,
+                        idx
+                      )
+                    }
+                  />
+                  <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
+                    {f.label}
+                  </label>
+                </div>
+              ))}
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      [currentSection.name]: (
+                        prev[currentSection.name] || []
+                      ).filter((_, i) => i !== idx)
+                    }))
+                  }
+                  className="p-2 rounded-full hover:bg-red-50 text-red-600 transition"
+                  title="Remove"
+                >
+                  <MinusIcon className="w-5 h-5" />
+                </button>
+                {idx === (formData[currentSection.name]?.length || 1) - 1 && (
                   <button
                     type="button"
                     onClick={() =>
                       setFormData((prev) => ({
                         ...prev,
-                        [currentSection.name]: (prev[currentSection.name] || []).filter(
-                          (_, i) => i !== idx
-                        ),
+                        [currentSection.name]: [
+                          ...(prev[currentSection.name] || []),
+                          {}
+                        ]
                       }))
                     }
-                    className="p-2 rounded-full hover:bg-red-50 text-red-600 transition"
-                    title="Remove"
+                    className="p-2 rounded-full hover:bg-blue-50 text-blue-500 transition"
+                    title="Add"
                   >
-                    <MinusIcon className="w-5 h-5" />
+                    <PlusIcon className="w-5 h-5" />
                   </button>
-                  {idx === (formData[currentSection.name]?.length || 1) - 1 && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          [currentSection.name]: [...(prev[currentSection.name] || []), {}],
-                        }))
-                      }
-                      className="p-2 rounded-full hover:bg-blue-50 text-blue-500 transition"
-                      title="Add"
-                    >
-                      <PlusIcon className="w-5 h-5" />
-                    </button>
-                  )}
-                </div>
+                )}
               </div>
-            ))
-          : currentSection.fields
-          ? currentSection.fields.map((f) => (
-              <div key={f.name} className="relative w-full mb-4">
-                <input
-                  type={f.type}
-                  placeholder=" "
-                  className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-2 outline-none bg-transparent transition"
-                  value={formData[currentSection.name]?.[f.name] || ""}
-                  onChange={(e) => handleChange(currentSection.name, f.name, e.target.value)}
-                />
-                <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
-                  {f.label}
-                </label>
-              </div>
-            ))
-          : currentSection.isLarge
-          ? (
-            <div className="relative w-full">
-              <textarea
-                rows={5}
-                placeholder=" "
-                className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-3 outline-none bg-transparent transition resize-none"
-                value={getSimpleSectionValue(currentSection.name)}
-                onChange={(e) => handleChange(currentSection.name, null, e.target.value)}
-              />
-              <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
-                {currentSection.label}
-              </label>
             </div>
-          )
-          : (
-            <div className="relative w-full">
+          ))
+        ) : currentSection.fields ? (
+          currentSection.fields.map((f) => (
+            <div key={f.name} className="relative w-full mb-4">
               <input
-                type="text"
+                type={f.type}
                 placeholder=" "
                 className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-2 outline-none bg-transparent transition"
-                value={getSimpleSectionValue(currentSection.name)}
-                onChange={(e) => handleChange(currentSection.name, null, e.target.value)}
+                value={formData[currentSection.name]?.[f.name] || ""}
+                onChange={(e) =>
+                  handleChange(currentSection.name, f.name, e.target.value)
+                }
               />
               <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
-                {currentSection.label}
+                {f.label}
               </label>
             </div>
-          )}
+          ))
+        ) : currentSection.isLarge ? (
+          <div className="relative w-full">
+            <textarea
+              rows={5}
+              placeholder=" "
+              className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-3 outline-none bg-transparent transition resize-none"
+              value={getSimpleSectionValue(currentSection.name)}
+              onChange={(e) =>
+                handleChange(currentSection.name, null, e.target.value)
+              }
+            />
+            <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
+              {currentSection.label}
+            </label>
+          </div>
+        ) : (
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder=" "
+              className="peer w-full border-b border-gray-300 focus:border-blue-500 text-gray-800 p-2 outline-none bg-transparent transition"
+              value={getSimpleSectionValue(currentSection.name)}
+              onChange={(e) =>
+                handleChange(currentSection.name, null, e.target.value)
+              }
+            />
+            <label className="absolute pointer-events-none left-2 -top-2.5 text-gray-400 text-sm peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-blue-500 transition-all">
+              {currentSection.label}
+            </label>
+          </div>
+        )}
 
         {/* Navigation Buttons */}
         <div className="flex justify-between items-center mt-6">
-          <Button onClick={prevStep} disabled={activeStep === 0} variant="outlined" className="!capitalize">
+          <Button
+            onClick={prevStep}
+            disabled={activeStep === 0}
+            variant="outlined"
+            className="!capitalize"
+          >
             Back
           </Button>
           <Button

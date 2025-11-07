@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const Spinner = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-page z-50">

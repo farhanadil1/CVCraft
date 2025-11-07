@@ -7,11 +7,18 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
 
-
 const API = process.env.REACT_APP_API_URL;
 
 // Reusable input component
-const FormInput = ({ Icon, name, label, type = "text", value, onChange, isValid }) => (
+const FormInput = ({
+  Icon,
+  name,
+  label,
+  type = "text",
+  value,
+  onChange,
+  isValid
+}) => (
   <div className="relative mb-2">
     <div className="flex items-center border border-gray-300 rounded-xl px-4 py-2 bg-white">
       <Icon className="h-5 w-5 text-gray-400 mr-3" />
@@ -44,14 +51,20 @@ export default function Auth() {
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: ""
+  });
   const [loading, setLoading] = useState(false);
 
   // Simple validation
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const passwordValid = formData.password.length >= 8;
   const fullNameValid = formData.fullName.trim().length >= 3;
-  const isFormValid = isLogin ? emailValid && passwordValid : emailValid && passwordValid && fullNameValid;
+  const isFormValid = isLogin
+    ? emailValid && passwordValid
+    : emailValid && passwordValid && fullNameValid;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -97,20 +110,17 @@ export default function Auth() {
 
         toast.success(`Welcome back, ${username}!`);
         navigate(-1);
-      }
-      else {
-        await toast.promise(
-          axios.post(`${API}/users/register`, formData),
-          { loading: "Signing up...", success: "Registered! Please login." }
-        );
+      } else {
+        await toast.promise(axios.post(`${API}/users/register`, formData), {
+          loading: "Signing up...",
+          success: "Registered! Please login."
+        });
         setIsLogin(true);
         setFormData({ fullName: "", email: "", password: "" });
       }
-    } 
-    catch (err) {
+    } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong!");
-    } 
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -121,8 +131,8 @@ export default function Auth() {
       {/* Left side illustration */}
       <div className="hidden md:flex justify-center items-center relative p-8">
         <button
-      onClick={() => navigate(-1)}
-      className="absolute top-6 left-10 flex items-center text-sm font-medium text-white 
+          onClick={() => navigate(-1)}
+          className="absolute top-6 left-10 flex items-center text-sm font-medium text-white 
                  bg-gradient-to-r from-indigo-500 to-primary
                  py-2 px-3 rounded-2xl
                  shadow-lg shadow-indigo-400/50
@@ -130,15 +140,19 @@ export default function Auth() {
                  transform transition-all duration-300
                  hover:scale-105 hover:shadow-2xl hover:from-indigo-400 hover:to-purple-300
                  active:scale-95 active:shadow-md
-                overflow-hidden">
-      <span className="absolute -ml-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
-      <IoIosArrowBack className="h-4 w-4 z-10 -ml-1.5 relative" />
-      <span className="relative z-10">Back</span>
-    </button>
+                overflow-hidden"
+        >
+          <span className="absolute -ml-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
+          <IoIosArrowBack className="h-4 w-4 z-10 -ml-1.5 relative" />
+          <span className="relative z-10">Back</span>
+        </button>
 
-
-
-        <img src="./security.svg" alt="security" className="h-72 ml-20 object-contain" draggable={false} />
+        <img
+          src="./security.svg"
+          alt="security"
+          className="h-72 ml-20 object-contain"
+          draggable={false}
+        />
       </div>
 
       {/* Right side form */}
@@ -147,7 +161,9 @@ export default function Auth() {
           <div className="flex justify-center items-center mb-4">
             <img src="./logo.png" alt="CVCraft" className="h-10 w-16" />
             <Link to="/">
-              <h1 className="text-xl -ml-1 pt-2.5 font-bold text-gradient cursor-pointer">CVCraft</h1>
+              <h1 className="text-xl -ml-1 pt-2.5 font-bold text-gradient cursor-pointer">
+                CVCraft
+              </h1>
             </Link>
           </div>
 
@@ -155,14 +171,18 @@ export default function Auth() {
             Welcome {isLogin ? "Back" : "Onboard"}
           </h1>
           <p className="text-sm text-center mt-1 mb-3">
-            {isLogin ? "Please enter your details to sign in" : "Create your account to start crafting your CV"}
+            {isLogin
+              ? "Please enter your details to sign in"
+              : "Create your account to start crafting your CV"}
           </p>
 
           {/* Toggle Login/Register */}
           <div className="flex justify-center p-1 bg-gray-200 rounded-xl shadow-inner mb-5">
             <button
               className={`flex-1 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
-                isLogin ? "bg-white text-gray-800 shadow-md" : "text-gray-500 hover:bg-gray-300"
+                isLogin
+                  ? "bg-white text-gray-800 shadow-md"
+                  : "text-gray-500 hover:bg-gray-300"
               }`}
               onClick={() => setIsLogin(true)}
             >
@@ -170,7 +190,9 @@ export default function Auth() {
             </button>
             <button
               className={`flex-1 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
-                !isLogin ? "bg-white text-gray-800 shadow-md" : "text-gray-500 hover:bg-gray-200"
+                !isLogin
+                  ? "bg-white text-gray-800 shadow-md"
+                  : "text-gray-500 hover:bg-gray-200"
               }`}
               onClick={() => setIsLogin(false)}
             >

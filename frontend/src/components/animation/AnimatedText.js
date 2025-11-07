@@ -7,7 +7,7 @@ const AnimatedText = ({
   animateBy = "words",
   direction = "top",
   className = "",
-  onAnimationComplete,
+  onAnimationComplete
 }) => {
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
@@ -28,9 +28,10 @@ const AnimatedText = ({
     return () => observer.disconnect();
   }, []);
 
-  const from = direction === "top"
-    ? { opacity: 0, y: -50, filter: "blur(10px)" }
-    : { opacity: 0, y: 50, filter: "blur(10px)" };
+  const from =
+    direction === "top"
+      ? { opacity: 0, y: -50, filter: "blur(10px)" }
+      : { opacity: 0, y: 50, filter: "blur(10px)" };
 
   const to = { opacity: 1, y: 0, filter: "blur(0px)" };
 
@@ -40,7 +41,7 @@ const AnimatedText = ({
     backgroundClip: "text",
     WebkitTextFillColor: "transparent",
     color: "transparent",
-    backgroundSize: "100%",
+    backgroundSize: "100%"
   };
 
   return (
@@ -53,7 +54,9 @@ const AnimatedText = ({
           initial={from}
           animate={inView ? to : from}
           transition={{ delay: (index * delay) / 1000, duration: 0.5 }}
-          onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
+          onAnimationComplete={
+            index === elements.length - 1 ? onAnimationComplete : undefined
+          }
         >
           {segment}
           {animateBy === "words" && index < elements.length - 1 ? "\u00A0" : ""}

@@ -7,10 +7,7 @@ const TemplateCard = ({ id, name, preview, usersCount }) => {
 
   return (
     <div className="w-full md:max-w-72 mx-auto sm:mx-4 md:mx-0 mb-8">
-      <div
-        className="cursor-pointer"
-        onClick={() => navigate(`/editor/${id}`)}
-      >
+      <div className="cursor-pointer" onClick={() => navigate(`/editor/${id}`)}>
         <img
           src={preview}
           alt={name}

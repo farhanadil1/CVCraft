@@ -1,12 +1,12 @@
-import React from 'react';
-import AnimatedText from '../../animation/AnimatedText';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import AnimatedText from "../../animation/AnimatedText";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroText() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate('/templates')
-  }
+    navigate("/templates");
+  };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 mx-4 sm:mx-8 md:mx-20 pt-10 gap-6 md:gap-8">
       {/* Animated Text */}
@@ -20,8 +20,8 @@ export default function HeroText() {
       {/* Subtext and Button */}
       <div className="text-left">
         <p className="text-paragraph font-para text-sm sm:text-base">
-          Effortlessly craft your resume using CVcraft’s free builder
-          and expertly designed professional templates.
+          Effortlessly craft your resume using CVcraft’s free builder and
+          expertly designed professional templates.
         </p>
         <button
           onClick={handleNavigate}
