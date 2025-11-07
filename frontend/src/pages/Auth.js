@@ -61,7 +61,7 @@ export default function Auth() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) {
-      toast.error("Please input the correct formated values", { duration: 2000 });
+      toast.error("Please input the correct formatted values");
       return;
     }
 
@@ -78,32 +78,39 @@ export default function Auth() {
           { loading: "Logging in..." }
         );
 
-        const user = response.data.data.user;
+        const { accessToken, refreshToken, user } = response.data.data;
         const username = user.fullName;
-
-        toast.success(`Welcome back, ${username}!`, { duration: 2000 });
         Cookies.set("username", username, { expires: 7 });
-        Cookies.set("accessToken", response.data.data.accessToken, { expires: 7 });
-        navigate(-1)
 
-      } else {
-        await toast.promise(
-          axios.post(`${API}/users/register`, {
-            fullName: formData.fullName,
-            email: formData.email,
-            password: formData.password,
-          }),
-          { loading: "Signing up...", success: "Registered! Please login.", duration: 2000 }
-        );
-        setTimeout(() => {
-          setIsLogin(true);
-          setFormData({ fullName: "", email: "", password: "" });
-        }, 1200);
+        // if cookies working
+        document.cookie = "iosTest=yes; SameSite=None; Secure";
+        const cookiesWorking = document.cookie.includes("iosTest=yes");
+
+        if (!cookiesWorking) {
+          // iOS fallback: save tokens in localStorage
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+        } else {
+          //normal browsers
+          Cookies.set("accessToken", accessToken, { expires: 7 });
+        }
+
+        toast.success(`Welcome back, ${username}!`);
+        navigate(-1);
       }
-    } catch (error) {
-      console.error(error);
-      toast.error(error.response?.data?.message || "Something went wrong!", { duration: 2000 });
-    } finally {
+      else {
+        await toast.promise(
+          axios.post(`${API}/users/register`, formData),
+          { loading: "Signing up...", success: "Registered! Please login." }
+        );
+        setIsLogin(true);
+        setFormData({ fullName: "", email: "", password: "" });
+      }
+    } 
+    catch (err) {
+      toast.error(err.response?.data?.message || "Something went wrong!");
+    } 
+    finally {
       setLoading(false);
     }
   };

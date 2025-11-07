@@ -5,6 +5,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { getAccessToken } from '../utils/auth';
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -46,7 +47,12 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await toast.promise(
-        axios.post(`${API}/users/logout` , {}, { withCredentials: true }),
+        axios.post(`${API}/users/logout` , {}, { 
+          withCredentials: true,
+          headers: {
+          Authorization: `Bearer ${getAccessToken()}`
+          }
+        }),
         {
           loading: 'Logging out...',
           success: 'Logged out successfully!',
@@ -56,7 +62,8 @@ const Navbar = () => {
           duration: 2000,
         }
       );
-
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       Cookies.remove('username');
       Cookies.remove('accessToken');
       Cookies.remove('refreshToken');
