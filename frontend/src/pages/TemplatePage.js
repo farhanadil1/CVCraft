@@ -91,7 +91,7 @@ const TemplatePage = () => {
         <Navbar />
 
         {/* Banner */}
-        <div className="bg-gradient-to-r font-para from-primary to-indigo-500 text-white text-center text-sm font-medium py-2 px-4 flex justify-center items-center space-x-2 shadow-sm">
+        <div className="bg-gradient-to-r pt-20 font-para from-primary to-indigo-500 text-white text-center text-sm font-medium py-2 px-4 flex justify-center items-center space-x-2 shadow-sm">
           <p>
             Boost your Resume with{" "}
             <span className="font-semibold">CVCraft</span>.

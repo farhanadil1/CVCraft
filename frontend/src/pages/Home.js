@@ -60,7 +60,7 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <HeroSection />
+        <main className="pt-20"><HeroSection /></main>
       </motion.div>
 
       <div className="md:mt-16 md:-mb-36">

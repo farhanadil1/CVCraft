@@ -41,6 +41,25 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const [show, setShow] = useState(true);
+const [lastScrollY, setLastScrollY] = useState(0);
+
+useEffect(() => {
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      setShow(false); // hide navbar on scroll down
+    } else {
+      setShow(true); // show on scroll up
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  window.addEventListener("scroll", controlNavbar);
+  return () => {
+    window.removeEventListener("scroll", controlNavbar);
+  };
+}, [lastScrollY]);
+
   const handleNavigate = () => navigate("/auth");
 
   const handleLogout = async () => {
@@ -190,7 +209,11 @@ const Navbar = () => {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <nav className="bg-page w-full relative border-b">
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 bg-page border-b transition-transform duration-300 ${
+          show ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <div className="flex justify-between mx-4 md:mx-20 py-4 items-center">
           <Link to={`/`}>
             <div className="flex justify-start items-center gap-2">
