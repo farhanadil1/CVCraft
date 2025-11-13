@@ -126,7 +126,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen font-sans bg-white overflow-hidden">
+<div className="grid grid-cols-1 md:grid-cols-2 h-screen overflow-hidden font-sans bg-white">
       <Toaster position="top-center" />
       {/* Left side illustration */}
       <div className="hidden md:flex justify-center items-center relative p-8">
@@ -142,9 +142,9 @@ export default function Auth() {
                  active:scale-95 active:shadow-md
                 overflow-hidden"
         >
-          <span className="absolute -ml-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
+          <span className="absolute -ml-2 w-6 h-6 bg-indigo-400 rounded-full opacity-30 blur-xl animate-pulse"></span>
           <IoIosArrowBack className="h-4 w-4 z-10 -ml-1.5 relative" />
-          <span className="relative z-10">Back</span>
+          <span className="relative z-10 -mt-0.5">Back</span>
         </button>
 
         <img
@@ -156,7 +156,7 @@ export default function Auth() {
       </div>
 
       {/* Right side form */}
-      <div className="flex flex-col justify-center md:items-start items-center px-6 sm:px-10 md:px-10">
+<div className="flex flex-col justify-center items-center md:items-start px-6 sm:px-10 md:px-10 h-full overflow-y-auto">
         <div className="w-full max-w-80">
           <div className="flex justify-center items-center mb-4">
             <img src="./logo.png" alt="CVCraft" className="h-10 w-16" />
