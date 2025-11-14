@@ -17,6 +17,7 @@ const TemplatePage = () => {
   const navigate = useNavigate();
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
 
   const templates = [
     {
@@ -71,6 +72,7 @@ const TemplatePage = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Delete this resume?")) {
       try {
+        setDeletingId(id);
         await axios.delete(`${API}/resumes/delete/${id}`, {
           withCredentials: true,
           headers: {
@@ -81,6 +83,8 @@ const TemplatePage = () => {
       } catch (err) {
         console.error("Error deleting:", err);
         alert("Failed to delete!");
+      } finally {
+        setDeletingId(null);
       }
     }
   };
@@ -202,46 +206,86 @@ const TemplatePage = () => {
                 {resumes.map((r) => (
                   <div
                     key={r._id}
-                    // onClick={() =>
-                    //   navigate(`/editor/${r.templateId}`, { state: { resumeId: r._id } })
-                    // }
-                    className="relative rounded-lg cursor-pointer bg-white shadow-md hover:shadow-lg transition-transform duration-300 transform group"
+                    className="
+                      relative rounded-md bg-white shadow-sm hover:shadow-lg transition-all 
+                      duration-300 group overflow-hidden
+                    "
                   >
-                    {/* Full Image */}
-                    <img
-                      src={`./${r.templateId}.png`}
-                      alt={r.resumeName}
-                      className="w-full h-72 object-cover"
-                    />
+                    {/* Resume Thumbnail */}
+                    <div className="w-full bg-gray-50 flex items-center justify-center p-2">
+                      <img
+                        src={`./${r.templateId}.png`}
+                        alt={r.resumeName}
+                        className="w-full h-44 sm:h-56 md:h-64 object-contain transition-all duration-300 group-hover:scale-[1.03]"
+                      />
+                    </div>
 
-                    {/* Edit & Delete Buttons on hover */}
-                    <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    {/* Hover Buttons */}
+                    <div className={`
+                      absolute top-2 right-2 flex gap-2 
+                      transition-opacity duration-300 z-20
+                      ${
+                        deletingId === r._id ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }
+                    `}
+                    >
+                      {/* EDIT BUTTON */}
                       <button
                         onClick={() =>
                           navigate(`/editor/${r.templateId}`, {
                             state: { resumeId: r._id }
                           })
                         }
-                        className="bg-blue-500 flex items-center text-white p-2 rounded shadow-md hover:scale-105 transition-all duration-300"
                         title="Edit"
+                        disabled={deletingId === r._id}
+                        className="
+                          flex items-center gap-1.5
+                          bg-white/90 backdrop-blur-md 
+                          px-3 py-1.5
+                          rounded-lg shadow-md
+                          border border-gray-200
+                          hover:shadow-xl hover:scale-[1.06]
+                          disabled:opacity-60 disabled:cursor-not-allowed
+                          transition-all duration-300
+                        "
                       >
-                        <FaEdit size={16} />
-                        <span className="text-xs font-semibold mt-1">Edit</span>
+                        <FaEdit size={15} className="text-blue-600" />
+                        <span className="text-[11px] font-semibold text-gray-700">
+                          Edit
+                        </span>
                       </button>
+
+                      {/* DELETE BUTTON */}
                       <button
                         onClick={() => handleDelete(r._id)}
-                        className="bg-red-500 hover:bg-red-600 text-white p-2 rounded shadow-md"
                         title="Delete"
+                        disabled={deletingId === r._id}
+                        className={`
+                          bg-red-500/90 text-white 
+                          p-2 
+                          rounded-lg shadow-md
+                          transition-all duration-300
+                          ${
+                            deletingId === r._id
+                              ? "opacity-100 cursor-wait"
+                              : "hover:bg-red-600 hover:shadow-xl hover:scale-[1.08] active:scale-[0.95]"
+                          }
+                        `}
                       >
-                        <FaTrashAlt size={16} />
+                        {deletingId === r._id ? (
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <FaTrashAlt size={14} />
+                        )}
                       </button>
                     </div>
 
                     {/* Resume Info */}
-                    <div className="p-3">
-                      <h3 className="font-semibold text-gray-800 text-lg truncate">
+                    <div className="p-4">
+                      <h3 className="font-semibold text-gray-800 text-sm sm:text-base truncate">
                         {r.resumeName}
                       </h3>
+
                       <p className="text-xs text-gray-500 mt-1">
                         Last Updated:{" "}
                         {new Date(r.updatedAt).toLocaleString("en-IN", {

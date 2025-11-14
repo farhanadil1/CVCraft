@@ -92,7 +92,7 @@ useEffect(() => {
       localStorage.removeItem("draftFormData");
       setIsLoggedIn(false);
       setDropdownOpen(false);
-      window.location.reload();
+      navigate("/", { replace: true });
     } catch (err) {
       console.error(err);
       toast.error("Logout failed! Check console.", {
@@ -199,7 +199,7 @@ useEffect(() => {
           }}
           className="flex items-center w-fit px-2 text-center justify-center font-para font-semibold py-2 rounded-xl hover:text-primary transition-all duration-300"
         >
-          {isLoggedIn ? "Logout" : "Get Started"}{" "}
+          {isLoggedIn ? "Logout" : "Login"}{" "}
           {isLoggedIn ? null : <BsArrowUpRightCircle className="ml-1" />}
         </button>
       </div>
