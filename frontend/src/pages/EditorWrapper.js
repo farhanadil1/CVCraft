@@ -124,7 +124,7 @@ const EditorWrapper = () => {
             Go Home
           </button>
 
-          <p className="text-center ml-9 sm:ml-0 py-3 px-4 flex gap-2">
+          <p className="text-center text-xs ml-9 sm:ml-0 py-3 px-4 flex gap-2">
             Sign in to save your progress{" "}
             <span className="font-semibold">CVCraft</span>
           </p>

@@ -238,15 +238,15 @@ const Template4 = ({ data }) => {
 
   return (
     // Main Container
-    <div className="font-sans max-w-5xl mx-auto my-6 bg-white shadow-2xl rounded-lg">
-      <div className="md:grid md:grid-cols-3 min-h-[900px]">
+    <div className="font-sans w-full mx-auto my-6 bg-white shadow-2xl rounded-lg">
+      <div className="grid grid-cols-3">
         {/* Left Column (1/3 width, dark) */}
-        <div className="md:col-span-1">
+        <div className="col-span-1">
           <LeftSidebar />
         </div>
 
         {/* Right Column (2/3 width, light) */}
-        <div className="md:col-span-2">
+        <div className="col-span-2">
           <RightContent />
         </div>
       </div>

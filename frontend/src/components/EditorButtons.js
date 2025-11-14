@@ -81,44 +81,78 @@ const EditorButtons = ({
 
   // Download PDF
   const handleDownload = async () => {
-    const token = Cookies.get("username");
-    if (!token) {
-      toast.error("Please login to download your resume!");
-      return;
+  const token = Cookies.get("username");
+  if (!token) {
+    toast.error("Please login to download your resume!");
+    return;
+  }
+
+  await toast.promise(
+    (async () => {
+      await handleSave(false); // silent save
+
+      if (!previewRef.current) return;
+
+      const a4El = previewRef.current.querySelector(".a4-container");
+
+      //  Save current inline styles
+      const prevTransform = a4El.style.transform;
+      const prevWidth = a4El.style.width;
+      const prevHeight = a4El.style.height;
+
+      //  Enable true A4, remove scaling
+      a4El.classList.add("a4-capture");
+
+      // wait a frame so css applies
+      await new Promise((res) => setTimeout(res, 30));
+
+      // 300 DPI CANVAS GENERATION
+      const dpi = 300;
+      const scaleFactor = dpi / 96; // 96 = default browser dpi
+
+      const canvas = await html2canvas(a4El, {
+        scale: scaleFactor,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        logging: false,
+      });
+
+      // Restore original preview scaling
+      a4El.classList.remove("a4-capture");
+      a4El.style.transform = prevTransform;
+      a4El.style.width = prevWidth;
+      a4El.style.height = prevHeight;
+
+      // Generate PDF at true A4
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        0,
+        pdf.internal.pageSize.getWidth(),
+        pdf.internal.pageSize.getHeight()
+      );
+
+      const username = Cookies.get("username");
+      pdf.save(`${username || "resume"}_CVCraft.pdf`);
+    })(),
+    {
+      loading: "Generating PDF...",
+      success: "PDF downloaded.",
+      error: "PDF generation failed!",
     }
+  );
+};
 
-    await toast.promise(
-      (async () => {
-        await handleSave(false); // silent save
-
-        if (!previewRef.current) return;
-        const canvas = await html2canvas(previewRef.current, {
-          scale: 2,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: "#ffffff"
-        });
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("p", "mm", "a4");
-        const width = pdf.internal.pageSize.getWidth();
-        const height = (canvas.height * width) / canvas.width;
-        pdf.addImage(imgData, "PNG", 0, 0, width, height);
-
-        const name = Cookies.get("username");
-        if (name) {
-          pdf.save(`${name}_cvcraft.pdf`);
-        } else {
-          pdf.save("resume.pdf");
-        }
-      })(),
-      {
-        loading: "Generating PDF...",
-        success: "PDF downloaded successfully!",
-        error: "Failed to download PDF!"
-      },
-      { duration: 2000 }
-    );
-  };
 
   const handleSignup = () => {
     navigate("/auth");

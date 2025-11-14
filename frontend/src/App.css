@@ -80,3 +80,8 @@ input:-webkit-autofill {
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;
 }
+.a4-capture {
+  transform: scale(1) !important;
+  width: 850px !important;
+  height: 1100px !important;
+}
