@@ -126,7 +126,7 @@ export default function Auth() {
   };
 
   return (
-<div className="grid grid-cols-1 md:grid-cols-2 h-screen overflow-hidden font-sans bg-white">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen overflow-hidden font-sans bg-white">
       <Toaster position="top-center" />
       {/* Left side illustration */}
       <div className="hidden md:flex justify-center items-center relative p-8">
@@ -156,7 +156,7 @@ export default function Auth() {
       </div>
 
       {/* Right side form */}
-<div className="flex flex-col justify-center items-center md:items-start px-6 sm:px-10 md:px-10 h-full overflow-y-auto">
+      <div className="flex flex-col justify-center items-center md:items-start px-6 sm:px-10 md:px-10 h-full overflow-y-auto">
         <div className="w-full max-w-80">
           <div className="flex justify-center items-center mb-4">
             <img src="./logo.png" alt="CVCraft" className="h-10 w-16" />

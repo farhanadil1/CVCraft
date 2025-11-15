@@ -176,8 +176,7 @@ For major changes, open an issue to discuss improvements first.
 
 This project, **CVCraft**, is shared for learning, portfolio development, and personal projects.  
 You are welcome to **explore, adapt, and learn** from the code and design for educational or personal use.  
-
-Commercial use or redistribution without permission is **not allowed**.  
+ 
 For collaboration, references, or permissions, feel free to reach out.  
 
 > *Shared to inspire learning, creativity, and professional growth.*
