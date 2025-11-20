@@ -17,7 +17,7 @@ const Contact = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen bg-page flex flex-col items-center px-6 md:px-20 py-16">
+      <div className="min-h-screen pt-28 bg-page flex flex-col items-center px-6 md:px-20 py-16">
         <h1 className="text-4xl md:text-5xl font-head head-gradient mb-6 text-center">
           Contact Us
         </h1>
