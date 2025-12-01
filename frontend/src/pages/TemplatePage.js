@@ -79,7 +79,7 @@ const TemplatePage = () => {
             Authorization: `Bearer ${getAccessToken()}`
           }
         });
-        fetchResumes(); // refresh the list
+        await fetchResumes(); // refresh the list
       } catch (err) {
         console.error("Error deleting:", err);
         alert("Failed to delete!");
@@ -221,61 +221,91 @@ const TemplatePage = () => {
                     </div>
 
                     {/* Hover Buttons */}
-                    <div className={`
-                      absolute top-2 right-2 flex gap-2 
-                      transition-opacity duration-300 z-20
-                      ${
-                        deletingId === r._id ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                      }
-                    `}
+                    <div
+                      className={`
+    absolute top-3 right-3 flex flex-col gap-2
+    opacity-0 group-hover:opacity-100
+    transition-all duration-500 z-20
+    ${deletingId === r._id ? "opacity-100" : ""}
+  `}
                     >
-                      {/* EDIT BUTTON */}
+                      {/* EDIT BUTTON (Premium Glass) */}
                       <button
                         onClick={() =>
                           navigate(`/editor/${r.templateId}`, {
                             state: { resumeId: r._id }
                           })
                         }
-                        title="Edit"
                         disabled={deletingId === r._id}
+                        title="Edit"
                         className="
-                          flex items-center gap-1.5
-                          bg-white/90 backdrop-blur-md 
-                          px-3 py-1.5
-                          rounded-lg shadow-md
-                          border border-gray-200
-                          hover:shadow-xl hover:scale-[1.06]
-                          disabled:opacity-60 disabled:cursor-not-allowed
-                          transition-all duration-300
-                        "
+      relative overflow-hidden
+      flex items-center gap-1.5
+      px-3 py-2 rounded-xl
+      bg-white/10 backdrop-blur-xl
+      text-gray-900
+      border border-white/20
+      shadow-[0_4px_20px_rgba(0,0,0,0.15)]
+      transition-all duration-300
+      hover:shadow-[0_6px_25px_rgba(0,0,0,0.22)]
+      hover:bg-white/20
+      hover:scale-[1.08] active:scale-[0.95]
+      disabled:opacity-50 disabled:cursor-not-allowed
+      group/item
+    "
                       >
-                        <FaEdit size={15} className="text-blue-600" />
-                        <span className="text-[11px] font-semibold text-gray-700">
+                        {/* Glow */}
+                        <span
+                          className="
+      absolute inset-0 bg-gradient-to-br from-blue-300/30 to-transparent
+      opacity-0 group-hover/item:opacity-100 transition-all duration-500
+    "
+                        ></span>
+
+                        <FaEdit
+                          size={16}
+                          className="relative z-10 text-blue-600 group-hover/item:rotate-6 transition-all"
+                        />
+                        <span className="relative z-10 text-[11px] font-semibold">
                           Edit
                         </span>
                       </button>
 
-                      {/* DELETE BUTTON */}
+                      {/* DELETE BUTTON (Premium Danger Button) */}
                       <button
                         onClick={() => handleDelete(r._id)}
-                        title="Delete"
                         disabled={deletingId === r._id}
+                        title="Delete"
                         className={`
-                          bg-red-500/90 text-white 
-                          p-2 
-                          rounded-lg shadow-md
-                          transition-all duration-300
-                          ${
-                            deletingId === r._id
-                              ? "opacity-100 cursor-wait"
-                              : "hover:bg-red-600 hover:shadow-xl hover:scale-[1.08] active:scale-[0.95]"
-                          }
-                        `}
+      relative overflow-hidden
+      flex items-center justify-center
+      p-2.5 rounded-xl
+      bg-gradient-to-br from-red-500 to-red-600
+      text-white
+      shadow-[0_4px_15px_rgba(255,0,0,0.35)]
+      border border-red-400/40
+      transition-all duration-300
+      hover:scale-[1.10] active:scale-[0.92]
+      hover:shadow-[0_6px_20px_rgba(255,0,0,0.45)]
+      group/item
+      ${deletingId === r._id ? "opacity-100 cursor-wait" : ""}
+    `}
                       >
+                        {/* Button Glow */}
+                        <span
+                          className="
+      absolute inset-0 bg-gradient-to-t from-red-300/30 to-transparent
+      opacity-0 group-hover/item:opacity-100 transition-all duration-500
+    "
+                        ></span>
+
                         {deletingId === r._id ? (
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         ) : (
-                          <FaTrashAlt size={14} />
+                          <FaTrashAlt
+                            size={14}
+                            className="relative z-10 group-hover/item:-rotate-6 transition-transform"
+                          />
                         )}
                       </button>
                     </div>
