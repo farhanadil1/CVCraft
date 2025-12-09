@@ -256,7 +256,7 @@ const DynamicForm = ({ config, formData, setFormData }) => {
             onClick={nextStep}
             disabled={activeStep === sections.length - 1}
             variant="contained"
-            className="!bg-blue-500 hover:!bg-blue-600 !capitalize"
+            className="bg-gradient-to-b from-primary to-indigo-400 shadow-md text-white !capitalize"
           >
             {activeStep === sections.length - 1 ? "Done" : "Next"}
           </Button>
